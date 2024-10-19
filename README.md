@@ -42,7 +42,7 @@
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Please check out our [Contributing Guidelines](CONTRIBUTING.md) to get started.
+Wanna add your own effect, or something else entirely> We welcome contributions from the community! Please check out our [Contributing Guidelines](CONTRIBUTING.md) to get started.
 
 ## 📄 License
 
