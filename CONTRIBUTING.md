@@ -45,6 +45,7 @@ Contributions via pull requests are welcome! Here's how to get started:
    - Click the "Fork" button at the top right of the repository page.
 
 2. **Clone Your Fork**
+
    ```bash
    git clone https://github.com/yourusername/picsmasher.git
 
@@ -81,7 +82,8 @@ Pic Smasher is designed with a modular architecture, making it easy to add new e
                 type: 'button',         Simple button
                 type: 'text',           Text input field
                 type: 'color',          Colour selector
-                type: 'checkbox',       Checkbox for toggling*/
+                type: 'checkbox',       Checkbox for toggling
+                */
             ];
         }
 

@@ -1,0 +1,30 @@
+{
+  "name": "picsmasher",
+  "version": "1.0.0",
+  "description": "![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)",
+  "main": "effects.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": ["js", "json", "jsx", "ts", "tsx", "node"],
+    "snapshotSerializers": ["<rootDir>/jest.imageDataSerializer.js"]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "canvas": "^2.11.2",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.11.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.3.3"
+  }
+}

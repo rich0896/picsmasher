@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GrayscaleEffect should apply grayscale correctly at 100% intensity 1`] = `ImageData(10, 10, [150, 150, 150, 255, 150, 150, 150, 255, 150, 150...])`;
+
+exports[`GrayscaleEffect should handle zero intensity without changes 1`] = `ImageData(10, 10, [150, 150, 150, 255, 150, 150, 150, 255, 150, 150...])`;
