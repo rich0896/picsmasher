@@ -81,7 +81,8 @@ Pic Smasher is designed with a modular architecture, making it easy to add new e
                 type: 'button',         Simple button
                 type: 'text',           Text input field
                 type: 'color',          Colour selector
-                type: 'checkbox',       Checkbox for toggling*/
+                type: 'checkbox',       Checkbox for toggling
+                */
             ];
         }
 

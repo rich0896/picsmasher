@@ -1,6 +1,7 @@
 # Pic Smasher
 
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
+[![CircleCI](https://dl.circleci.com/status-badge/img/circleci/7VJc5FtHhWBiASGtuqkyuh/5Sx8HPimX6AD7jDSUS29on/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/circleci/7VJc5FtHhWBiASGtuqkyuh/5Sx8HPimX6AD7jDSUS29on/tree/main)
 
 ## 🎨 Overview
 
