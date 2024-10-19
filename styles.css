@@ -1,0 +1,212 @@
+/* General Styles */
+body {
+	background-color: #0d0d0d;
+	color: #ffffff;
+	font-family: "Press Start 2P", cursive, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #1a1a1a;
+	padding: 20px;
+	text-align: center;
+}
+
+header h1 {
+	margin: 0;
+	font-size: 32px;
+	font-family: "Permanent Marker", cursive;
+}
+
+main {
+	padding: 20px;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.left-panel,
+.right-panel {
+	flex: 1;
+	max-width: 50%;
+	padding: 10px;
+}
+
+.left-panel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.right-panel {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.upload-section {
+	margin-bottom: 20px;
+}
+
+.upload-section input[type="file"] {
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: clip;
+	white-space: nowrap;
+}
+
+.canvas-section {
+	position: relative;
+	max-width: 100%;
+}
+
+#canvas {
+	border: 2px solid #ffffff;
+	border-radius: 10px;
+	max-width: 100%;
+	max-height: 80vh;
+	width: auto;
+	height: auto;
+}
+
+.controls-section {
+	width: 100%;
+	text-align: center;
+}
+
+.controls-section h2 {
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+.effects-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.effects-grid .add-effect-button {
+	padding: 10px;
+	background-color: #333;
+	color: #f0f0f0;
+	border: 2px solid #f0f0f0;
+	font-size: 14px;
+	cursor: pointer;
+	width: 150px;
+}
+
+.effects-grid .add-effect-button:hover {
+	background-color: #555;
+}
+#effectQueue {
+	list-style-type: none;
+	padding: 0;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto 20px;
+}
+
+#effectQueue li {
+	background-color: #333;
+	padding: 3px; /* Reduced padding */
+	margin-bottom: 3px; /* Reduced margin */
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	cursor: move;
+}
+
+#effectQueue li .effect-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 14px;
+	padding-left: 10px;
+}
+
+#effectQueue li .effect-controls {
+	margin-top: 3px; /* Reduced margin */
+}
+
+#effectQueue li input[type="range"],
+#effectQueue li input[type="text"] {
+	width: 90%;
+	margin-top: 3px; /* Reduced margin */
+	padding: 2px;
+	font-size: 12px;
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #333;
+	color: #f0f0f0;
+	border: 2px solid #f0f0f0;
+	border-radius: 10px;
+	font-size: 14px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #555;
+}
+
+footer {
+	background-color: #1a1a1a;
+	color: #888;
+	text-align: center;
+	padding: 10px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+/* Styles for color pickers, additional sliders, etc. */
+
+.effect-controls input[type="color"] {
+	width: 100%;
+	margin-top: 5px;
+	padding: 2px;
+	font-size: 12px;
+}
+
+.control-container {
+	margin-bottom: 5px;
+}
+
+.control-container label {
+	display: block;
+	font-size: 12px;
+	margin-bottom: 2px;
+}
+
+.emoji-picker {
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	width: 100%;
+	margin-top: 5px;
+	padding: 2px;
+	font-size: 20px;
+}
+
+@media screen and (max-width: 900px) {
+	.container {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.left-panel,
+	.right-panel {
+		max-width: 100%;
+	}
+
+	.effects-grid .add-effect-button {
+		width: 100%;
+	}
+}

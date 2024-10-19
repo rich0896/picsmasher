@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Pic Smasher</title>
+		<link rel="stylesheet" href="styles.css" />
+		<!-- Include Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Permanent+Marker&display=swap"
+			rel="stylesheet"
+		/>
+		<!-- Include Sortable.js library -->
+		<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Pic Smasher</h1>
+		</header>
+		<main>
+			<div class="container">
+				<!-- Left Panel remains the same -->
+				<div class="left-panel">
+					<div class="upload-section">
+						<input type="file" id="imageUpload" accept="image/*" />
+					</div>
+					<div class="canvas-section">
+						<canvas id="canvas"></canvas>
+					</div>
+				</div>
+				<!-- Right Panel -->
+				<div class="right-panel">
+					<div class="controls-section">
+						<h2>Add Effects</h2>
+						<div class="effects-grid">
+							<!-- Effect buttons will be injected by JavaScript -->
+						</div>
+						<h2>Effect Queue</h2>
+						<ul id="effectQueue"></ul>
+						<div class="buttons-container">
+							<button id="copyButton">Copy to Clipboard</button>
+							<button id="downloadButton">Download Image</button>
+							<button id="resetButton">Reset Image</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer>
+			<p>© 2024 Camden Richter</p>
+		</footer>
+		<!-- Include scripts at the end of the body -->
+		<script src="effects.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>
