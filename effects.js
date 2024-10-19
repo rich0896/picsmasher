@@ -80,7 +80,7 @@ class InvertEffect extends Effect {
 
     static getDefaultParameters() {
         return {
-            intensity: 100,
+            intensity: 100, // Percentage (0-100)
         };
     }
 
@@ -91,7 +91,7 @@ class InvertEffect extends Effect {
                 param: 'intensity',
                 label: 'Intensity',
                 min: 0,
-                max: 200,
+                max: 100,
                 step: 1,
             },
         ];
@@ -99,15 +99,17 @@ class InvertEffect extends Effect {
 
     apply(ctx, canvas) {
         console.log('Applying Invert Effect');
-        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
         const intensity = parseFloat(this.parameters.intensity) || 100;
         const factor = intensity / 100;
 
         for (let i = 0; i < data.length; i += 4) {
-            data[i] = data[i] + factor * (255 - 2 * data[i]); // Red
-            data[i + 1] = data[i + 1] + factor * (255 - 2 * data[i + 1]); // Green
-            data[i + 2] = data[i + 2] + factor * (255 - 2 * data[i + 2]); // Blue
+            // Invert each color channel based on intensity
+            data[i] = Math.min(255, data[i] + factor * (255 - 2 * data[i]));     // Red
+            data[i + 1] = Math.min(255, data[i + 1] + factor * (255 - 2 * data[i + 1])); // Green
+            data[i + 2] = Math.min(255, data[i + 2] + factor * (255 - 2 * data[i + 2])); // Blue
+            // Alpha channel remains unchanged
         }
 
         ctx.putImageData(imageData, 0, 0);
@@ -208,8 +210,8 @@ class BrightnessContrastEffect extends Effect {
 
     static getDefaultParameters() {
         return {
-            brightness: 0,
-            contrast: 0,
+            brightness: 0, // Range: -100 to +100
+            contrast: 0,   // Range: -100 to +100
         };
     }
 
@@ -236,19 +238,28 @@ class BrightnessContrastEffect extends Effect {
 
     apply(ctx, canvas) {
         console.log('Applying Brightness/Contrast Effect');
-        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
-        const brightness = parseFloat(this.parameters.brightness) || 0; // Range: -100 to 100
-        const contrast = parseFloat(this.parameters.contrast) || 0;     // Range: -100 to 100
+        let { brightness, contrast } = this.parameters;
 
-        const brightnessFactor = brightness / 100 * 255;
-        const contrastFactor = (contrast / 100) + 1;
-        const intercept = 128 * (1 - contrastFactor);
+        // Normalize brightness and contrast
+        brightness = parseFloat(brightness) || 0;
+        contrast = parseFloat(contrast) || 0;
+
+        // Calculate contrast factor
+        const factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
 
         for (let i = 0; i < data.length; i += 4) {
-            data[i] = contrastFactor * (data[i] + brightnessFactor) + intercept;
-            data[i + 1] = contrastFactor * (data[i + 1] + brightnessFactor) + intercept;
-            data[i + 2] = contrastFactor * (data[i + 2] + brightnessFactor) + intercept;
+            // Apply brightness and contrast
+            data[i] = factor * (data[i] - 128) + 128 + brightness;     // Red
+            data[i + 1] = factor * (data[i + 1] - 128) + 128 + brightness; // Green
+            data[i + 2] = factor * (data[i + 2] - 128) + 128 + brightness; // Blue
+
+            // Clamp values between 0 and 255
+            data[i] = Math.min(255, Math.max(0, data[i]));
+            data[i + 1] = Math.min(255, Math.max(0, data[i + 1]));
+            data[i + 2] = Math.min(255, Math.max(0, data[i + 2]));
+            // Alpha channel remains unchanged
         }
 
         ctx.putImageData(imageData, 0, 0);
@@ -1248,7 +1259,82 @@ class VignetteEffect extends Effect {
     }
 }
 
+class SharpenEffect extends Effect {
+    static getName() {
+        return 'Sharpen';
+    }
 
+    static getDefaultParameters() {
+        return {
+            intensity: 1, // Multiplier for the sharpening effect
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'intensity',
+                label: 'Intensity',
+                min: 1,
+                max: 5,
+                step: 1,
+            },
+        ];
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Sharpen Effect');
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const intensity = parseFloat(this.parameters.intensity) || 1;
+
+        // Define a simple sharpening kernel
+        const kernel = [
+            0, -1, 0,
+            -1, 5, -1,
+            0, -1, 0
+        ];
+
+        const side = Math.round(Math.sqrt(kernel.length));
+        const halfSide = Math.floor(side / 2);
+
+        const src = imageData.data;
+        const sw = imageData.width;
+        const sh = imageData.height;
+        const w = sw;
+        const h = sh;
+
+        const output = ctx.createImageData(w, h);
+        const dst = output.data;
+
+        for (let y = 0; y < h; y++) {
+            for (let x = 0; x < w; x++) {
+                let r = 0, g = 0, b = 0;
+                for (let cy = 0; cy < side; cy++) {
+                    for (let cx = 0; cx < side; cx++) {
+                        const scy = y + cy - halfSide;
+                        const scx = x + cx - halfSide;
+                        if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
+                            const srcOffset = (scy * sw + scx) * 4;
+                            const wt = kernel[cy * side + cx];
+                            r += src[srcOffset] * wt;
+                            g += src[srcOffset + 1] * wt;
+                            b += src[srcOffset + 2] * wt;
+                        }
+                    }
+                }
+                const dstOffset = (y * w + x) * 4;
+                dst[dstOffset] = Math.min(255, Math.max(0, r * intensity));
+                dst[dstOffset + 1] = Math.min(255, Math.max(0, g * intensity));
+                dst[dstOffset + 2] = Math.min(255, Math.max(0, b * intensity));
+                dst[dstOffset + 3] = src[(y * sw + x) * 4 + 3]; // Alpha remains unchanged
+            }
+        }
+
+        ctx.putImageData(output, 0, 0);
+    }
+}
 
 /* Register all effects */
 
@@ -1273,3 +1359,16 @@ effectManager.registerEffect('memeTopText', MemeTopTextEffect);
 effectManager.registerEffect('replaceColor', ReplaceColorEffect);
 effectManager.registerEffect('flip', FlipEffect);
 effectManager.registerEffect('vignette', VignetteEffect);
+effectManager.registerEffect('sharpen', SharpenEffect);
+
+// Export effect classes for testing
+module.exports = {
+    EffectManager,
+    Effect,
+    InvertEffect,
+    GrayscaleEffect,
+    BrightnessContrastEffect,
+    BlurEffect,
+    SharpenEffect,
+    // Export other effects as needed
+};

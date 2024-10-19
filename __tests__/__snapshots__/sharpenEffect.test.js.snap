@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SharpenEffect should apply sharpen correctly at intensity 1 1`] = `ImageData(10, 10, [255, 255, 255, 255, 200, 255, 255, 255, 200, 255...])`;
+
+exports[`SharpenEffect should apply sharpen correctly at intensity 3 1`] = `ImageData(10, 10, [255, 255, 255, 255, 255, 255, 255, 255, 255, 255...])`;
+
+exports[`SharpenEffect should handle zero intensity without changes 1`] = `ImageData(10, 10, [255, 255, 255, 255, 200, 255, 255, 255, 200, 255...])`;

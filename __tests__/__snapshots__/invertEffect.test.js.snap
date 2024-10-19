@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvertEffect should invert colors correctly at 50% intensity 1`] = `ImageData(10, 10, [128, 128, 128, 255, 128, 128, 128, 255, 128, 128...])`;
+
+exports[`InvertEffect should invert colors correctly at 100% intensity 1`] = `ImageData(10, 10, [155, 105, 55, 255, 155, 105, 55, 255, 155, 105...])`;

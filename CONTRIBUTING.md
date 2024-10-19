@@ -45,6 +45,7 @@ Contributions via pull requests are welcome! Here's how to get started:
    - Click the "Fork" button at the top right of the repository page.
 
 2. **Clone Your Fork**
+
    ```bash
    git clone https://github.com/yourusername/picsmasher.git
 
