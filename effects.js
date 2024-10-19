@@ -1,16 +1,32 @@
 // effects.js
 
+/**
+ * Manages the registration and creation of effects.
+ */
 class EffectManager {
     constructor() {
         this.effectsRegistry = {};
         this.effectList = [];
     }
 
+    /**
+     * Registers an effect class with a unique key.
+     * @param {string} effectName - Unique key for the effect.
+     * @param {class} effectClass - The effect class to register.
+     */
     registerEffect(effectName, effectClass) {
         this.effectsRegistry[effectName] = effectClass;
         this.effectList.push(effectClass);
+        // Sort effects alphabetically by name
+        this.effectList.sort((a, b) => a.getName().localeCompare(b.getName()));
     }
 
+    /**
+     * Creates an instance of a registered effect.
+     * @param {string} effectName - The key of the effect to create.
+     * @param {object} parameters - Parameters for the effect instance.
+     * @returns {Effect|null} - An instance of the effect or null if not found.
+     */
     createEffect(effectName, parameters) {
         const EffectClass = this.effectsRegistry[effectName];
         if (EffectClass) {
@@ -21,11 +37,18 @@ class EffectManager {
         }
     }
 
+    /**
+     * Retrieves the list of registered effects.
+     * @returns {Array} - List of effect classes.
+     */
     getEffects() {
         return this.effectList;
     }
 }
 
+/**
+ * Base class for all effects.
+ */
 class Effect {
     static getName() {
         return 'Base Effect';
@@ -239,9 +262,9 @@ class OverlayTextEffect extends Effect {
 
     static getDefaultParameters() {
         return {
-            text: 'BRAINROT',
+            text: 'Text',
             fontSize: 60,
-            fontFamily: 'Permanent Marker, cursive',
+            fontFamily: 'Arial',
             color: '#ff0000',
             x: 50,
             y: 50,
@@ -323,8 +346,6 @@ class OverlayTextEffect extends Effect {
         ctx.fillText(text, (x / 100) * canvas.width, (y / 100) * canvas.height);
     }
 }
-
-/* Similarly define other effects like HueSaturationEffect, etc. */
 
 class ColorFilterEffect extends Effect {
     static getName() {
@@ -529,17 +550,44 @@ class JpegArtifactEffect extends Effect {
     apply(ctx, canvas) {
         console.log('Applying JPEG Artifact Effect');
         const quality = this.parameters.quality / 100;
-        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+
+        // Create a temporary canvas to preserve the alpha channel
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+
+        // Draw the original image on the temporary canvas
+        tempCtx.drawImage(canvas, 0, 0);
+
+        // Get the image data from the temporary canvas
+        const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+        const alphaData = new Uint8ClampedArray(imageData.data.length);
+
+        // Copy the alpha channel data
+        for (let i = 3; i < imageData.data.length; i += 4) {
+            alphaData[i] = imageData.data[i];
+        }
+
+        // Convert the temporary canvas to a JPEG data URL
+        const dataUrl = tempCanvas.toDataURL('image/jpeg', quality);
         const img = new Image();
         img.src = dataUrl;
         img.onload = () => {
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            const tempCtx = tempCanvas.getContext('2d');
+            // Draw the JPEG image back onto the temporary canvas
+            tempCtx.clearRect(0, 0, canvas.width, canvas.height);
             tempCtx.drawImage(img, 0, 0);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(tempCanvas, 0, 0);
+
+            // Get the image data from the temporary canvas
+            const jpegImageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+
+            // Restore the alpha channel data
+            for (let i = 3; i < jpegImageData.data.length; i += 4) {
+                jpegImageData.data[i] = alphaData[i];
+            }
+
+            // Put the modified image data back onto the original canvas
+            ctx.putImageData(jpegImageData, 0, 0);
         };
     }
 }
@@ -1044,9 +1092,6 @@ class MemeTopTextEffect extends Effect {
     }
 }
 
-
-//for example
-
 class ReplaceColorEffect extends Effect {
     static getName() {
         return 'Replace Color';
@@ -1214,7 +1259,6 @@ effectManager.registerEffect('grayscale', GrayscaleEffect);
 effectManager.registerEffect('sepia', SepiaEffect);
 effectManager.registerEffect('brightnessContrast', BrightnessContrastEffect);
 effectManager.registerEffect('overlayText', OverlayTextEffect);
-/* Register other effects */
 effectManager.registerEffect('colorFilter', ColorFilterEffect);
 effectManager.registerEffect('blur', BlurEffect);
 effectManager.registerEffect('hueRotate', HueRotateEffect);

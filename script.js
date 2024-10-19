@@ -7,7 +7,7 @@ const ctx = canvas.getContext('2d');
 
 const resetButton = document.getElementById('resetButton');
 const downloadButton = document.getElementById('downloadButton');
-const effectQueue = document.getElementById('effectQueue');
+const copyButton = document.getElementById('copyButton');
 
 const effectsGrid = document.querySelector('.effects-grid');
 
@@ -16,16 +16,15 @@ let imageLoaded = false;
 let effectsQueue = [];
 let effectIdCounter = 0; // Unique ID counter for effects
 
-// Initialize Sortable.js on the effectQueue
-let sortable = new Sortable(effectQueue, {
+/**
+ * Initializes the sortable effect queue.
+ */
+const sortable = new Sortable(effectQueue, {
     animation: 150,
     handle: '.drag-handle',
-    onEnd: function (evt) {
-        console.log('Sortable onEnd event triggered');
+    onEnd: function () {
         // Update the effectsQueue array based on the new order
         const newOrderIds = sortable.toArray();
-        console.log('New order of IDs:', newOrderIds);
-
         const effectsQueueCopy = [...effectsQueue];
         effectsQueue = newOrderIds.map(id => {
             const item = effectsQueueCopy.find(effectItem => effectItem.id === id);
@@ -40,7 +39,9 @@ let sortable = new Sortable(effectQueue, {
     }
 });
 
-// Function to generate effect buttons dynamically
+/**
+ * Generates effect buttons dynamically based on registered effects.
+ */
 function generateEffectButtons() {
     const effects = effectManager.getEffects();
     effects.forEach(effectClass => {
@@ -53,7 +54,6 @@ function generateEffectButtons() {
         button.dataset.effect = effectKey;
 
         button.addEventListener('click', () => {
-            console.log(`Adding effect to queue: ${effectKey}`);
             const defaultParameters = effectClass.getDefaultParameters();
             const effectInstance = effectManager.createEffect(effectKey, defaultParameters);
             if (!effectInstance) {
@@ -77,18 +77,16 @@ function generateEffectButtons() {
 // Call generateEffectButtons when the page loads
 generateEffectButtons();
 
-// Event listener for image upload
+/**
+ * Event listener for image upload.
+ */
 imageUpload.addEventListener('change', (e) => {
-    console.log('Image uploaded');
     const file = e.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = function(event) {
-        console.log('FileReader onload event');
+    reader.onload = function (event) {
         const img = new Image();
-        img.onload = function() {
-            console.log('Image onload event');
-
+        img.onload = function () {
             // Calculate scaling to fit within max dimensions
             const maxWidth = 800;
             const maxHeight = 600;
@@ -106,19 +104,21 @@ imageUpload.addEventListener('change', (e) => {
 
             canvas.width = width;
             canvas.height = height;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.drawImage(img, 0, 0, width, height);
             originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
             imageLoaded = true;
             applyEffects(); // Apply any effects in the queue
-        }
+        };
         img.src = event.target.result;
-    }
+    };
     reader.readAsDataURL(file);
 });
 
-// Function to update the effect queue UI
+/**
+ * Updates the effect queue UI.
+ */
 function updateEffectQueueUI() {
-    console.log('Updating effect queue UI');
     const effectQueue = document.getElementById('effectQueue');
     if (!effectQueue) {
         console.error('Effect queue element not found');
@@ -141,27 +141,49 @@ function updateEffectQueueUI() {
         const effectHeader = document.createElement('div');
         effectHeader.classList.add('effect-header');
 
-        // Effect number
-        const effectNumber = document.createElement('span');
-        effectNumber.classList.add('effect-number');
-        effectNumber.textContent = `${index + 1}.`;
-        effectHeader.appendChild(effectNumber);
-
-        const effectLabel = document.createElement('span');
-        const effectDisplayName = effect.constructor.getName();
-        effectLabel.textContent = `${effectDisplayName}`;
-        effectHeader.appendChild(effectLabel);
+        // Container for drag handle and effect number
+        const handleContainer = document.createElement('div');
+        handleContainer.classList.add('handle-container');
 
         // Drag handle
         const dragHandle = document.createElement('span');
         dragHandle.classList.add('drag-handle');
         dragHandle.textContent = '☰';
-        effectHeader.appendChild(dragHandle);
+        handleContainer.appendChild(dragHandle);
 
+        // Effect number
+        const effectNumber = document.createElement('span');
+        effectNumber.classList.add('effect-number');
+        effectNumber.textContent = `${index + 1}.`;
+        handleContainer.appendChild(effectNumber);
+
+        effectHeader.appendChild(handleContainer);
+
+        // Effect name
+        const effectLabel = document.createElement('span');
+        const effectDisplayName = effect.constructor.getName();
+        effectLabel.textContent = `${effectDisplayName}`;
+        effectHeader.appendChild(effectLabel);
+
+        li.appendChild(effectHeader);
+
+        // Container for toggle and remove buttons
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+
+        // Toggle button for effect controls
+        const toggleButton = document.createElement('button');
+        toggleButton.textContent = 'Settings';
+        toggleButton.addEventListener('click', () => {
+            const controlsContainer = document.getElementById(`${item.id}-controls`);
+            controlsContainer.style.display = controlsContainer.style.display === 'none' ? 'block' : 'none';
+        });
+        buttonContainer.appendChild(toggleButton);
+
+        // Remove button
         const removeButton = document.createElement('button');
         removeButton.textContent = '✖';
         removeButton.addEventListener('click', () => {
-            // Find the index of the effect to remove
             const effectIndex = effectsQueue.findIndex(e => e.id === item.id);
             if (effectIndex > -1) {
                 effectsQueue.splice(effectIndex, 1);
@@ -171,18 +193,9 @@ function updateEffectQueueUI() {
                 }
             }
         });
-        effectHeader.appendChild(removeButton);
+        buttonContainer.appendChild(removeButton);
 
-        li.appendChild(effectHeader);
-
-        // Toggle button for effect controls
-        const toggleButton = document.createElement('button');
-        toggleButton.textContent = 'Show/Hide Controls';
-        toggleButton.addEventListener('click', () => {
-            const controlsContainer = document.getElementById(`${item.id}-controls`);
-            controlsContainer.style.display = controlsContainer.style.display === 'none' ? 'block' : 'none';
-        });
-        effectHeader.appendChild(toggleButton);
+        effectHeader.appendChild(buttonContainer);
 
         // Effect controls (dynamically generated based on effect parameters)
         const effectControls = document.createElement('div');
@@ -296,55 +309,7 @@ function updateEffectQueueUI() {
                     });
                     controlContainer.appendChild(input);
                     break;
-                case 'button':
-                    input = document.createElement('button');
-                    input.textContent = control.label;
-                    input.addEventListener('click', () => {
-                        control.action(effect);
-                        if (imageLoaded) {
-                            applyEffects();
-                        }
-                    });
-                    controlContainer.appendChild(input);
-                    break;
-                case 'emoji':
-                    input = document.createElement('div');
-                    input.classList.add('emoji-picker-container');
-                    const selectedEmoji = document.createElement('div');
-                    selectedEmoji.classList.add('selected-emoji');
-                    selectedEmoji.textContent = paramValue || '😀'; // Default emoji if none selected
-                    input.appendChild(selectedEmoji);
-
-                    const emojiPicker = document.createElement('div');
-                    emojiPicker.classList.add('emoji-picker');
-                    emojiPicker.style.display = 'none'; // Initially hidden
-
-                    // Populate emoji picker with a grid of emojis
-                    const emojis = EmojiEffect.getControls()[0].options;
-                    emojis.forEach(emoji => {
-                        const emojiItem = document.createElement('div');
-                        emojiItem.classList.add('emoji-item');
-                        emojiItem.textContent = emoji;
-                        emojiItem.addEventListener('click', () => {
-                            selectedEmoji.textContent = emoji;
-                            effect.parameters[param] = emoji;
-                            emojiPicker.style.display = 'none';
-                            if (imageLoaded) {
-                                applyEffects();
-                            }
-                        });
-                        emojiPicker.appendChild(emojiItem);
-                    });
-
-                    input.appendChild(emojiPicker);
-
-                    selectedEmoji.addEventListener('click', () => {
-                        emojiPicker.style.display = emojiPicker.style.display === 'none' ? 'grid' : 'none';
-                    });
-
-                    controlContainer.appendChild(input);
-                    break;
-                // Add other input types as needed
+                // Add other control types as needed
                 default:
                     console.error(`Unknown control type: ${control.type}`);
             }
@@ -363,19 +328,21 @@ function updateEffectQueueUI() {
     sortable.sort(effectsQueue.map(item => item.id));
 }
 
-// Function to apply effects from the queue
+/**
+ * Applies effects from the queue to the image.
+ */
 function applyEffects() {
     if (!imageLoaded) {
         console.log('No image loaded. Effects will be applied once an image is uploaded.');
         return;
     }
     console.log('Applying effects from queue');
+
     // Reset to original image before applying effects
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.putImageData(originalImage, 0, 0);
 
-    // Clear any canvas filters
-    ctx.filter = 'none';
-
+    // Apply each effect in the queue
     effectsQueue.forEach(item => {
         const effect = item.effect;
         if (!effect) {
@@ -387,8 +354,9 @@ function applyEffects() {
     });
 }
 
-// Copy image to clipboard
-const copyButton = document.getElementById('copyButton');
+/**
+ * Copies the image to the clipboard.
+ */
 copyButton.addEventListener('click', async () => {
     if (!imageLoaded) {
         console.log('No image loaded');
@@ -405,10 +373,12 @@ copyButton.addEventListener('click', async () => {
         } catch (err) {
             console.error('Failed to copy image to clipboard', err);
         }
-    });
+    }, 'image/png');
 });
 
-// Download image as PNG
+/**
+ * Downloads the image as a PNG file, preserving transparency.
+ */
 downloadButton.addEventListener('click', () => {
     if (!imageLoaded) {
         console.log('No image loaded');
@@ -420,10 +390,13 @@ downloadButton.addEventListener('click', () => {
     link.click();
 });
 
-// Reset image to original
+/**
+ * Resets the image to the original state and clears the effect queue.
+ */
 resetButton.addEventListener('click', () => {
     console.log('Reset button clicked');
     if (!originalImage) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.putImageData(originalImage, 0, 0);
     // Clear the effects queue
     effectsQueue = [];

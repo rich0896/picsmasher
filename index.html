@@ -18,13 +18,18 @@
 		</header>
 		<main>
 			<div class="container">
-				<!-- Left Panel remains the same -->
+				<!-- Left Panel -->
 				<div class="left-panel">
 					<div class="upload-section">
 						<input type="file" id="imageUpload" accept="image/*" />
 					</div>
 					<div class="canvas-section">
 						<canvas id="canvas"></canvas>
+					</div>
+					<div class="buttons-container">
+						<button id="copyButton">Copy to Clipboard</button>
+						<button id="downloadButton">Download Image</button>
+						<button id="resetButton">Reset Image</button>
 					</div>
 				</div>
 				<!-- Right Panel -->
@@ -36,11 +41,6 @@
 						</div>
 						<h2>Effect Queue</h2>
 						<ul id="effectQueue"></ul>
-						<div class="buttons-container">
-							<button id="copyButton">Copy to Clipboard</button>
-							<button id="downloadButton">Download Image</button>
-							<button id="resetButton">Reset Image</button>
-						</div>
 					</div>
 				</div>
 			</div>
