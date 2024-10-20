@@ -5,10 +5,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env, argv) => ({
-    entry: './script.js',
+    entry: './src/script.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '/dist'),
         clean: true,
     },
     mode: argv.mode || 'development',
@@ -32,7 +32,7 @@ module.exports = (env, argv) => ({
         ],
     },
     devServer: {
-        static: './dist',
+        static: '/dist',
         compress: true,
         port: 8080,
         hot: true,
@@ -40,7 +40,7 @@ module.exports = (env, argv) => ({
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './index.html',
+            template: './src/index.html',
         }),
     ],
 });

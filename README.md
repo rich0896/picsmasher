@@ -47,7 +47,7 @@ Check out the live application [here](https://rich0896.github.io/picsmasher/).
     npm start
     ```
 
-This will start a local development server accessible at http://localhost:8080.
+This will start a local development server accessible at <http://localhost:8080>.
 
 ## 💡 Usage
 

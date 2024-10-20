@@ -24,10 +24,10 @@ jobs:
                   name: Run Tests
                   command: npm test -- --ci --reporters=default --reporters=jest-junit
             - store_artifacts:
-                  path: test-results
-                  destination: test-results
+                  path: tests/test-results
+                  destination: tests/test-results
             - store_test_results:
-                  path: test-results
+                  path: tests/test-results
 
 workflows:
     version: 2
