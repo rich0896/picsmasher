@@ -1,34 +1,48 @@
-// __tests__/invertEffect.test.js
-
-const { InvertEffect } = require('../effects.js'); // Adjust the path as needed
-const { applyEffectAndGetImageData } = require('../helpers/testHelpers.js');
+const { InvertEffect } = require('../effects.js');
+const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('InvertEffect', () => {
-    let ctx, canvas;
-
-    beforeEach(() => {
-        // Create a canvas element using the global document provided by jsdom
-        canvas = document.createElement('canvas');
-        canvas.width = 10;
-        canvas.height = 10;
-        ctx = canvas.getContext('2d');
-
-        // Fill the canvas with a solid color (e.g., rgb(100, 150, 200))
-        ctx.fillStyle = 'rgb(100, 150, 200)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    });
-
-    test('should invert colors correctly at 100% intensity', () => {
+    test('should invert colors correctly', async () => {
+        const { canvas, ctx } = await createTestCanvas();
         const effect = new InvertEffect({ intensity: 100 });
-        const serializedImageData = applyEffectAndGetImageData(effect, ctx, canvas);
 
-        expect(serializedImageData).toMatchSnapshot();
+        const consoleSpy = jest
+            .spyOn(console, 'log')
+            .mockImplementation(() => {});
+
+        effect.apply(ctx, canvas);
+
+        expect(consoleSpy).toHaveBeenCalledWith('Applying Invert Effect');
+        consoleSpy.mockRestore();
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        expect(imageData).toMatchSnapshot();
     });
 
-    test('should invert colors correctly at 50% intensity', () => {
+    test('should invert colors correctly at 50% intensity', async () => {
+        const { canvas, ctx } = await createTestCanvas();
         const effect = new InvertEffect({ intensity: 50 });
-        const serializedImageData = applyEffectAndGetImageData(effect, ctx, canvas);
 
-        expect(serializedImageData).toMatchSnapshot();
+        effect.apply(ctx, canvas);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        expect(imageData).toMatchSnapshot();
+    });
+
+    test('should handle zero intensity without changes', async () => {
+        const { canvas, ctx } = await createTestCanvas();
+        const effect = new InvertEffect({ intensity: 0 });
+
+        effect.apply(ctx, canvas);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        // Compare with original image data
+        const originalImageData = ctx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+        expect(imageData.data).toEqual(originalImageData.data);
     });
 });

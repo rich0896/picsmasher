@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FlipEffect should flip the image horizontally 1`] = `ImageData { width: 200, height: 200, data: [100, 150, 200, 255, 100, 150, 200, 255, 100, 150...], length: 160000 }`;
+
+exports[`FlipEffect should flip the image vertically 1`] = `ImageData { width: 200, height: 200, data: [100, 150, 200, 255, 100, 150, 200, 255, 100, 150...], length: 160000 }`;

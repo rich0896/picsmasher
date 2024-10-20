@@ -1,101 +1,484 @@
-/* eslint-disable no-undef */
 // __tests__/script.test.js
 
-const { JSDOM } = require('jsdom');
-const fs = require('fs');
-const path = require('path');
-const { InvertEffect, BlurEffect } = require('../effects.js'); // Import necessary effects
-const { applyEffectAndGetImageData } = require('../helpers/testUtils'); // Adjust path if different
+// Polyfill TextEncoder if necessary
+if (typeof TextEncoder === 'undefined') {
+    global.TextEncoder = require('util').TextEncoder;
+}
 
-// Assuming script.js exports necessary functions
-const script = require('../script.js');
+import { init, appState, resetAppState } from '../script.js';
+import { InvertEffect, GrayscaleEffect } from '../effects.js';
+
+// Mock sortablejs
+jest.mock('sortablejs', () => {
+    return jest.fn().mockImplementation(() => ({
+        sort: jest.fn(),
+        destroy: jest.fn(),
+    }));
+});
+
+// Mock DataTransfer
+class DataTransfer {
+    constructor() {
+        this.items = [];
+    }
+    get files() {
+        return this.items.map((item) => item.getAsFile());
+    }
+    get types() {
+        return [];
+    }
+    getData() {}
+    setData() {}
+    clearData() {}
+}
+
+Object.defineProperty(global, 'DataTransfer', {
+    value: DataTransfer,
+});
+
+// Mock ImageData
+global.ImageData = class ImageData {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+        this.data = new Uint8ClampedArray(width * height * 4);
+    }
+};
 
 describe('script.js', () => {
-    let dom, container, canvas, ctx;
+    let app;
+    let canvas, ctx;
 
     beforeEach(() => {
-        // Load the HTML file (assuming you have an index.html)
-        const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8');
-        dom = new JSDOM(html, { runScripts: "dangerously", resources: "usable" });
-        container = dom.window.document.body;
-
-        // Mock the canvas and context
-        canvas = dom.window.document.createElement('canvas');
-        canvas.width = 10;
-        canvas.height = 10;
+        document.body.innerHTML = `
+          <input type="file" id="imageUpload" />
+          <canvas id="canvas"></canvas>
+          <button id="resetButton">Reset</button>
+          <button id="downloadButton">Download</button>
+          <button id="copyButton">Copy</button>
+          <div class="effects-grid"></div>
+          <ul id="effectQueue"></ul>
+        `;
+        app = init();
+        canvas = document.getElementById('canvas');
         ctx = canvas.getContext('2d');
-        container.appendChild(canvas);
 
-        // Initialize script.js functions if necessary
-        if (script.init) {
-            script.init(canvas);
-        }
-    });
-
-    test('should initialize canvas correctly', () => {
-        // Verify that canvas is set up properly
-        expect(canvas).toBeDefined();
-        expect(ctx).toBeDefined();
-    });
-
-    test('should apply InvertEffect when invert button is clicked', () => {
-        // Assuming there's a button with id 'invert-button'
-        const invertButton = dom.window.document.createElement('button');
-        invertButton.id = 'invert-button';
-        container.appendChild(invertButton);
-
-        // Mock the click event
-        invertButton.addEventListener('click', () => {
-            const effect = new InvertEffect({ intensity: 100 });
-            effect.apply(ctx, canvas);
+        // Mock navigator.clipboard
+        Object.defineProperty(navigator, 'clipboard', {
+            value: {
+                write: jest.fn().mockResolvedValue(),
+            },
+            writable: true,
         });
 
-        // Fill canvas with initial color
-        ctx.fillStyle = 'rgb(100, 150, 200)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Access the appState
+        // appState = require('../script.js').appState;
 
-        // Simulate button click
+        // Reset the state before each test
+        resetAppState();
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+        // Clean up any global mocks
+        delete global.ClipboardItem;
+    });
+
+    test('should initialize without errors', () => {
+        // If init throws, this test will fail.
+        expect(true).toBe(true);
+    });
+
+    test('should generate effect buttons', () => {
+        const buttons = document.querySelectorAll('.add-effect-button');
+        expect(buttons.length).toBeGreaterThan(0);
+
+        // Check for specific effect buttons
+        const invertButton = Array.from(buttons).find(
+            (btn) => btn.textContent === 'Invert Colors'
+        );
+        expect(invertButton).not.toBeNull();
+    });
+
+    test('should add effect to queue when effect button is clicked', () => {
+        const invertButton = document.querySelector(
+            '.add-effect-button[data-effect="invert"]'
+        );
         invertButton.click();
 
-        // Get the ImageData after inversion
-        const serializedImageData = applyEffectAndGetImageData(new InvertEffect({ intensity: 100 }), ctx, canvas);
+        // Check that the effect is added to the effects queue
+        const effectQueueItems = document.querySelectorAll('#effectQueue li');
+        expect(effectQueueItems.length).toBe(1);
 
-        // Verify using snapshot
-        expect(serializedImageData).toMatchSnapshot();
+        // Check the effect name
+        const effectNameElement =
+            effectQueueItems[0].querySelector('.effect-name');
+        expect(effectNameElement).not.toBeNull();
+
+        const effectName = effectNameElement.textContent;
+        expect(effectName).toBe('Invert Colors');
     });
 
-    test('should apply BlurEffect when blur slider is adjusted', () => {
-        // Assuming there's a slider with id 'blur-slider'
-        const blurSlider = dom.window.document.createElement('input');
-        blurSlider.type = 'range';
-        blurSlider.id = 'blur-slider';
-        blurSlider.min = 0;
-        blurSlider.max = 20;
-        blurSlider.value = 5;
-        container.appendChild(blurSlider);
+    test('should load image when image is uploaded', (done) => {
+        const imageUpload = document.getElementById('imageUpload');
 
-        // Mock the input event
-        blurSlider.addEventListener('input', (event) => {
-            const intensity = parseInt(event.target.value, 10);
-            const effect = new BlurEffect({ intensity });
-            effect.apply(ctx, canvas);
+        // Spy on ctx.drawImage
+        const drawImageSpy = jest
+            .spyOn(ctx, 'drawImage')
+            .mockImplementation(() => {});
+
+        // Simulate file selection
+        const file = new File(['dummy content'], 'test.png', {
+            type: 'image/png',
+        });
+        const fileList = {
+            0: file,
+            length: 1,
+            item: (index) => file,
+        };
+        Object.defineProperty(imageUpload, 'files', {
+            value: fileList,
         });
 
-        // Fill canvas with initial color
-        ctx.fillStyle = 'rgb(50, 100, 150)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // Mock FileReader
+        jest.spyOn(window, 'FileReader').mockImplementation(() => {
+            return {
+                readAsDataURL: function () {
+                    this.onload({
+                        target: { result: 'data:image/png;base64,dummydata' },
+                    });
+                },
+            };
+        });
 
-        // Simulate slider adjustment
-        blurSlider.value = 5;
-        const event = new dom.window.Event('input');
-        blurSlider.dispatchEvent(event);
+        // Mock Image
+        jest.spyOn(window, 'Image').mockImplementation(() => {
+            return {
+                set src(value) {
+                    this.onload();
+                },
+                onload: null,
+                width: 100,
+                height: 100,
+            };
+        });
 
-        // Get the ImageData after blur
-        const serializedImageData = applyEffectAndGetImageData(new BlurEffect({ intensity: 5 }), ctx, canvas);
+        imageUpload.dispatchEvent(new Event('change'));
 
-        // Verify using snapshot
-        expect(serializedImageData).toMatchSnapshot();
+        // Allow the event loop to process the onload handlers
+        setTimeout(() => {
+            // Assert that the image is drawn on the canvas
+            expect(drawImageSpy).toHaveBeenCalled();
+
+            drawImageSpy.mockRestore();
+            done();
+        }, 0);
     });
 
-    // Add more tests for other interactions and effects as needed
+    test('should apply effects to the canvas', () => {
+        const invertButton = document.querySelector(
+            '.add-effect-button[data-effect="invert"]'
+        );
+        expect(invertButton).not.toBeNull();
+
+        invertButton.click();
+
+        // Mock imageLoaded and originalImage
+        appState.imageLoaded = true;
+        appState.originalImage = new ImageData(100, 100);
+
+        // Spy on InvertEffect's apply method
+        const invertEffectInstance = appState.effectsQueue[0].effect;
+        expect(invertEffectInstance).toBeDefined();
+
+        const applySpy = jest.spyOn(invertEffectInstance, 'apply');
+
+        // Call applyEffects
+        app.applyEffects();
+
+        // Verify that the effect's apply method was called
+        expect(applySpy).toHaveBeenCalledWith(ctx, canvas);
+
+        applySpy.mockRestore();
+    });
+
+    test('should reset effects queue and canvas when reset button is clicked', () => {
+        const resetButton = document.getElementById('resetButton');
+
+        // Mock effectsQueue and originalImage
+        appState.effectsQueue.push({ id: 'effect-1', effect: {} });
+        appState.originalImage = new ImageData(100, 100);
+        appState.imageLoaded = true;
+
+        // Spy on ctx methods
+        const clearRectSpy = jest.spyOn(ctx, 'clearRect');
+        const putImageDataSpy = jest.spyOn(ctx, 'putImageData');
+
+        resetButton.click();
+
+        // Assert that the effects queue is cleared
+        expect(appState.effectsQueue.length).toBe(0);
+
+        // Assert that canvas is reset
+        expect(clearRectSpy).toHaveBeenCalled();
+        expect(putImageDataSpy).toHaveBeenCalledWith(
+            appState.originalImage,
+            0,
+            0
+        );
+    });
+
+    test('should trigger download when download button is clicked', () => {
+        appState.imageLoaded = true;
+
+        const downloadButton = document.getElementById('downloadButton');
+        const toDataURLSpy = jest
+            .spyOn(canvas, 'toDataURL')
+            .mockReturnValue('data:image/png;base64,dummydata');
+
+        // Mock createElement only for the link element
+        const clickMock = jest.fn();
+        const originalCreateElement = document.createElement.bind(document);
+        jest.spyOn(document, 'createElement').mockImplementation((tagName) => {
+            if (tagName === 'a') {
+                return {
+                    click: clickMock,
+                    href: '',
+                    download: '',
+                };
+            }
+            return originalCreateElement(tagName);
+        });
+
+        downloadButton.click();
+
+        expect(toDataURLSpy).toHaveBeenCalled();
+        expect(clickMock).toHaveBeenCalled();
+
+        document.createElement.mockRestore();
+    });
+
+    test('should copy image to clipboard when copy button is clicked', async () => {
+        appState.imageLoaded = true;
+
+        const copyButton = document.getElementById('copyButton');
+
+        // Mock canvas.toBlob
+        jest.spyOn(canvas, 'toBlob').mockImplementation((callback) => {
+            callback(new Blob(['dummy content'], { type: 'image/png' }));
+        });
+
+        // Spy on navigator.clipboard.write
+        const clipboardWriteSpy = jest.spyOn(navigator.clipboard, 'write');
+
+        // Mock ClipboardItem
+        global.ClipboardItem = function (data) {
+            return data;
+        };
+
+        copyButton.click();
+
+        // Wait for any promises to resolve
+        await Promise.resolve();
+
+        expect(clipboardWriteSpy).toHaveBeenCalled();
+    });
+
+    test('should update effect parameters when controls are changed', () => {
+        const invertButton = document.querySelector(
+            '.add-effect-button[data-effect="invert"]'
+        );
+        invertButton.click();
+
+        // Find the effect's control input
+        const intensityInput = document.querySelector(
+            '#effectQueue input[type="range"]'
+        );
+        expect(intensityInput).not.toBeNull();
+
+        // Change the input value
+        intensityInput.value = 50;
+        intensityInput.dispatchEvent(new Event('input'));
+
+        // Verify that the effect's parameters have been updated
+        const effectInstance = appState.effectsQueue[0].effect;
+        expect(effectInstance).toBeDefined();
+        expect(effectInstance.parameters.intensity).toBe(50);
+    });
+
+    test('should apply all effects in the queue', () => {
+        appState.imageLoaded = true; // Add this line
+        appState.originalImage = new ImageData(100, 100);
+
+        // Add effects to the queue
+        const invertEffect = new InvertEffect({ intensity: 100 });
+        const grayscaleEffect = new GrayscaleEffect({ intensity: 100 });
+
+        appState.effectsQueue.push({ id: 'effect-1', effect: invertEffect });
+        appState.effectsQueue.push({ id: 'effect-2', effect: grayscaleEffect });
+
+        // Spy on the apply methods
+        const invertSpy = jest.spyOn(invertEffect, 'apply');
+        const grayscaleSpy = jest.spyOn(grayscaleEffect, 'apply');
+
+        // Call applyEffects
+        app.applyEffects();
+
+        expect(invertSpy).toHaveBeenCalledWith(ctx, canvas);
+        expect(grayscaleSpy).toHaveBeenCalledWith(ctx, canvas);
+    });
+
+    test('should update the effect queue UI', () => {
+        // Add effects to the queue
+        appState.effectsQueue.push({
+            id: 'effect-1',
+            effect: new InvertEffect({ intensity: 100 }),
+        });
+        appState.effectsQueue.push({
+            id: 'effect-2',
+            effect: new GrayscaleEffect({ intensity: 100 }),
+        });
+
+        // Call updateEffectQueueUI
+        app.updateEffectQueueUI();
+
+        const effectQueueItems = document.querySelectorAll('#effectQueue li');
+        expect(effectQueueItems.length).toBe(2);
+
+        const effectNames = Array.from(effectQueueItems).map(
+            (item) => item.querySelector('.effect-name').textContent
+        );
+        expect(effectNames).toEqual(['Invert Colors', 'Grayscale']);
+    });
+
+    test('should remove effect from queue when remove button is clicked', () => {
+        // Add an effect
+        const invertButton = document.querySelector(
+            '.add-effect-button[data-effect="invert"]'
+        );
+        invertButton.click();
+
+        // Find the remove button
+        const removeButton = document.querySelector(
+            '#effectQueue .remove-effect-button'
+        );
+        expect(removeButton).not.toBeNull();
+
+        removeButton.click();
+
+        // Check that the effects queue is empty
+        const effectQueueItems = document.querySelectorAll('#effectQueue li');
+        expect(effectQueueItems.length).toBe(0);
+
+        // Verify that effectsQueue array is empty
+        expect(appState.effectsQueue.length).toBe(0);
+    });
+
+    test('should load image and draw it on the canvas when an image is uploaded', () => {
+        const imageUpload = document.getElementById('imageUpload');
+
+        // Spy on ctx.drawImage
+        const drawImageSpy = jest
+            .spyOn(ctx, 'drawImage')
+            .mockImplementation(() => {});
+
+        // Mock FileReader
+        jest.spyOn(window, 'FileReader').mockImplementation(() => {
+            return {
+                readAsDataURL: jest.fn(function () {
+                    this.onload({
+                        target: { result: 'data:image/png;base64,dummydata' },
+                    });
+                }),
+            };
+        });
+
+        // Mock Image
+        const imageMock = {
+            onload: null,
+            src: '',
+            width: 100,
+            height: 100,
+        };
+        jest.spyOn(window, 'Image').mockImplementation(() => imageMock);
+
+        // Simulate file selection
+        const file = new File(['dummy content'], 'test.png', {
+            type: 'image/png',
+        });
+        Object.defineProperty(imageUpload, 'files', {
+            value: [file],
+        });
+        imageUpload.dispatchEvent(new Event('change'));
+
+        // Simulate image load
+        imageMock.onload();
+
+        // Assert that the image is drawn on the canvas
+        expect(drawImageSpy).toHaveBeenCalledWith(
+            imageMock,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+    });
+
+    test('should not apply effects when no image is loaded', () => {
+        // Assume imageLoaded is false
+        appState.imageLoaded = false;
+
+        // Spy on console.log and console.error
+        const consoleSpy = jest
+            .spyOn(console, 'log')
+            .mockImplementation(() => {});
+        const consoleErrorSpy = jest
+            .spyOn(console, 'error')
+            .mockImplementation(() => {});
+
+        // Try to apply effects
+        app.applyEffects();
+
+        expect(consoleSpy).toHaveBeenCalledWith(
+            'No image loaded. Effects will be applied once an image is uploaded.'
+        );
+        expect(consoleErrorSpy).not.toHaveBeenCalled();
+    });
+
+    test('should log an error when originalImage is missing', () => {
+        // Set imageLoaded to true but originalImage to null
+        appState.imageLoaded = true;
+        appState.originalImage = null;
+
+        // Spy on console.error
+        const consoleErrorSpy = jest
+            .spyOn(console, 'error')
+            .mockImplementation(() => {});
+
+        // Try to apply effects
+        app.applyEffects();
+
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            'Original image data is missing or invalid.'
+        );
+    });
+
+    test('should log an error when effect is null in effectsQueue', () => {
+        const consoleErrorSpy = jest
+            .spyOn(console, 'error')
+            .mockImplementation(() => {});
+
+        // Add an item with null effect
+        appState.effectsQueue.push({ id: 'effect-1', effect: null });
+
+        // Ensure image is loaded and originalImage is set
+        appState.imageLoaded = true;
+        appState.originalImage = new ImageData(100, 100);
+
+        app.applyEffects();
+
+        expect(consoleErrorSpy).toHaveBeenCalledWith(
+            'Cannot apply effect: Effect is null for item with ID effect-1'
+        );
+    });
 });

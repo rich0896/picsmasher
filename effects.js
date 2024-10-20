@@ -3,7 +3,7 @@
 /**
  * Manages the registration and creation of effects.
  */
-class EffectManager {
+export class EffectManager {
     constructor() {
         this.effectsRegistry = {};
         this.effectList = [];
@@ -49,7 +49,7 @@ class EffectManager {
 /**
  * Base class for all effects.
  */
-class Effect {
+export class Effect {
     static getName() {
         return 'Base Effect';
     }
@@ -73,7 +73,7 @@ class Effect {
 
 /* Define individual effect classes */
 
-class InvertEffect extends Effect {
+export class InvertEffect extends Effect {
     static getName() {
         return 'Invert Colors';
     }
@@ -106,9 +106,15 @@ class InvertEffect extends Effect {
 
         for (let i = 0; i < data.length; i += 4) {
             // Invert each color channel based on intensity
-            data[i] = Math.min(255, data[i] + factor * (255 - 2 * data[i]));     // Red
-            data[i + 1] = Math.min(255, data[i + 1] + factor * (255 - 2 * data[i + 1])); // Green
-            data[i + 2] = Math.min(255, data[i + 2] + factor * (255 - 2 * data[i + 2])); // Blue
+            data[i] = Math.min(255, data[i] + factor * (255 - 2 * data[i])); // Red
+            data[i + 1] = Math.min(
+                255,
+                data[i + 1] + factor * (255 - 2 * data[i + 1])
+            ); // Green
+            data[i + 2] = Math.min(
+                255,
+                data[i + 2] + factor * (255 - 2 * data[i + 2])
+            ); // Blue
             // Alpha channel remains unchanged
         }
 
@@ -116,7 +122,7 @@ class InvertEffect extends Effect {
     }
 }
 
-class GrayscaleEffect extends Effect {
+export class GrayscaleEffect extends Effect {
     static getName() {
         return 'Grayscale';
     }
@@ -158,7 +164,7 @@ class GrayscaleEffect extends Effect {
     }
 }
 
-class SepiaEffect extends Effect {
+export class SepiaEffect extends Effect {
     static getName() {
         return 'Sepia';
     }
@@ -194,16 +200,28 @@ class SepiaEffect extends Effect {
             const green = data[i + 1];
             const blue = data[i + 2];
 
-            data[i] = red + factor * (Math.min(0.393 * red + 0.769 * green + 0.189 * blue, 255) - red);
-            data[i + 1] = green + factor * (Math.min(0.349 * red + 0.686 * green + 0.168 * blue, 255) - green);
-            data[i + 2] = blue + factor * (Math.min(0.272 * red + 0.534 * green + 0.131 * blue, 255) - blue);
+            data[i] =
+                red +
+                factor *
+                    (Math.min(0.393 * red + 0.769 * green + 0.189 * blue, 255) -
+                        red);
+            data[i + 1] =
+                green +
+                factor *
+                    (Math.min(0.349 * red + 0.686 * green + 0.168 * blue, 255) -
+                        green);
+            data[i + 2] =
+                blue +
+                factor *
+                    (Math.min(0.272 * red + 0.534 * green + 0.131 * blue, 255) -
+                        blue);
         }
 
         ctx.putImageData(imageData, 0, 0);
     }
 }
 
-class BrightnessContrastEffect extends Effect {
+export class BrightnessContrastEffect extends Effect {
     static getName() {
         return 'Brightness/Contrast';
     }
@@ -211,7 +229,7 @@ class BrightnessContrastEffect extends Effect {
     static getDefaultParameters() {
         return {
             brightness: 0, // Range: -100 to +100
-            contrast: 0,   // Range: -100 to +100
+            contrast: 0, // Range: -100 to +100
         };
     }
 
@@ -251,7 +269,7 @@ class BrightnessContrastEffect extends Effect {
 
         for (let i = 0; i < data.length; i += 4) {
             // Apply brightness and contrast
-            data[i] = factor * (data[i] - 128) + 128 + brightness;     // Red
+            data[i] = factor * (data[i] - 128) + 128 + brightness; // Red
             data[i + 1] = factor * (data[i + 1] - 128) + 128 + brightness; // Green
             data[i + 2] = factor * (data[i + 2] - 128) + 128 + brightness; // Blue
 
@@ -266,7 +284,7 @@ class BrightnessContrastEffect extends Effect {
     }
 }
 
-class OverlayTextEffect extends Effect {
+export class OverlayTextEffect extends Effect {
     static getName() {
         return 'Overlay Text';
     }
@@ -285,58 +303,58 @@ class OverlayTextEffect extends Effect {
     static getControls() {
         return [
             {
-            type: 'text',
-            param: 'text',
-            label: 'Text',
+                type: 'text',
+                param: 'text',
+                label: 'Text',
             },
             {
-            type: 'number',
-            param: 'fontSize',
-            label: 'Font Size',
-            min: 10,
-            max: 200,
-            step: 1,
+                type: 'number',
+                param: 'fontSize',
+                label: 'Font Size',
+                min: 10,
+                max: 200,
+                step: 1,
             },
             {
-            type: 'select',
-            param: 'fontFamily',
-            label: 'Font Family',
-            options: [
-                'Impact, sans-serif', 
-                'Arial', 
-                'Verdana', 
-                'Times New Roman', 
-                'Courier New', 
-                'Georgia', 
-                'Palatino', 
-                'Garamond', 
-                'Comic Sans MS', 
-                'Trebuchet MS', 
-                'Arial Black', 
-                'Tahoma', 
-                'Lucida Console'
-            ],
+                type: 'select',
+                param: 'fontFamily',
+                label: 'Font Family',
+                options: [
+                    'Impact, sans-serif',
+                    'Arial',
+                    'Verdana',
+                    'Times New Roman',
+                    'Courier New',
+                    'Georgia',
+                    'Palatino',
+                    'Garamond',
+                    'Comic Sans MS',
+                    'Trebuchet MS',
+                    'Arial Black',
+                    'Tahoma',
+                    'Lucida Console',
+                ],
             },
             {
-            type: 'color',
-            param: 'color',
-            label: 'Color',
+                type: 'color',
+                param: 'color',
+                label: 'Color',
             },
             {
-            type: 'range',
-            param: 'x',
-            label: 'X Position (%)',
-            min: 0,
-            max: 100,
-            step: 1,
+                type: 'range',
+                param: 'x',
+                label: 'X Position (%)',
+                min: 0,
+                max: 100,
+                step: 1,
             },
             {
-            type: 'range',
-            param: 'y',
-            label: 'Y Position (%)',
-            min: 0,
-            max: 100,
-            step: 1,
+                type: 'range',
+                param: 'y',
+                label: 'Y Position (%)',
+                min: 0,
+                max: 100,
+                step: 1,
             },
         ];
     }
@@ -345,7 +363,8 @@ class OverlayTextEffect extends Effect {
         console.log('Applying Overlay Text Effect');
         const text = this.parameters.text || 'BRAINROT';
         const fontSize = parseInt(this.parameters.fontSize) || 60;
-        const fontFamily = this.parameters.fontFamily || 'Permanent Marker, cursive';
+        const fontFamily =
+            this.parameters.fontFamily || 'Permanent Marker, cursive';
         const color = this.parameters.color || '#ff0000';
         const x = parseFloat(this.parameters.x) || 50; // Percentage
         const y = parseFloat(this.parameters.y) || 50;
@@ -358,7 +377,7 @@ class OverlayTextEffect extends Effect {
     }
 }
 
-class ColorFilterEffect extends Effect {
+export class ColorFilterEffect extends Effect {
     static getName() {
         return 'Color Filter';
     }
@@ -429,7 +448,7 @@ class ColorFilterEffect extends Effect {
     }
 }
 
-class BlurEffect extends Effect {
+export class BlurEffect extends Effect {
     static getName() {
         return 'Blur';
     }
@@ -455,20 +474,27 @@ class BlurEffect extends Effect {
 
     apply(ctx, canvas) {
         console.log('Applying Blur Effect');
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = canvas.width;
-        tempCanvas.height = canvas.height;
-        const tempCtx = tempCanvas.getContext('2d');
-        
-        tempCtx.filter = `blur(${this.parameters.radius}px)`;
-        tempCtx.drawImage(canvas, 0, 0);
-        
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(tempCanvas, 0, 0);
+        if (typeof ctx.filter !== 'undefined') {
+            // Browser environment
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            tempCtx.filter = `blur(${this.parameters.radius}px)`;
+            tempCtx.drawImage(canvas, 0, 0);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(tempCanvas, 0, 0);
+        } else {
+            // Node.js environment
+            // Implement an alternative blur algorithm or skip the effect
+            console.warn('Blur effect is not supported in this environment.');
+        }
     }
 }
 
-class HueRotateEffect extends Effect {
+export class HueRotateEffect extends Effect {
     static getName() {
         return 'Hue Rotate';
     }
@@ -500,7 +526,7 @@ class HueRotateEffect extends Effect {
     }
 }
 
-class PixelateEffect extends Effect {
+export class PixelateEffect extends Effect {
     static getName() {
         return 'Pixelate';
     }
@@ -530,11 +556,21 @@ class PixelateEffect extends Effect {
         const width = canvas.width;
         const height = canvas.height;
         ctx.drawImage(canvas, 0, 0, width / size, height / size);
-        ctx.drawImage(canvas, 0, 0, width / size, height / size, 0, 0, width, height);
+        ctx.drawImage(
+            canvas,
+            0,
+            0,
+            width / size,
+            height / size,
+            0,
+            0,
+            width,
+            height
+        );
     }
 }
 
-class JpegArtifactEffect extends Effect {
+export class JpegArtifactEffect extends Effect {
     static getName() {
         return 'JPEG Artifact';
     }
@@ -572,7 +608,12 @@ class JpegArtifactEffect extends Effect {
         tempCtx.drawImage(canvas, 0, 0);
 
         // Get the image data from the temporary canvas
-        const imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+        const imageData = tempCtx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
         const alphaData = new Uint8ClampedArray(imageData.data.length);
 
         // Copy the alpha channel data
@@ -590,7 +631,12 @@ class JpegArtifactEffect extends Effect {
             tempCtx.drawImage(img, 0, 0);
 
             // Get the image data from the temporary canvas
-            const jpegImageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+            const jpegImageData = tempCtx.getImageData(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
 
             // Restore the alpha channel data
             for (let i = 3; i < jpegImageData.data.length; i += 4) {
@@ -603,7 +649,7 @@ class JpegArtifactEffect extends Effect {
     }
 }
 
-class NoiseEffect extends Effect {
+export class NoiseEffect extends Effect {
     static getName() {
         return 'Noise';
     }
@@ -644,7 +690,7 @@ class NoiseEffect extends Effect {
     }
 }
 
-class AspectRatioEffect extends Effect {
+export class AspectRatioEffect extends Effect {
     static getName() {
         return 'Aspect Crusher';
     }
@@ -710,7 +756,7 @@ class AspectRatioEffect extends Effect {
     }
 }
 
-class EmojiEffect extends Effect {
+export class EmojiEffect extends Effect {
     static getName() {
         return 'Emoji Spam';
     }
@@ -731,7 +777,572 @@ class EmojiEffect extends Effect {
                 param: 'emoji',
                 label: 'Emoji',
                 options: [
-                    '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥳', '🤯', '😳', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '👋', '🤚', '🖐', '✋', '🖖', '👌', '🤌', '🤏', '✌️', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '☝️', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌', '👐', '🤲', '🤝', '🙏', '✍️', '💅', '🤳', '💪', '🦾', '🦿', '🦵', '🦶', '👂', '🦻', '👃', '🧠', '🫀', '🫁', '🦷', '🦴', '👀', '👁', '👅', '👄', '🫦', '👶', '🧒', '👦', '👧', '🧑', '👱', '👨', '🧔', '👩', '🧓', '👴', '👵', '🙍', '🙎', '🙅', '🙆', '💁', '🙋', '🧏', '🙇', '🤦', '🤷', '👨‍⚕️', '👩‍⚕️', '👨‍🎓', '👩‍🎓', '👨‍🏫', '👩‍🏫', '👨‍⚖️', '👩‍⚖️', '👨‍🌾', '👩‍🌾', '👨‍🍳', '👩‍🍳', '👨‍🔧', '👩‍🔧', '👨‍🏭', '👩‍🏭', '👨‍💼', '👩‍💼', '👨‍🔬', '👩‍🔬', '👨‍💻', '👩‍💻', '👨‍🎤', '👩‍🎤', '👨‍🎨', '👩‍🎨', '👨‍✈️', '👩‍✈️', '👨‍🚀', '👩‍🚀', '👨‍🚒', '👩‍🚒', '👮', '🕵️', '💂', '👷', '🤴', '👸', '👳', '👲', '🧕', '🤵', '👰', '🤰', '🤱', '👩‍🍼', '👼', '🎅', '🤶', '🦸', '🦹', '🧙', '🧚', '🧛', '🧜', '🧝', '🧞', '🧟', '🧌', '🫅', '🫃', '🫄', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🦝', '🐻', '🐼', '🦘', '🦡', '🐨', '🐯', '🦁', '🐮', '🐷', '🐽', '🐸', '🐵', '🙈', '🙉', '🙊', '🐒', '🐔', '🐧', '🐦', '🐤', '🐣', '🐥', '🦆', '🦅', '🦉', '🦇', '🐺', '🐗', '🐴', '🦄', '🐝', '🪲', '🐛', '🦋', '🐌', '🐞', '🐜', '🪳', '🪰', '🪱', '🐢', '🐍', '🦎', '🦖', '🦕', '🐙', '🦑', '🦐', '🦞', '🦀', '🐡', '🐠', '🐟', '🐬', '🐳', '🐋', '🦈', '🐊', '🐅', '🐆', '🦓', '🦍', '🦧', '🦣', '🐘', '🦛', '🦏', '🐪', '🐫', '🦒', '🦘', '🦬', '🐃', '🐂', '🐄', '🐎', '🐖', '🐏', '🐑', '🦙', '🐐', '🦌', '🐕', '🐩', '🦮', '🐕‍🦺', '🐈', '🐈‍⬛', '🪶', '🐓', '🦃', '🦤', '🦚', '🦜', '🦢', '🦩', '🕊', '🐇', '🦝', '🦨', '🦡', '🦫', '🦦', '🦥', '🐁', '🐀', '🐿', '🦔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️', '✝️', '☪️', '🕉', '☸️', '✡️', '🔯', '🕎', '☯️', '☦️', '🛐', '⛎', '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓', '🆔', '⚛️', '🉑', '☢️', '☣️', '📴', '📳', '🈶', '🈚', '🈸', '🈺', '🈷️', '✴️', '🆚', '💮', '🉐', '㊙️', '㊗️', '🈴', '🈵', '🈹', '🈲', '🅰️', '🅱️', '🆎', '🆑', '🅾️', '🆘', '❌', '⭕', '🛑', '⛔', '📛', '🚫', '💯', '💢', '♨️', '🚷', '🚯', '🚳', '🚱', '🔞', '📵', '🚭', '❗', '❕', '❓', '❔', '‼️', '⁉️', '🔅', '🔆', '〽️', '⚠️', '🚸', '🔱', '⚜️', '🔰', '♻️', '✅', '🈯', '💹', '❇️', '✳️', '❎', '🌐', '💠', 'Ⓜ️', '🌀', '💤', '🏧', '🚾', '♿', '🅿️', '🛗', '🈳', '🈂️', '🛂', '🛃', '🛄', '🛅', '🚹', '🚺', '🚼', '⚧️', '🚻', '🚮', '🎦', '📶', '🈁', '🔣', 'ℹ️', '🔤', '🔡', '🔠', '🆖', '🆗', '🆙', '🆒', '🆕', '🆓', '0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '🔢', '#️⃣', '*️⃣', '⏏️', '▶️', '⏸', '⏯', '⏹', '⏺', '⏭', '⏮', '⏩', '⏪', '⏫', '⏬', '◀️', '🔼', '🔽', '➡️', '⬅️', '⬆️', '⬇️', '↗️', '↘️', '↙️', '↖️', '↕️', '↔️', '↪️', '↩️', '⤴️', '⤵️', '🔀', '🔁', '🔂', '🔄', '🔃', '🎵', '🎶', '➕', '➖', '➗', '✖️', '💲', '💱', '™️', '©️', '®️', '〰️', '➰', '➿', '🔚', '🔙', '🔛', '🔝', '🔜', '✔️', '☑️', '🔘', '⚪', '⚫', '🔴', '🔵', '🟠', '🟡', '🟢', '🟣', '🟤', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '🟫', '⬛', '⬜', '◼️', '◻️', '◾', '◽', '▪️', '▫️', '🔺', '🔻', '🔸', '🔹', '🔶', '🔷', '🔳', '🔲'
+                    '😀',
+                    '😃',
+                    '😄',
+                    '😁',
+                    '😆',
+                    '😅',
+                    '😂',
+                    '🤣',
+                    '😊',
+                    '😇',
+                    '🙂',
+                    '🙃',
+                    '😉',
+                    '😌',
+                    '😍',
+                    '🥰',
+                    '😘',
+                    '😗',
+                    '😙',
+                    '😚',
+                    '😋',
+                    '😛',
+                    '😝',
+                    '😜',
+                    '🤪',
+                    '🤨',
+                    '🧐',
+                    '🤓',
+                    '😎',
+                    '🥳',
+                    '🤯',
+                    '😳',
+                    '🥺',
+                    '😢',
+                    '😭',
+                    '😤',
+                    '😠',
+                    '😡',
+                    '🤬',
+                    '🤢',
+                    '🤮',
+                    '🤧',
+                    '😷',
+                    '🤒',
+                    '🤕',
+                    '🤑',
+                    '🤠',
+                    '😈',
+                    '👿',
+                    '👹',
+                    '👺',
+                    '🤡',
+                    '💩',
+                    '👻',
+                    '💀',
+                    '☠️',
+                    '👽',
+                    '👾',
+                    '🤖',
+                    '🎃',
+                    '😺',
+                    '😸',
+                    '😹',
+                    '😻',
+                    '😼',
+                    '😽',
+                    '🙀',
+                    '😿',
+                    '😾',
+                    '👋',
+                    '🤚',
+                    '🖐',
+                    '✋',
+                    '🖖',
+                    '👌',
+                    '🤌',
+                    '🤏',
+                    '✌️',
+                    '🤞',
+                    '🤟',
+                    '🤘',
+                    '🤙',
+                    '👈',
+                    '👉',
+                    '👆',
+                    '🖕',
+                    '👇',
+                    '☝️',
+                    '👍',
+                    '👎',
+                    '✊',
+                    '👊',
+                    '🤛',
+                    '🤜',
+                    '👏',
+                    '🙌',
+                    '👐',
+                    '🤲',
+                    '🤝',
+                    '🙏',
+                    '✍️',
+                    '💅',
+                    '🤳',
+                    '💪',
+                    '🦾',
+                    '🦿',
+                    '🦵',
+                    '🦶',
+                    '👂',
+                    '🦻',
+                    '👃',
+                    '🧠',
+                    '🫀',
+                    '🫁',
+                    '🦷',
+                    '🦴',
+                    '👀',
+                    '👁',
+                    '👅',
+                    '👄',
+                    '🫦',
+                    '👶',
+                    '🧒',
+                    '👦',
+                    '👧',
+                    '🧑',
+                    '👱',
+                    '👨',
+                    '🧔',
+                    '👩',
+                    '🧓',
+                    '👴',
+                    '👵',
+                    '🙍',
+                    '🙎',
+                    '🙅',
+                    '🙆',
+                    '💁',
+                    '🙋',
+                    '🧏',
+                    '🙇',
+                    '🤦',
+                    '🤷',
+                    '👨‍⚕️',
+                    '👩‍⚕️',
+                    '👨‍🎓',
+                    '👩‍🎓',
+                    '👨‍🏫',
+                    '👩‍🏫',
+                    '👨‍⚖️',
+                    '👩‍⚖️',
+                    '👨‍🌾',
+                    '👩‍🌾',
+                    '👨‍🍳',
+                    '👩‍🍳',
+                    '👨‍🔧',
+                    '👩‍🔧',
+                    '👨‍🏭',
+                    '👩‍🏭',
+                    '👨‍💼',
+                    '👩‍💼',
+                    '👨‍🔬',
+                    '👩‍🔬',
+                    '👨‍💻',
+                    '👩‍💻',
+                    '👨‍🎤',
+                    '👩‍🎤',
+                    '👨‍🎨',
+                    '👩‍🎨',
+                    '👨‍✈️',
+                    '👩‍✈️',
+                    '👨‍🚀',
+                    '👩‍🚀',
+                    '👨‍🚒',
+                    '👩‍🚒',
+                    '👮',
+                    '🕵️',
+                    '💂',
+                    '👷',
+                    '🤴',
+                    '👸',
+                    '👳',
+                    '👲',
+                    '🧕',
+                    '🤵',
+                    '👰',
+                    '🤰',
+                    '🤱',
+                    '👩‍🍼',
+                    '👼',
+                    '🎅',
+                    '🤶',
+                    '🦸',
+                    '🦹',
+                    '🧙',
+                    '🧚',
+                    '🧛',
+                    '🧜',
+                    '🧝',
+                    '🧞',
+                    '🧟',
+                    '🧌',
+                    '🫅',
+                    '🫃',
+                    '🫄',
+                    '🐶',
+                    '🐱',
+                    '🐭',
+                    '🐹',
+                    '🐰',
+                    '🦊',
+                    '🦝',
+                    '🐻',
+                    '🐼',
+                    '🦘',
+                    '🦡',
+                    '🐨',
+                    '🐯',
+                    '🦁',
+                    '🐮',
+                    '🐷',
+                    '🐽',
+                    '🐸',
+                    '🐵',
+                    '🙈',
+                    '🙉',
+                    '🙊',
+                    '🐒',
+                    '🐔',
+                    '🐧',
+                    '🐦',
+                    '🐤',
+                    '🐣',
+                    '🐥',
+                    '🦆',
+                    '🦅',
+                    '🦉',
+                    '🦇',
+                    '🐺',
+                    '🐗',
+                    '🐴',
+                    '🦄',
+                    '🐝',
+                    '🪲',
+                    '🐛',
+                    '🦋',
+                    '🐌',
+                    '🐞',
+                    '🐜',
+                    '🪳',
+                    '🪰',
+                    '🪱',
+                    '🐢',
+                    '🐍',
+                    '🦎',
+                    '🦖',
+                    '🦕',
+                    '🐙',
+                    '🦑',
+                    '🦐',
+                    '🦞',
+                    '🦀',
+                    '🐡',
+                    '🐠',
+                    '🐟',
+                    '🐬',
+                    '🐳',
+                    '🐋',
+                    '🦈',
+                    '🐊',
+                    '🐅',
+                    '🐆',
+                    '🦓',
+                    '🦍',
+                    '🦧',
+                    '🦣',
+                    '🐘',
+                    '🦛',
+                    '🦏',
+                    '🐪',
+                    '🐫',
+                    '🦒',
+                    '🦘',
+                    '🦬',
+                    '🐃',
+                    '🐂',
+                    '🐄',
+                    '🐎',
+                    '🐖',
+                    '🐏',
+                    '🐑',
+                    '🦙',
+                    '🐐',
+                    '🦌',
+                    '🐕',
+                    '🐩',
+                    '🦮',
+                    '🐕‍🦺',
+                    '🐈',
+                    '🐈‍⬛',
+                    '🪶',
+                    '🐓',
+                    '🦃',
+                    '🦤',
+                    '🦚',
+                    '🦜',
+                    '🦢',
+                    '🦩',
+                    '🕊',
+                    '🐇',
+                    '🦝',
+                    '🦨',
+                    '🦡',
+                    '🦫',
+                    '🦦',
+                    '🦥',
+                    '🐁',
+                    '🐀',
+                    '🐿',
+                    '🦔',
+                    '❤️',
+                    '🧡',
+                    '💛',
+                    '💚',
+                    '💙',
+                    '💜',
+                    '🖤',
+                    '🤍',
+                    '🤎',
+                    '💔',
+                    '❣️',
+                    '💕',
+                    '💞',
+                    '💓',
+                    '💗',
+                    '💖',
+                    '💘',
+                    '💝',
+                    '💟',
+                    '☮️',
+                    '✝️',
+                    '☪️',
+                    '🕉',
+                    '☸️',
+                    '✡️',
+                    '🔯',
+                    '🕎',
+                    '☯️',
+                    '☦️',
+                    '🛐',
+                    '⛎',
+                    '♈',
+                    '♉',
+                    '♊',
+                    '♋',
+                    '♌',
+                    '♍',
+                    '♎',
+                    '♏',
+                    '♐',
+                    '♑',
+                    '♒',
+                    '♓',
+                    '🆔',
+                    '⚛️',
+                    '🉑',
+                    '☢️',
+                    '☣️',
+                    '📴',
+                    '📳',
+                    '🈶',
+                    '🈚',
+                    '🈸',
+                    '🈺',
+                    '🈷️',
+                    '✴️',
+                    '🆚',
+                    '💮',
+                    '🉐',
+                    '㊙️',
+                    '㊗️',
+                    '🈴',
+                    '🈵',
+                    '🈹',
+                    '🈲',
+                    '🅰️',
+                    '🅱️',
+                    '🆎',
+                    '🆑',
+                    '🅾️',
+                    '🆘',
+                    '❌',
+                    '⭕',
+                    '🛑',
+                    '⛔',
+                    '📛',
+                    '🚫',
+                    '💯',
+                    '💢',
+                    '♨️',
+                    '🚷',
+                    '🚯',
+                    '🚳',
+                    '🚱',
+                    '🔞',
+                    '📵',
+                    '🚭',
+                    '❗',
+                    '❕',
+                    '❓',
+                    '❔',
+                    '‼️',
+                    '⁉️',
+                    '🔅',
+                    '🔆',
+                    '〽️',
+                    '⚠️',
+                    '🚸',
+                    '🔱',
+                    '⚜️',
+                    '🔰',
+                    '♻️',
+                    '✅',
+                    '🈯',
+                    '💹',
+                    '❇️',
+                    '✳️',
+                    '❎',
+                    '🌐',
+                    '💠',
+                    'Ⓜ️',
+                    '🌀',
+                    '💤',
+                    '🏧',
+                    '🚾',
+                    '♿',
+                    '🅿️',
+                    '🛗',
+                    '🈳',
+                    '🈂️',
+                    '🛂',
+                    '🛃',
+                    '🛄',
+                    '🛅',
+                    '🚹',
+                    '🚺',
+                    '🚼',
+                    '⚧️',
+                    '🚻',
+                    '🚮',
+                    '🎦',
+                    '📶',
+                    '🈁',
+                    '🔣',
+                    'ℹ️',
+                    '🔤',
+                    '🔡',
+                    '🔠',
+                    '🆖',
+                    '🆗',
+                    '🆙',
+                    '🆒',
+                    '🆕',
+                    '🆓',
+                    '0️⃣',
+                    '1️⃣',
+                    '2️⃣',
+                    '3️⃣',
+                    '4️⃣',
+                    '5️⃣',
+                    '6️⃣',
+                    '7️⃣',
+                    '8️⃣',
+                    '9️⃣',
+                    '🔟',
+                    '🔢',
+                    '#️⃣',
+                    '*️⃣',
+                    '⏏️',
+                    '▶️',
+                    '⏸',
+                    '⏯',
+                    '⏹',
+                    '⏺',
+                    '⏭',
+                    '⏮',
+                    '⏩',
+                    '⏪',
+                    '⏫',
+                    '⏬',
+                    '◀️',
+                    '🔼',
+                    '🔽',
+                    '➡️',
+                    '⬅️',
+                    '⬆️',
+                    '⬇️',
+                    '↗️',
+                    '↘️',
+                    '↙️',
+                    '↖️',
+                    '↕️',
+                    '↔️',
+                    '↪️',
+                    '↩️',
+                    '⤴️',
+                    '⤵️',
+                    '🔀',
+                    '🔁',
+                    '🔂',
+                    '🔄',
+                    '🔃',
+                    '🎵',
+                    '🎶',
+                    '➕',
+                    '➖',
+                    '➗',
+                    '✖️',
+                    '💲',
+                    '💱',
+                    '™️',
+                    '©️',
+                    '®️',
+                    '〰️',
+                    '➰',
+                    '➿',
+                    '🔚',
+                    '🔙',
+                    '🔛',
+                    '🔝',
+                    '🔜',
+                    '✔️',
+                    '☑️',
+                    '🔘',
+                    '⚪',
+                    '⚫',
+                    '🔴',
+                    '🔵',
+                    '🟠',
+                    '🟡',
+                    '🟢',
+                    '🟣',
+                    '🟤',
+                    '🟥',
+                    '🟧',
+                    '🟨',
+                    '🟩',
+                    '🟦',
+                    '🟪',
+                    '🟫',
+                    '⬛',
+                    '⬜',
+                    '◼️',
+                    '◻️',
+                    '◾',
+                    '◽',
+                    '▪️',
+                    '▫️',
+                    '🔺',
+                    '🔻',
+                    '🔸',
+                    '🔹',
+                    '🔶',
+                    '🔷',
+                    '🔳',
+                    '🔲',
                 ],
             },
             {
@@ -802,9 +1413,9 @@ class EmojiEffect extends Effect {
     }
 }
 
-class CropEffect extends Effect {
+export class CropEffect extends Effect {
     static getName() {
-        return 'Squash n\' Stretch';
+        return "Squash n' Stretch";
     }
 
     static getDefaultParameters() {
@@ -858,7 +1469,8 @@ class CropEffect extends Effect {
         const x = (parseFloat(this.parameters.x) / 100) * canvas.width;
         const y = (parseFloat(this.parameters.y) / 100) * canvas.height;
         const width = (parseFloat(this.parameters.width) / 100) * canvas.width;
-        const height = (parseFloat(this.parameters.height) / 100) * canvas.height;
+        const height =
+            (parseFloat(this.parameters.height) / 100) * canvas.height;
 
         const tempCanvas = document.createElement('canvas');
         tempCanvas.width = width;
@@ -871,7 +1483,7 @@ class CropEffect extends Effect {
     }
 }
 
-class SuperimposeImageEffect extends Effect {
+export class SuperimposeImageEffect extends Effect {
     static getName() {
         return 'Superimpose Image';
     }
@@ -943,12 +1555,13 @@ class SuperimposeImageEffect extends Effect {
         const x = (parseFloat(this.parameters.x) / 100) * canvas.width;
         const y = (parseFloat(this.parameters.y) / 100) * canvas.height;
         const width = (parseFloat(this.parameters.width) / 100) * canvas.width;
-        const height = (parseFloat(this.parameters.height) / 100) * canvas.height;
+        const height =
+            (parseFloat(this.parameters.height) / 100) * canvas.height;
         const opacity = parseFloat(this.parameters.opacity);
 
         if (imageUrl) {
             const img = new Image();
-            img.crossOrigin = "Anonymous"; // This line is added to handle CORS issues
+            img.crossOrigin = 'Anonymous'; // This line is added to handle CORS issues
             img.src = imageUrl;
             img.onload = () => {
                 const tempCanvas = document.createElement('canvas');
@@ -965,15 +1578,19 @@ class SuperimposeImageEffect extends Effect {
                 ctx.drawImage(tempCanvas, 0, 0);
             };
             img.onerror = () => {
-                console.error('Failed to load image for Superimpose Image Effect.');
+                console.error(
+                    'Failed to load image for Superimpose Image Effect.'
+                );
             };
         } else {
-            console.error('No image URL provided for Superimpose Image Effect.');
+            console.error(
+                'No image URL provided for Superimpose Image Effect.'
+            );
         }
     }
 }
 
-class MemeTopTextEffect extends Effect {
+export class MemeTopTextEffect extends Effect {
     static getName() {
         return 'Meme Top Text';
     }
@@ -993,60 +1610,60 @@ class MemeTopTextEffect extends Effect {
     static getControls() {
         return [
             {
-            type: 'text',
-            param: 'text',
-            label: 'Text',
+                type: 'text',
+                param: 'text',
+                label: 'Text',
             },
             {
-            type: 'number',
-            param: 'fontSize',
-            label: 'Font Size',
-            min: 10,
-            max: 200,
-            step: 1,
+                type: 'number',
+                param: 'fontSize',
+                label: 'Font Size',
+                min: 10,
+                max: 200,
+                step: 1,
             },
             {
-            type: 'select',
-            param: 'fontFamily',
-            label: 'Font Family',
-            options: [
-                'Impact, sans-serif', 
-                'Arial', 
-                'Verdana', 
-                'Times New Roman', 
-                'Courier New', 
-                'Georgia', 
-                'Palatino', 
-                'Garamond', 
-                'Comic Sans MS', 
-                'Trebuchet MS', 
-                'Arial Black', 
-                'Tahoma', 
-                'Lucida Console'
-            ],
+                type: 'select',
+                param: 'fontFamily',
+                label: 'Font Family',
+                options: [
+                    'Impact, sans-serif',
+                    'Arial',
+                    'Verdana',
+                    'Times New Roman',
+                    'Courier New',
+                    'Georgia',
+                    'Palatino',
+                    'Garamond',
+                    'Comic Sans MS',
+                    'Trebuchet MS',
+                    'Arial Black',
+                    'Tahoma',
+                    'Lucida Console',
+                ],
             },
             {
-            type: 'color',
-            param: 'color',
-            label: 'Text Color',
+                type: 'color',
+                param: 'color',
+                label: 'Text Color',
             },
             {
-            type: 'color',
-            param: 'backgroundColor',
-            label: 'Background Color',
+                type: 'color',
+                param: 'backgroundColor',
+                label: 'Background Color',
             },
             {
-            type: 'number',
-            param: 'height',
-            label: 'Height',
-            min: 10,
-            max: canvas.height,
-            step: 1,
+                type: 'number',
+                param: 'height',
+                label: 'Height',
+                min: 10,
+                max: canvas.height,
+                step: 1,
             },
             {
-            type: 'checkbox',
-            param: 'wrapText',
-            label: 'Wrap Text',
+                type: 'checkbox',
+                param: 'wrapText',
+                label: 'Wrap Text',
             },
         ];
     }
@@ -1095,7 +1712,11 @@ class MemeTopTextEffect extends Effect {
             const startY = (height - totalHeight) / 2 + lineHeight / 2;
 
             for (let j = 0; j < lines.length; j++) {
-                ctx.fillText(lines[j], canvas.width / 2, startY + j * lineHeight);
+                ctx.fillText(
+                    lines[j],
+                    canvas.width / 2,
+                    startY + j * lineHeight
+                );
             }
         } else {
             ctx.fillText(text, canvas.width / 2, height / 2);
@@ -1103,7 +1724,7 @@ class MemeTopTextEffect extends Effect {
     }
 }
 
-class ReplaceColorEffect extends Effect {
+export class ReplaceColorEffect extends Effect {
     static getName() {
         return 'Replace Color';
     }
@@ -1144,7 +1765,9 @@ class ReplaceColorEffect extends Effect {
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
         const targetColor = this.hexToRgb(this.parameters.targetColor);
-        const replacementColor = this.hexToRgb(this.parameters.replacementColor);
+        const replacementColor = this.hexToRgb(
+            this.parameters.replacementColor
+        );
         const tolerance = parseFloat(this.parameters.tolerance) || 0;
 
         for (let i = 0; i < data.length; i += 4) {
@@ -1179,7 +1802,7 @@ class ReplaceColorEffect extends Effect {
     }
 }
 
-class FlipEffect extends Effect {
+export class FlipEffect extends Effect {
     static getName() {
         return 'Flip';
     }
@@ -1217,7 +1840,7 @@ class FlipEffect extends Effect {
     }
 }
 
-class VignetteEffect extends Effect {
+export class VignetteEffect extends Effect {
     static getName() {
         return 'Vignette';
     }
@@ -1245,8 +1868,12 @@ class VignetteEffect extends Effect {
         console.log('Applying Vignette Effect');
         const intensity = parseFloat(this.parameters.intensity) || 50;
         const gradient = ctx.createRadialGradient(
-            canvas.width / 2, canvas.height / 2, 0,
-            canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+            canvas.width / 2,
+            canvas.height / 2,
+            0,
+            canvas.width / 2,
+            canvas.height / 2,
+            Math.max(canvas.width, canvas.height) / 2
         );
 
         gradient.addColorStop(0, `rgba(0, 0, 0, 0)`);
@@ -1259,7 +1886,7 @@ class VignetteEffect extends Effect {
     }
 }
 
-class SharpenEffect extends Effect {
+export class SharpenEffect extends Effect {
     static getName() {
         return 'Sharpen';
     }
@@ -1290,11 +1917,7 @@ class SharpenEffect extends Effect {
         const intensity = parseFloat(this.parameters.intensity) || 1;
 
         // Define a simple sharpening kernel
-        const kernel = [
-            0, -1, 0,
-            -1, 5, -1,
-            0, -1, 0
-        ];
+        const kernel = [0, -1, 0, -1, 5, -1, 0, -1, 0];
 
         const side = Math.round(Math.sqrt(kernel.length));
         const halfSide = Math.floor(side / 2);
@@ -1310,7 +1933,9 @@ class SharpenEffect extends Effect {
 
         for (let y = 0; y < h; y++) {
             for (let x = 0; x < w; x++) {
-                let r = 0, g = 0, b = 0;
+                let r = 0,
+                    g = 0,
+                    b = 0;
                 for (let cy = 0; cy < side; cy++) {
                     for (let cx = 0; cx < side; cx++) {
                         const scy = y + cy - halfSide;
@@ -1361,14 +1986,26 @@ effectManager.registerEffect('flip', FlipEffect);
 effectManager.registerEffect('vignette', VignetteEffect);
 effectManager.registerEffect('sharpen', SharpenEffect);
 
-// Export effect classes for testing
-module.exports = {
-    EffectManager,
-    Effect,
-    InvertEffect,
-    GrayscaleEffect,
-    BrightnessContrastEffect,
-    BlurEffect,
-    SharpenEffect,
-    // Export other effects as needed
-};
+// Export an array of effects
+export const registeredEffects = [
+    { key: 'invert', effectClass: InvertEffect },
+    { key: 'grayscale', effectClass: GrayscaleEffect },
+    { key: 'sepia', effectClass: SepiaEffect },
+    { key: 'brightnessContrast', effectClass: BrightnessContrastEffect },
+    { key: 'overlayText', effectClass: OverlayTextEffect },
+    { key: 'colorFilter', effectClass: ColorFilterEffect },
+    { key: 'blur', effectClass: BlurEffect },
+    { key: 'hueRotate', effectClass: HueRotateEffect },
+    { key: 'pixelate', effectClass: PixelateEffect },
+    { key: 'jpegArtifact', effectClass: JpegArtifactEffect },
+    { key: 'noise', effectClass: NoiseEffect },
+    { key: 'aspectRatio', effectClass: AspectRatioEffect },
+    { key: 'emoji', effectClass: EmojiEffect },
+    { key: 'crop', effectClass: CropEffect },
+    { key: 'superimposeImage', effectClass: SuperimposeImageEffect },
+    { key: 'memeTopText', effectClass: MemeTopTextEffect },
+    { key: 'replaceColor', effectClass: ReplaceColorEffect },
+    { key: 'flip', effectClass: FlipEffect },
+    { key: 'vignette', effectClass: VignetteEffect },
+    { key: 'sharpen', effectClass: SharpenEffect },
+];

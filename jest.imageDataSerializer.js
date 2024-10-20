@@ -1,11 +1,9 @@
-/* eslint-disable no-undef */
-// jest.imageDataSerializer.js
-
 module.exports = {
-    test(val) {
-        return val && typeof val === 'object' && 'data' in val;
+    test(value) {
+        return value && value.data && value.width && value.height;
     },
-    print(val, serialize) {
-        return `ImageData(${val.width}, ${val.height}, [${val.data.slice(0, 10).join(', ')}...])`;
+    print(value, serialize) {
+        const dataSample = Array.from(value.data.slice(0, 10)); // Get a sample of the data
+        return `ImageData { width: ${value.width}, height: ${value.height}, data: [${dataSample.join(', ')}...], length: ${value.data.length} }`;
     },
 };

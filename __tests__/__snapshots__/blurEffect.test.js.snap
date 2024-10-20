@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`BlurEffect should apply blur correctly at intensity 5 1`] = `ImageData(10, 10, [50, 100, 150, 255, 50, 100, 150, 255, 50, 100...])`;
-
-exports[`BlurEffect should handle zero intensity without changes 1`] = `ImageData(10, 10, [50, 100, 150, 255, 50, 100, 150, 255, 50, 100...])`;

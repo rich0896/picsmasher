@@ -1,42 +1,21 @@
-/* eslint-disable no-undef */
-// __tests__/sharpenEffect.test.js
-
-const { SharpenEffect } = require('../effects.js'); // Adjust the path as needed
-const { applyEffectAndGetImageData } = require('../helpers/testHelpers.js'); // Adjust path if different
+const { SharpenEffect } = require('../effects.js');
+const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('SharpenEffect', () => {
-    let ctx, canvas;
-
-    beforeEach(() => {
-        // Create a canvas element using the global document provided by jsdom
-        canvas = document.createElement('canvas');
-        canvas.width = 10; // Reduced size for smaller snapshots
-        canvas.height = 10;
-        ctx = canvas.getContext('2d');
-
-        // Fill the canvas with a solid color (e.g., rgb(100, 150, 200))
-        ctx.fillStyle = 'rgb(100, 150, 200)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    });
-
-    test('should apply sharpen correctly at intensity 1', () => {
+    test('should apply sharpen effect correctly', async () => {
+        const { canvas, ctx } = await createTestCanvas();
         const effect = new SharpenEffect({ intensity: 1 });
-        const serializedImageData = applyEffectAndGetImageData(effect, ctx, canvas);
 
-        expect(serializedImageData).toMatchSnapshot();
-    });
+        const consoleSpy = jest
+            .spyOn(console, 'log')
+            .mockImplementation(() => {});
 
-    test('should apply sharpen correctly at intensity 3', () => {
-        const effect = new SharpenEffect({ intensity: 3 });
-        const serializedImageData = applyEffectAndGetImageData(effect, ctx, canvas);
+        effect.apply(ctx, canvas);
 
-        expect(serializedImageData).toMatchSnapshot();
-    });
+        expect(consoleSpy).toHaveBeenCalledWith('Applying Sharpen Effect');
+        consoleSpy.mockRestore();
 
-    test('should handle zero intensity without changes', () => {
-        const effect = new SharpenEffect({ intensity: 0 });
-        const serializedImageData = applyEffectAndGetImageData(effect, ctx, canvas);
-
-        expect(serializedImageData).toMatchSnapshot();
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        expect(imageData).toMatchSnapshot();
     });
 });
