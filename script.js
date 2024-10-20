@@ -20,6 +20,7 @@ export function init() {
     const copyButton = document.getElementById('copyButton');
     const effectsGrid = document.querySelector('.effects-grid');
     const effectQueueElement = document.getElementById('effectQueue');
+    const headerH1 = document.querySelector('header h1');
 
     // Initialize variables
     // let effectsQueue = [];
@@ -60,6 +61,18 @@ export function init() {
             updateEffectQueueUI();
             applyEffects();
         },
+    });
+
+    // Event listeners for header gradient effect
+    headerH1.addEventListener('mousemove', function (e) {
+        const rect = headerH1.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const xPercent = (x / rect.width) * 100;
+        headerH1.style.backgroundPosition = `${xPercent}% center`;
+    });
+
+    headerH1.addEventListener('mouseleave', function () {
+        headerH1.style.backgroundPosition = 'center center';
     });
 
     // Function to generate effect buttons
@@ -217,7 +230,7 @@ export function init() {
 
                 switch (control.type) {
                     case 'range':
-                    case 'number':
+                    case 'number': {
                         input = document.createElement('input');
                         input.type = 'range';
                         input.min = control.min;
@@ -255,6 +268,7 @@ export function init() {
                         controlContainer.appendChild(input);
                         controlContainer.appendChild(numberInput);
                         break;
+                    }
                     case 'color':
                         input = document.createElement('input');
                         input.type = 'color';

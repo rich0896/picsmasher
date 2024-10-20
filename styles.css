@@ -1,220 +1,268 @@
 /* General Styles */
 body {
-	background-color: #0d0d0d;
-	color: #ffffff;
-	font-family: "Press Start 2P", cursive, Arial, sans-serif;
-	margin: 0;
-	padding: 0;
+    background-color: #0d0d0d;
+    color: #ffffff;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensure body takes full height */
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-	background-color: #1a1a1a;
-	padding: 20px;
-	text-align: center;
+    background-color: #1a1a1a;
+    padding: 20px;
+    text-align: center;
 }
 
 header h1 {
-	margin: 0;
-	font-size: 32px;
+    margin: 0;
+    font-size: 32px;
+    font-family: 'Press Start 2P', cursive;
+    color: #7c7c7c;
+    user-select: none;
+    width: fit-content;
+    color: transparent;
+    background-image: linear-gradient(90deg, #ff7f50, #1e90ff, #32cd32);
+    background-size: 600%;
+    background-clip: text;
+    -webkit-background-clip: text; /* For Safari compatibility */
+    transition: background-position 0.1s;
+    margin: 0 auto;
 }
 
 main {
-	padding: 20px;
+    flex: 1; /* Allow main content to grow and fill available space */
+    padding: 20px;
 }
 
 .container {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .left-panel,
 .right-panel {
-	flex: 1;
-	max-width: 50%;
-	padding: 10px;
+    flex: 1;
+    max-width: 50%;
+    padding: 10px;
 }
 
 .left-panel {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .right-panel {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .upload-section {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
-.upload-section input[type="file"] {
-	max-width: 300px;
-	overflow: hidden;
-	text-overflow: clip;
-	white-space: nowrap;
+.upload-section input[type='file'] {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
 }
 
 .canvas-section {
-	position: relative;
-	max-width: 100%;
+    position: relative;
+    max-width: 100%;
 }
 
 #canvas {
-	border: 2px solid #ffffff;
-	border-radius: 10px;
-	max-width: 100%;
-	max-height: 80vh;
-	width: auto;
-	height: auto;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
 }
 
 .controls-section {
-	width: 100%;
-	text-align: center;
-	margin-bottom: 30px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .controls-section h2 {
-	font-size: 24px;
-	margin-bottom: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
 .effects-grid {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 10px;
-	margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .effects-grid .add-effect-button {
-	padding: 10px;
-	background-color: #333;
-	color: #f0f0f0;
-	border: 2px solid #f0f0f0;
-	font-size: 14px;
-	cursor: pointer;
-	width: 150px;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    width: 150px;
+    transition: background-color 0.3s ease;
 }
 
 .effects-grid .add-effect-button:hover {
-	background-color: #555;
+    background-color: #0056b3;
 }
 
 #effectQueue {
-	list-style-type: none;
-	padding: 0;
-	width: 100%;
-	max-width: 400px;
-	margin: 0 auto 20px;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
 }
 
 #effectQueue li {
-	background-color: #333;
-	padding: 3px;
-	margin-bottom: 3px;
-	color: #fff;
-	display: flex;
-	flex-direction: column;
-	cursor: move;
+    background-color: #1a1a1a;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    cursor: move;
+    border: 1px solid #333;
+    border-radius: 5px;
 }
 
 #effectQueue li .effect-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	font-size: 10px;
-	padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    padding-left: 10px;
 }
 
 #effectQueue li .effect-controls {
-	margin-top: 3px;
+    margin-top: 5px;
 }
 
-#effectQueue li input[type="range"],
-#effectQueue li input[type="text"] {
-	width: 90%;
-	margin-top: 3px;
-	padding: 2px;
-	font-size: 12px;
+#effectQueue li input[type='range'],
+#effectQueue li input[type='text'],
+#effectQueue li input[type='number'],
+#effectQueue li input[type='color'],
+#effectQueue li select {
+    width: 90%;
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 3px;
 }
 
 .drag-handle {
-	padding-right: 10px;
+    padding-right: 10px;
+    cursor: grab;
 }
 
 .buttons-container {
-	padding-top: 10px;
+    padding-top: 10px;
 }
 
 button {
-	padding: 10px 20px;
-	background-color: #333;
-	color: #f0f0f0;
-	border: 2px solid #f0f0f0;
-	border-radius: 10px;
-	font-size: 14px;
-	cursor: pointer;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-	background-color: #555;
+    background-color: #0056b3;
+}
+
+button:focus,
+input:focus {
+    outline: 2px solid #0056b3;
 }
 
 footer {
-	background-color: #1a1a1a;
-	color: #888;
-	text-align: center;
-	padding: 10px;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
+    background-color: #1a1a1a;
+    color: #888;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Sticky footer */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 /* Styles for color pickers, additional sliders, etc. */
-.effect-controls input[type="color"] {
-	width: 100%;
-	margin-top: 5px;
-	padding: 2px;
-	font-size: 12px;
+.effect-controls input[type='color'] {
+    width: 100%;
+    margin-top: 5px;
+    padding: 2px;
+    font-size: 14px;
 }
 
 .control-container {
-	margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .control-container label {
-	display: block;
-	font-size: 12px;
-	margin-bottom: 2px;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
 }
 
 .emoji-picker {
-	display: grid;
-	grid-template-columns: repeat(10, 1fr);
-	width: 100%;
-	margin-top: 5px;
-	padding: 2px;
-	font-size: 20px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    width: 100%;
+    margin-top: 5px;
+    padding: 2px;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 900px) {
-	.container {
-		flex-direction: column;
-		align-items: center;
-	}
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-	.left-panel,
-	.right-panel {
-		max-width: 100%;
-	}
+    .left-panel,
+    .right-panel {
+        max-width: 100%;
+    }
 
-	.effects-grid .add-effect-button {
-		width: 100%;
-	}
+    .effects-grid .add-effect-button {
+        width: 100%;
+    }
 }
