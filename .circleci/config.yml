@@ -20,6 +20,7 @@ jobs:
             - run:
                   name: Run Tests
                   command: |
+                      chmod 777 ./
                       npm run build
                       npm test -- --ci --reporters=default --reporters=jest-junit
             - store_artifacts:
