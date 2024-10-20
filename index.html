@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pic Smasher</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Pic Smasher - A tool to apply effects to images"
+        />
+        <!-- Include Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <!-- Include Sortable.js library -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"
+            defer
+        ></script>
+    <script defer src="bundle.js"></script></head>
+    <body>
+        <header>
+            <h1>Pic Smasher</h1>
+        </header>
+        <main>
+            <div class="container">
+                <!-- Left Panel -->
+                <div class="left-panel">
+                    <div class="upload-section">
+                        <input
+                            type="file"
+                            id="imageUpload"
+                            accept="image/*"
+                            aria-label="Upload an image"
+                        />
+                    </div>
+                    <div class="canvas-section">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                    <div class="buttons-container">
+                        <button
+                            id="copyButton"
+                            aria-label="Copy image to clipboard"
+                        >
+                            Copy to Clipboard
+                        </button>
+                        <button
+                            id="downloadButton"
+                            aria-label="Download the image"
+                        >
+                            Download Image
+                        </button>
+                        <button id="resetButton" aria-label="Reset the image">
+                            Reset Image
+                        </button>
+                    </div>
+                </div>
+                <!-- Right Panel -->
+                <div class="right-panel">
+                    <div class="controls-section">
+                        <h2>Add Effects</h2>
+                        <div class="effects-grid">
+                            <!-- Effect buttons will be injected by JavaScript -->
+                        </div>
+                        <h2>Effect Queue</h2>
+                        <ul id="effectQueue"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2024 Camden Richter</p>
+        </footer>
+        <!-- Include scripts at the end of the body -->
+        <script src="dist/bundle.js"></script>
+    </body>
+</html>
