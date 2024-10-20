@@ -3,7 +3,7 @@ version: 2.1
 jobs:
     build-and-test:
         docker:
-            - image: cimg/node:22.10.0-browsers
+            - image: cimg/node:14.17
         steps:
             - checkout
             - restore_cache:
@@ -18,11 +18,11 @@ jobs:
                       - node_modules
                   key: v1-dependencies-{{ checksum "package-lock.json" }}
             - run:
+                  name: Build
+                  command: npm run build
+            - run:
                   name: Run Tests
-                  command: |
-                      chmod 777 ./
-                      npm run build
-                      npm test -- --ci --reporters=default --reporters=jest-junit
+                  command: npm test -- --ci --reporters=default --reporters=jest-junit
             - store_artifacts:
                   path: test-results
                   destination: test-results

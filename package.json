@@ -4,7 +4,7 @@
   "description": "![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)",
   "main": "effects.js",
   "scripts": {
-    "build": "webpack",
+    "build": "npx webpack",
     "test": "jest --coverage",
     "lint": "eslint .",
     "format": "prettier --write ."
