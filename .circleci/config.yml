@@ -3,7 +3,7 @@ version: 2.1
 jobs:
     build-and-test:
         docker:
-            - image: cimg/node:16
+            - image: cimg/node:22.10.0-browsers
         steps:
             - checkout
             - restore_cache:
