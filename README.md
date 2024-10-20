@@ -17,6 +17,38 @@
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Extensible Architecture**: Easily add new effects without modifying existing code.
 
+## 🌐 Live Demo
+
+Check out the live application [here](https://rich0896.github.io/picsmasher/).
+
+## 📦 Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/rich0896/picsmasher.git
+   ```
+
+2. **Navigate to the Project Directory**
+
+    ```bash
+    cd pic-smasher
+    ```
+
+3. **Install Dependencies**
+
+    ```bash
+    npm install
+    ```
+
+4. **Run the Application Locally**
+
+    ```bash
+    npm start
+    ```
+
+This will start a local development server accessible at http://localhost:8080.
+
 ## 💡 Usage
 
 1. **Upload an Image**
@@ -32,17 +64,39 @@
 6. **Download or Copy**
     - Use the "Download Image" button to save your edited image or "Copy to Clipboard" to copy it directly.
 
+## 🧪 Testing
+
+Run the following command to execute tests:
+
+```bash
+npm test
+```
+
+The test suite uses snapshots to compare test results. If an error occurs after modifying an effect, try:
+
+```bash
+npm test -- -u
+```
+
+This will clear the snapshots.
+
 ## 🧰 Technologies Used
 
 - **HTML5**: Structure of the application.
 - **CSS3**: Styling and responsive design.
 - **JavaScript (ES6+)**: Functionality and interactivity.
+- **Webpack**: Module bundler.
+- **Jest**: Testing framework.
 - **SortableJS**: Drag-and-drop functionality for the effect queue.
 - **Google Fonts**: Custom fonts for enhanced aesthetics.
 
 ## 🤝 Contributing
 
 Wanna add your own effect, or something else entirely? We welcome contributions from the community! Please check out our [Contributing Guidelines](CONTRIBUTING.md) to get started.
+
+## 🐛 Reporting Issues
+
+If you encounter any issues or bugs, please [open an issue](https://github.com/rich0896/picsmasher/issues).
 
 ## 📄 License
 

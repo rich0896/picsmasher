@@ -42,12 +42,49 @@ We love new ideas! To suggest an enhancement:
 Contributions via pull requests are welcome! Here's how to get started:
 
 1. **Fork the Repository**
-   - Click the "Fork" button at the top right of the repository page.
+
+    Click the "Fork" button at the top right of the repository page.
 
 2. **Clone Your Fork**
 
    ```bash
    git clone https://github.com/yourusername/picsmasher.git
+
+3. **Create a New Branch**
+
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+
+4. **Make Your Changes**
+
+    - [Add new effects](#adding-your-own-effect) or features.
+    - Fix bugs or improve documentation.
+    - Ensure your code follows the project's coding style.
+
+5. **Run Tests**
+
+    Ensure all tests pass:
+
+    ```bash
+    npm test
+    ```
+
+6. **Commit Your Changes**
+
+    ```bash
+    git commit -am "Add new feature or fix"
+    ```
+
+7. **Push to Your Fork**
+
+    ```bash
+    git push origin feature/your-feature-name
+    ```
+
+8. **Open a Pull Request**
+
+    Go to the original repository and click "New Pull Request". Fill out the template and submit.
 
 ### Adding Your Own Effect
 
