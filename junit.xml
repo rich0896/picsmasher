@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="34" failures="0" errors="0" time="5.33">
+  <testsuite name="EffectManager" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="1.404" tests="2">
+    <testcase classname="EffectManager should register effects correctly" name="EffectManager should register effects correctly" time="0.013">
+    </testcase>
+    <testcase classname="EffectManager should create effect instances correctly" name="EffectManager should create effect instances correctly" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="script.js" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="1.692" tests="16">
+    <testcase classname="script.js should initialize without errors" name="script.js should initialize without errors" time="0.04">
+    </testcase>
+    <testcase classname="script.js should generate effect buttons" name="script.js should generate effect buttons" time="0.01">
+    </testcase>
+    <testcase classname="script.js should add effect to queue when effect button is clicked" name="script.js should add effect to queue when effect button is clicked" time="0.013">
+    </testcase>
+    <testcase classname="script.js should load image when image is uploaded" name="script.js should load image when image is uploaded" time="0.048">
+    </testcase>
+    <testcase classname="script.js should apply effects to the canvas" name="script.js should apply effects to the canvas" time="0.046">
+    </testcase>
+    <testcase classname="script.js should reset effects queue and canvas when reset button is clicked" name="script.js should reset effects queue and canvas when reset button is clicked" time="0.009">
+    </testcase>
+    <testcase classname="script.js should trigger download when download button is clicked" name="script.js should trigger download when download button is clicked" time="0.007">
+    </testcase>
+    <testcase classname="script.js should copy image to clipboard when copy button is clicked" name="script.js should copy image to clipboard when copy button is clicked" time="0.008">
+    </testcase>
+    <testcase classname="script.js should update effect parameters when controls are changed" name="script.js should update effect parameters when controls are changed" time="0.01">
+    </testcase>
+    <testcase classname="script.js should apply all effects in the queue" name="script.js should apply all effects in the queue" time="0.033">
+    </testcase>
+    <testcase classname="script.js should update the effect queue UI" name="script.js should update the effect queue UI" time="0.007">
+    </testcase>
+    <testcase classname="script.js should remove effect from queue when remove button is clicked" name="script.js should remove effect from queue when remove button is clicked" time="0.012">
+    </testcase>
+    <testcase classname="script.js should load image and draw it on the canvas when an image is uploaded" name="script.js should load image and draw it on the canvas when an image is uploaded" time="0.005">
+    </testcase>
+    <testcase classname="script.js should not apply effects when no image is loaded" name="script.js should not apply effects when no image is loaded" time="0.005">
+    </testcase>
+    <testcase classname="script.js should log an error when originalImage is missing" name="script.js should log an error when originalImage is missing" time="0.006">
+    </testcase>
+    <testcase classname="script.js should log an error when effect is null in effectsQueue" name="script.js should log an error when effect is null in effectsQueue" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="BlurEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.262" tests="1">
+    <testcase classname="BlurEffect should apply blur effect correctly" name="BlurEffect should apply blur effect correctly" time="0.858">
+    </testcase>
+  </testsuite>
+  <testsuite name="GrayscaleEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.265" tests="1">
+    <testcase classname="GrayscaleEffect should apply grayscale effect correctly" name="GrayscaleEffect should apply grayscale effect correctly" time="0.855">
+    </testcase>
+  </testsuite>
+  <testsuite name="PixelateEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.272" tests="1">
+    <testcase classname="PixelateEffect should apply pixelate effect correctly" name="PixelateEffect should apply pixelate effect correctly" time="0.86">
+    </testcase>
+  </testsuite>
+  <testsuite name="SepiaEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.315" tests="1">
+    <testcase classname="SepiaEffect should apply sepia effect correctly" name="SepiaEffect should apply sepia effect correctly" time="0.89">
+    </testcase>
+  </testsuite>
+  <testsuite name="BrightnessContrastEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.303" tests="1">
+    <testcase classname="BrightnessContrastEffect should apply brightness and contrast effect correctly" name="BrightnessContrastEffect should apply brightness and contrast effect correctly" time="0.89">
+    </testcase>
+  </testsuite>
+  <testsuite name="VignetteEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.379" tests="1">
+    <testcase classname="VignetteEffect should apply vignette effect correctly" name="VignetteEffect should apply vignette effect correctly" time="0.969">
+    </testcase>
+  </testsuite>
+  <testsuite name="HueRotateEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.392" tests="1">
+    <testcase classname="HueRotateEffect should apply hue rotate effect correctly" name="HueRotateEffect should apply hue rotate effect correctly" time="0.97">
+    </testcase>
+  </testsuite>
+  <testsuite name="ColorFilterEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.491" tests="1">
+    <testcase classname="ColorFilterEffect should apply color filter correctly" name="ColorFilterEffect should apply color filter correctly" time="1.066">
+    </testcase>
+  </testsuite>
+  <testsuite name="FlipEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.532" tests="2">
+    <testcase classname="FlipEffect should flip the image horizontally" name="FlipEffect should flip the image horizontally" time="1.096">
+    </testcase>
+    <testcase classname="FlipEffect should flip the image vertically" name="FlipEffect should flip the image vertically" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="OverlayTextEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.704" tests="1">
+    <testcase classname="OverlayTextEffect should overlay text correctly" name="OverlayTextEffect should overlay text correctly" time="1.279">
+    </testcase>
+  </testsuite>
+  <testsuite name="NoiseEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.761" tests="1">
+    <testcase classname="NoiseEffect should apply noise effect correctly" name="NoiseEffect should apply noise effect correctly" time="1.326">
+    </testcase>
+  </testsuite>
+  <testsuite name="SharpenEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="2.803" tests="1">
+    <testcase classname="SharpenEffect should apply sharpen effect correctly" name="SharpenEffect should apply sharpen effect correctly" time="1.372">
+    </testcase>
+  </testsuite>
+  <testsuite name="InvertEffect" errors="0" failures="0" skipped="0" timestamp="2024-10-20T08:09:43" time="3.946" tests="3">
+    <testcase classname="InvertEffect should invert colors correctly" name="InvertEffect should invert colors correctly" time="1.298">
+    </testcase>
+    <testcase classname="InvertEffect should invert colors correctly at 50% intensity" name="InvertEffect should invert colors correctly at 50% intensity" time="0.037">
+    </testcase>
+    <testcase classname="InvertEffect should handle zero intensity without changes" name="InvertEffect should handle zero intensity without changes" time="1.183">
+    </testcase>
+  </testsuite>
+</testsuites>
