@@ -20,7 +20,7 @@ jobs:
             - run:
                   name: Run Tests
                   command: |
-                      sudo chmod +x ./node_modules
+                      npm run build
                       npm test -- --ci --reporters=default --reporters=jest-junit
             - store_artifacts:
                   path: test-results
