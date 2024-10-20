@@ -1,13 +1,18 @@
+/* eslint-disable no-undef */
 // webpack.config.js
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = (env, argv) => ({
     entry: './script.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        clean: true,
     },
+    mode: argv.mode || 'development',
+    devtool: argv.mode === 'production' ? false : 'source-map',
     module: {
         rules: [
             {
@@ -20,7 +25,22 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
         ],
     },
-    mode: 'development',
-};
+    devServer: {
+        static: './dist',
+        compress: true,
+        port: 8080,
+        hot: true,
+        open: true,
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html',
+        }),
+    ],
+});

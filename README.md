@@ -32,7 +32,7 @@ Check out the live application [here](https://rich0896.github.io/picsmasher/).
 2. **Navigate to the Project Directory**
 
     ```bash
-    cd pic-smasher
+    cd picsmasher
     ```
 
 3. **Install Dependencies**

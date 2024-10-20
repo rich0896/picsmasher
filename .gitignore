@@ -1,0 +1,80 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build directories
+dist/
+build/
+
+# Temporary files
+tmp/
+temp/
+
+# Cache directories
+.cache/
+.npm/
+
+# Parcel cache (if using Parcel bundler)
+.parcel-cache/
+
+# Webpack cache
+webpack-cache/
+
+# Testing coverage
+coverage/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Environment variables
+.env
+.env.*.local
+
+# ESLint cache
+.eslintcache
+
+# Stylelint cache
+.stylelintcache
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Yarn
+.yarn/
+.pnp.*
+
+# Prettier
+.prettierignore
+
+# ESLint
+.eslintignore
+
+# Babel
+.babelrc
+
+# Parcel
+.cache/
+
+# Other system files
+.sass-cache/
+connect.lock
+
+# Ignore lock files (optional)
+# package-lock.json
+# yarn.lock
+
+# Exclude specific files or directories
+# Uncomment and modify as needed
+# /src/secret-config.js
+# /docs/

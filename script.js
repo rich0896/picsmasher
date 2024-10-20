@@ -1,5 +1,6 @@
 // script.js
 
+import './styles.css';
 import { EffectManager, registeredEffects } from './effects.js';
 import Sortable from 'sortablejs';
 
