@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.46% </span>
+                <span class="strong">68.38% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>182/262</span>
+                <span class='fraction'>186/272</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.26% </span>
+                <span class="strong">41.53% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>26/63</span>
+                <span class='fraction'>27/65</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.64% </span>
+                <span class="strong">63.88% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>23/34</span>
+                <span class='fraction'>23/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.61% </span>
+                <span class="strong">68.51% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>181/260</span>
+                <span class='fraction'>185/270</span>
             </div>
         
             
@@ -565,7 +565,25 @@
 <a name='L500'></a><a href='#L500'>500</a>
 <a name='L501'></a><a href='#L501'>501</a>
 <a name='L502'></a><a href='#L502'>502</a>
-<a name='L503'></a><a href='#L503'>503</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L503'></a><a href='#L503'>503</a>
+<a name='L504'></a><a href='#L504'>504</a>
+<a name='L505'></a><a href='#L505'>505</a>
+<a name='L506'></a><a href='#L506'>506</a>
+<a name='L507'></a><a href='#L507'>507</a>
+<a name='L508'></a><a href='#L508'>508</a>
+<a name='L509'></a><a href='#L509'>509</a>
+<a name='L510'></a><a href='#L510'>510</a>
+<a name='L511'></a><a href='#L511'>511</a>
+<a name='L512'></a><a href='#L512'>512</a>
+<a name='L513'></a><a href='#L513'>513</a>
+<a name='L514'></a><a href='#L514'>514</a>
+<a name='L515'></a><a href='#L515'>515</a>
+<a name='L516'></a><a href='#L516'>516</a>
+<a name='L517'></a><a href='#L517'>517</a>
+<a name='L518'></a><a href='#L518'>518</a>
+<a name='L519'></a><a href='#L519'>519</a>
+<a name='L520'></a><a href='#L520'>520</a>
+<a name='L521'></a><a href='#L521'>521</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -579,6 +597,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-yes">16x</span>
@@ -627,6 +646,22 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -822,6 +857,7 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1089,6 +1125,7 @@ export function init() {
     const copyButton = document.getElementById('copyButton');
     const effectsGrid = document.querySelector('.effects-grid');
     const effectQueueElement = document.getElementById('effectQueue');
+    const headerH1 = document.querySelector('header h1');
 &nbsp;
     // Initialize variables
     // let effectsQueue = [];
@@ -1130,6 +1167,22 @@ export function init() {
 <span class="cstat-no" title="statement not covered" >            applyEffects();</span>
         },
     });
+&nbsp;
+    // Event listeners for header gradient effect
+    if (headerH1) {
+        headerH1.addEventListener('mousemove', <span class="fstat-no" title="function not covered" >fu</span>nction (e) {
+            const rect = <span class="cstat-no" title="statement not covered" >headerH1.getBoundingClientRect();</span>
+            const x = <span class="cstat-no" title="statement not covered" >e.clientX - rect.left;</span>
+            const xPercent = <span class="cstat-no" title="statement not covered" >(x / rect.width) * 100;</span>
+<span class="cstat-no" title="statement not covered" >            headerH1.style.backgroundPosition = `${xPercent}% center`;</span>
+        });
+&nbsp;
+        headerH1.addEventListener('mouseleave', <span class="fstat-no" title="function not covered" >fu</span>nction () {
+<span class="cstat-no" title="statement not covered" >            headerH1.style.backgroundPosition = 'center center';</span>
+        });
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >        console.warn('header h1 element not found');</span>
+    }
 &nbsp;
     // Function to generate effect buttons
     function generateEffectButtons() {
@@ -1286,7 +1339,7 @@ export function init() {
 &nbsp;
                 switch (control.type) {
                     case 'range':
-                    case 'number':
+                    case 'number': {
                         input = document.createElement('input');
                         input.type = 'range';
                         input.min = control.min;
@@ -1324,6 +1377,7 @@ export function init() {
                         controlContainer.appendChild(input);
                         controlContainer.appendChild(numberInput);
                         break;
+                    }
 <span class="branch-2 cbranch-no" title="branch not covered" >                    case 'color':</span>
 <span class="cstat-no" title="statement not covered" >                        input = document.createElement('input');</span>
 <span class="cstat-no" title="statement not covered" >                        input.type = 'color';</span>
@@ -1576,7 +1630,7 @@ export function resetAppState() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-10-20T08:35:55.555Z
+                at 2024-10-20T18:39:20.466Z
             </div>
         <script src="../prettify.js"></script>
         <script>

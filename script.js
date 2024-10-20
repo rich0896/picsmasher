@@ -64,16 +64,20 @@ export function init() {
     });
 
     // Event listeners for header gradient effect
-    headerH1.addEventListener('mousemove', function (e) {
-        const rect = headerH1.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const xPercent = (x / rect.width) * 100;
-        headerH1.style.backgroundPosition = `${xPercent}% center`;
-    });
+    if (headerH1) {
+        headerH1.addEventListener('mousemove', function (e) {
+            const rect = headerH1.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const xPercent = (x / rect.width) * 100;
+            headerH1.style.backgroundPosition = `${xPercent}% center`;
+        });
 
-    headerH1.addEventListener('mouseleave', function () {
-        headerH1.style.backgroundPosition = 'center center';
-    });
+        headerH1.addEventListener('mouseleave', function () {
+            headerH1.style.backgroundPosition = 'center center';
+        });
+    } else {
+        console.warn('header h1 element not found');
+    }
 
     // Function to generate effect buttons
     function generateEffectButtons() {

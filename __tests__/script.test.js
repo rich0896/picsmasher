@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // __tests__/script.test.js
 
 // Polyfill TextEncoder if necessary
@@ -51,13 +52,41 @@ describe('script.js', () => {
 
     beforeEach(() => {
         document.body.innerHTML = `
-          <input type="file" id="imageUpload" />
-          <canvas id="canvas"></canvas>
-          <button id="resetButton">Reset</button>
-          <button id="downloadButton">Download</button>
-          <button id="copyButton">Copy</button>
-          <div class="effects-grid"></div>
-          <ul id="effectQueue"></ul>
+            <header>
+                <h1>Pic Smasher</h1>
+            </header>
+            <main>
+                <div class="container">
+                    <!-- Left Panel -->
+                    <div class="left-panel">
+                        <div class="upload-section">
+                            <input type="file" id="imageUpload" accept="image/*" />
+                        </div>
+                        <div class="canvas-section">
+                            <canvas id="canvas"></canvas>
+                        </div>
+                        <div class="buttons-container">
+                            <button id="copyButton">Copy to Clipboard</button>
+                            <button id="downloadButton">Download Image</button>
+                            <button id="resetButton">Reset Image</button>
+                        </div>
+                    </div>
+                    <!-- Right Panel -->
+                    <div class="right-panel">
+                        <div class="controls-section">
+                            <h2>Add Effects</h2>
+                            <div class="effects-grid">
+                                <!-- Effect buttons will be injected by JavaScript -->
+                            </div>
+                            <h2>Effect Queue</h2>
+                            <ul id="effectQueue"></ul>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <p>© 2024 Camden Richter</p>
+            </footer>
         `;
         app = init();
         canvas = document.getElementById('canvas');
