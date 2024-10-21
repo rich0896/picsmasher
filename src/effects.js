@@ -62,6 +62,10 @@ export class Effect {
         return [];
     }
 
+    static getCategory() {
+        return 'Uncategorized';
+    }
+
     constructor(parameters = {}) {
         this.parameters = parameters;
     }
@@ -95,6 +99,10 @@ export class InvertEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Filters';
     }
 
     apply(ctx, canvas) {
@@ -146,6 +154,10 @@ export class GrayscaleEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Filters';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Grayscale Effect');
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -186,6 +198,10 @@ export class SepiaEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Filters';
     }
 
     apply(ctx, canvas) {
@@ -252,6 +268,10 @@ export class BrightnessContrastEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Basic';
     }
 
     apply(ctx, canvas) {
@@ -359,6 +379,10 @@ export class OverlayTextEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Overlays';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Overlay Text Effect');
         const text = this.parameters.text || 'BRAINROT';
@@ -428,6 +452,10 @@ export class ColorFilterEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Filters';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Color Filter Effect');
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -470,6 +498,10 @@ export class BlurEffect extends Effect {
                 step: 0.1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
     }
 
     apply(ctx, canvas) {
@@ -518,6 +550,10 @@ export class HueRotateEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Basic';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Hue Rotate Effect');
         ctx.filter = `hue-rotate(${this.parameters.angle}deg)`;
@@ -548,6 +584,10 @@ export class PixelateEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
     }
 
     apply(ctx, canvas) {
@@ -592,6 +632,10 @@ export class JpegArtifactEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
     }
 
     apply(ctx, canvas) {
@@ -673,6 +717,10 @@ export class NoiseEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Artistic';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Noise Effect');
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -721,6 +769,10 @@ export class AspectRatioEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Transformations';
     }
 
     apply(ctx, canvas) {
@@ -1372,6 +1424,10 @@ export class EmojiEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Overlays';
+    }
+
     constructor(parameters = {}) {
         super(parameters);
         this.positions = this.generatePositions();
@@ -1464,6 +1520,10 @@ export class CropEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Transformations';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Crop Effect');
         const x = (parseFloat(this.parameters.x) / 100) * canvas.width;
@@ -1547,6 +1607,10 @@ export class SuperimposeImageEffect extends Effect {
                 step: 0.01,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Overlays';
     }
 
     apply(ctx, canvas) {
@@ -1668,6 +1732,10 @@ export class MemeTopTextEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Overlays';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Meme Top Text Effect');
         const text = this.parameters.text || 'TOP TEXT';
@@ -1760,6 +1828,10 @@ export class ReplaceColorEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Artistic';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Replace Color Effect');
         let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -1824,6 +1896,10 @@ export class FlipEffect extends Effect {
         ];
     }
 
+    static getCategory() {
+        return 'Transformations';
+    }
+
     apply(ctx, canvas) {
         console.log('Applying Flip Effect');
         const direction = this.parameters.direction;
@@ -1862,6 +1938,10 @@ export class VignetteEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Filters';
     }
 
     apply(ctx, canvas) {
@@ -1908,6 +1988,10 @@ export class SharpenEffect extends Effect {
                 step: 1,
             },
         ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
     }
 
     apply(ctx, canvas) {
@@ -1961,30 +2045,823 @@ export class SharpenEffect extends Effect {
     }
 }
 
+export class SlicedGlitchEffect extends Effect {
+    static getName() {
+        return 'Sliced Glitch';
+    }
+
+    static getDefaultParameters() {
+        return {
+            sliceThickness: 10,
+            displacementAmount: 20,
+            glitchFrequency: 50,
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'sliceThickness',
+                label: 'Slice Thickness',
+                min: 1,
+                max: 50,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'displacementAmount',
+                label: 'Displacement Amount',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'glitchFrequency',
+                label: 'Glitch Frequency',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Sliced Glitch Effect');
+        const { sliceThickness, displacementAmount, glitchFrequency } =
+            this.parameters;
+        const sliceCount = Math.ceil(canvas.height / sliceThickness);
+
+        for (let i = 0; i < sliceCount; i++) {
+            if (Math.random() * 100 < glitchFrequency) {
+                const y = i * sliceThickness;
+                const displacement =
+                    (Math.random() - 0.5) * 2 * displacementAmount;
+                ctx.drawImage(
+                    canvas,
+                    0,
+                    y,
+                    canvas.width,
+                    sliceThickness,
+                    displacement,
+                    y,
+                    canvas.width,
+                    sliceThickness
+                );
+            }
+        }
+    }
+}
+
+export class GhostTrailEffect extends Effect {
+    static getName() {
+        return 'Ghost Trail';
+    }
+
+    static getDefaultParameters() {
+        return {
+            trailLength: 10,
+            trailOpacity: 50,
+            motionDirection: 'horizontal',
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'trailLength',
+                label: 'Trail Length',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'trailOpacity',
+                label: 'Trail Opacity',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'select',
+                param: 'motionDirection',
+                label: 'Motion Direction',
+                options: ['horizontal', 'vertical', 'random'],
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Ghost Trail Effect');
+        const { trailLength, trailOpacity, motionDirection } = this.parameters;
+        const opacityStep = trailOpacity / 100 / trailLength;
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+
+        for (let i = 0; i < trailLength; i++) {
+            tempCtx.clearRect(0, 0, canvas.width, canvas.height);
+            tempCtx.globalAlpha = 1 - i * opacityStep;
+            let offsetX = 0;
+            let offsetY = 0;
+
+            if (motionDirection === 'horizontal') {
+                offsetX = i * (canvas.width / trailLength);
+            } else if (motionDirection === 'vertical') {
+                offsetY = i * (canvas.height / trailLength);
+            } else if (motionDirection === 'random') {
+                offsetX = Math.random() * canvas.width;
+                offsetY = Math.random() * canvas.height;
+            }
+
+            tempCtx.drawImage(canvas, offsetX, offsetY);
+            ctx.drawImage(tempCanvas, 0, 0);
+        }
+    }
+}
+
+export class ChromaticShatterEffect extends Effect {
+    static getName() {
+        return 'Chromatic Shatter';
+    }
+
+    static getDefaultParameters() {
+        return {
+            shardSize: 10,
+            colorSpread: 50,
+            fragmentRotation: 45,
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'shardSize',
+                label: 'Shard Size',
+                min: 1,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'colorSpread',
+                label: 'Color Spread',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'fragmentRotation',
+                label: 'Fragment Rotation',
+                min: 0,
+                max: 360,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Chromatic Shatter Effect');
+        const { shardSize, colorSpread, fragmentRotation } = this.parameters;
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+
+        for (let y = 0; y < canvas.height; y += shardSize) {
+            for (let x = 0; x < canvas.width; x += shardSize) {
+                const angle = (Math.random() - 0.5) * 2 * fragmentRotation;
+                const colorOffset = (Math.random() - 0.5) * 2 * colorSpread;
+
+                tempCtx.save();
+                tempCtx.translate(x + shardSize / 2, y + shardSize / 2);
+                tempCtx.rotate((angle * Math.PI) / 180);
+                tempCtx.translate(-(x + shardSize / 2), -(y + shardSize / 2));
+                tempCtx.globalCompositeOperation = 'source-over';
+
+                tempCtx.drawImage(
+                    canvas,
+                    x,
+                    y,
+                    shardSize,
+                    shardSize,
+                    x + colorOffset,
+                    y + colorOffset,
+                    shardSize,
+                    shardSize
+                );
+
+                tempCtx.restore();
+            }
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(tempCanvas, 0, 0);
+    }
+}
+
+export class NeonGlowEffect extends Effect {
+    static getName() {
+        return 'Neon Glow';
+    }
+
+    static getDefaultParameters() {
+        return {
+            thickness: 10,
+            color: '#00ff00',
+            intensity: 50,
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'thickness',
+                label: 'Glow Thickness',
+                min: 1,
+                max: 20,
+                step: 1,
+            },
+            {
+                type: 'color',
+                param: 'color',
+                label: 'Glow Color',
+            },
+            {
+                type: 'range',
+                param: 'intensity',
+                label: 'Glow Intensity',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Neon Glow Effect');
+        const { thickness, color, intensity } = this.parameters;
+
+        // Create a temporary canvas for edge detection
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+
+        // Draw the original image on the temporary canvas
+        tempCtx.drawImage(canvas, 0, 0);
+
+        // Get the image data for edge detection
+        const imageData = tempCtx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+        const data = imageData.data;
+
+        // Apply a simple edge detection filter (Sobel operator)
+        const sobelData = this.sobelFilter(data, canvas.width, canvas.height);
+
+        // Draw the edges on the original canvas with neon glow
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.putImageData(imageData, 0, 0);
+
+        ctx.lineWidth = thickness;
+        ctx.strokeStyle = color;
+        ctx.shadowBlur = thickness * (intensity / 100);
+        ctx.shadowColor = color;
+
+        ctx.beginPath();
+        for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+                const index = (y * canvas.width + x) * 4;
+                if (sobelData[index] > 128) {
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x + 1, y + 1);
+                }
+            }
+        }
+        ctx.stroke();
+    }
+
+    sobelFilter(data, width, height) {
+        const kernelX = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
+        const kernelY = [-1, -2, -1, 0, 0, 0, 1, 2, 1];
+
+        const sobelData = new Uint8ClampedArray(data.length);
+        const grayscaleData = new Uint8ClampedArray(data.length / 4);
+
+        for (let i = 0; i < data.length; i += 4) {
+            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            grayscaleData[i / 4] = avg;
+        }
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+                const pixelX =
+                    kernelX[0] *
+                        this.getPixel(grayscaleData, x - 1, y - 1, width) +
+                    kernelX[1] * this.getPixel(grayscaleData, x, y - 1, width) +
+                    kernelX[2] *
+                        this.getPixel(grayscaleData, x + 1, y - 1, width) +
+                    kernelX[3] * this.getPixel(grayscaleData, x - 1, y, width) +
+                    kernelX[4] * this.getPixel(grayscaleData, x, y, width) +
+                    kernelX[5] * this.getPixel(grayscaleData, x + 1, y, width) +
+                    kernelX[6] *
+                        this.getPixel(grayscaleData, x - 1, y + 1, width) +
+                    kernelX[7] * this.getPixel(grayscaleData, x, y + 1, width) +
+                    kernelX[8] *
+                        this.getPixel(grayscaleData, x + 1, y + 1, width);
+
+                const pixelY =
+                    kernelY[0] *
+                        this.getPixel(grayscaleData, x - 1, y - 1, width) +
+                    kernelY[1] * this.getPixel(grayscaleData, x, y - 1, width) +
+                    kernelY[2] *
+                        this.getPixel(grayscaleData, x + 1, y - 1, width) +
+                    kernelY[3] * this.getPixel(grayscaleData, x - 1, y, width) +
+                    kernelY[4] * this.getPixel(grayscaleData, x, y, width) +
+                    kernelY[5] * this.getPixel(grayscaleData, x + 1, y, width) +
+                    kernelY[6] *
+                        this.getPixel(grayscaleData, x - 1, y + 1, width) +
+                    kernelY[7] * this.getPixel(grayscaleData, x, y + 1, width) +
+                    kernelY[8] *
+                        this.getPixel(grayscaleData, x + 1, y + 1, width);
+
+                const magnitude =
+                    Math.sqrt(pixelX * pixelX + pixelY * pixelY) >>> 0;
+
+                const index = (y * width + x) * 4;
+                sobelData[index] = magnitude;
+                sobelData[index + 1] = magnitude;
+                sobelData[index + 2] = magnitude;
+                sobelData[index + 3] = 255;
+            }
+        }
+
+        return sobelData;
+    }
+
+    getPixel(data, x, y, width) {
+        if (x < 0 || x >= width || y < 0 || y >= width) {
+            return 0;
+        }
+        return data[y * width + x];
+    }
+}
+
+export class CrystallineRefractionEffect extends Effect {
+    static getName() {
+        return 'Crystalline Refraction';
+    }
+
+    static getDefaultParameters() {
+        return {
+            crystalSize: 20,
+            refractionAngle: 45,
+            colorDispersion: 50,
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'crystalSize',
+                label: 'Crystal Size',
+                min: 5,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'refractionAngle',
+                label: 'Refraction Angle',
+                min: 0,
+                max: 360,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'colorDispersion',
+                label: 'Color Dispersion',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Crystalline Refraction Effect');
+        const { crystalSize, refractionAngle, colorDispersion } =
+            this.parameters;
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.putImageData(imageData, 0, 0);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let y = 0; y < canvas.height; y += crystalSize) {
+            for (let x = 0; x < canvas.width; x += crystalSize) {
+                this.drawCrystal(
+                    tempCtx,
+                    ctx,
+                    x,
+                    y,
+                    crystalSize,
+                    refractionAngle,
+                    colorDispersion
+                );
+            }
+        }
+    }
+
+    drawCrystal(srcCtx, destCtx, x, y, size, angle, dispersion) {
+        const halfSize = size / 2;
+        const centerX = x + halfSize;
+        const centerY = y + halfSize;
+
+        destCtx.save();
+        destCtx.beginPath();
+        destCtx.moveTo(x, y);
+        destCtx.lineTo(x + size, y);
+        destCtx.lineTo(x + size, y + size);
+        destCtx.lineTo(x, y + size);
+        destCtx.closePath();
+        destCtx.clip();
+
+        destCtx.translate(centerX, centerY);
+        destCtx.rotate((angle * Math.PI) / 180);
+        destCtx.translate(-centerX, -centerY);
+
+        const offsetX = (Math.random() - 0.5) * dispersion;
+        const offsetY = (Math.random() - 0.5) * dispersion;
+
+        destCtx.drawImage(
+            srcCtx.canvas,
+            x + offsetX,
+            y + offsetY,
+            size,
+            size,
+            x,
+            y,
+            size,
+            size
+        );
+        destCtx.restore();
+    }
+}
+
+export class PixelDriftEffect extends Effect {
+    static getName() {
+        return 'Pixel Drift';
+    }
+
+    static getDefaultParameters() {
+        return {
+            driftSpeed: 50,
+            driftDistance: 25,
+            waveFrequency: 50,
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'driftSpeed',
+                label: 'Drift Speed',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'driftDistance',
+                label: 'Drift Distance',
+                min: 0,
+                max: 50,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'waveFrequency',
+                label: 'Wave Frequency',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Pixel Drift Effect');
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const { driftSpeed, driftDistance, waveFrequency } = this.parameters;
+
+        const speedFactor = driftSpeed / 100;
+        const distanceFactor = driftDistance;
+        const frequencyFactor = waveFrequency / 100;
+
+        for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+                const index = (y * canvas.width + x) * 4;
+                const drift =
+                    Math.sin((x + y) * frequencyFactor) *
+                    distanceFactor *
+                    speedFactor;
+
+                const newX = Math.round(x + drift);
+                const newY = y;
+
+                if (newX >= 0 && newX < canvas.width) {
+                    const newIndex = (newY * canvas.width + newX) * 4;
+                    data[newIndex] = data[index];
+                    data[newIndex + 1] = data[index + 1];
+                    data[newIndex + 2] = data[index + 2];
+                    data[newIndex + 3] = data[index + 3];
+                }
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    }
+}
+
+export class RetroPosterizationEffect extends Effect {
+    static getName() {
+        return 'Retro Posterization';
+    }
+
+    static getDefaultParameters() {
+        return {
+            colorDepth: 8, // Number of colors per channel
+            contrastBoost: 50, // Percentage (0-100)
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'colorDepth',
+                label: 'Color Depth',
+                min: 2,
+                max: 32,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'contrastBoost',
+                label: 'Contrast Boost',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Artistic';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Retro Posterization Effect');
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const { colorDepth, contrastBoost } = this.parameters;
+
+        const levels = Math.max(2, Math.min(32, colorDepth));
+        const contrastFactor =
+            (259 * (contrastBoost + 255)) / (255 * (259 - contrastBoost));
+
+        for (let i = 0; i < data.length; i += 4) {
+            data[i] = this.posterize(data[i], levels, contrastFactor); // Red
+            data[i + 1] = this.posterize(data[i + 1], levels, contrastFactor); // Green
+            data[i + 2] = this.posterize(data[i + 2], levels, contrastFactor); // Blue
+            // Alpha channel remains unchanged
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    }
+
+    posterize(value, levels, contrastFactor) {
+        const step = 255 / (levels - 1);
+        const newValue = Math.round(value / step) * step;
+        return Math.min(
+            255,
+            Math.max(0, contrastFactor * (newValue - 128) + 128)
+        );
+    }
+}
+
+export class BlackHoleTwistEffect extends Effect {
+    static getName() {
+        return 'Black Hole Twist';
+    }
+
+    static getDefaultParameters() {
+        return {
+            twistRadius: 250,
+            twistIntensity: 50,
+            centerX: 50, // Percentage
+            centerY: 50, // Percentage
+        };
+    }
+
+    static getControls() {
+        return [
+            {
+                type: 'range',
+                param: 'twistRadius',
+                label: 'Twist Radius',
+                min: 0,
+                max: 500,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'twistIntensity',
+                label: 'Twist Intensity',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'centerX',
+                label: 'Center X (%)',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+            {
+                type: 'range',
+                param: 'centerY',
+                label: 'Center Y (%)',
+                min: 0,
+                max: 100,
+                step: 1,
+            },
+        ];
+    }
+
+    static getCategory() {
+        return 'Transformations';
+    }
+
+    apply(ctx, canvas) {
+        console.log('Applying Black Hole Twist Effect');
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const { twistRadius, twistIntensity, centerX, centerY } =
+            this.parameters;
+
+        const centerXPixel = (centerX / 100) * canvas.width;
+        const centerYPixel = (centerY / 100) * canvas.height;
+        const radius = parseFloat(twistRadius);
+        const intensity = parseFloat(twistIntensity) / 100;
+
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.putImageData(imageData, 0, 0);
+
+        for (let y = 0; y < canvas.height; y++) {
+            for (let x = 0; x < canvas.width; x++) {
+                const dx = x - centerXPixel;
+                const dy = y - centerYPixel;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < radius) {
+                    const angle = Math.atan2(dy, dx);
+                    const twistAmount =
+                        ((radius - distance) / radius) * intensity * Math.PI;
+                    const newAngle = angle + twistAmount;
+
+                    const newX = Math.cos(newAngle) * distance + centerXPixel;
+                    const newY = Math.sin(newAngle) * distance + centerYPixel;
+
+                    const srcX = Math.round(newX);
+                    const srcY = Math.round(newY);
+
+                    if (
+                        srcX >= 0 &&
+                        srcX < canvas.width &&
+                        srcY >= 0 &&
+                        srcY < canvas.height
+                    ) {
+                        const srcIndex = (srcY * canvas.width + srcX) * 4;
+                        const destIndex = (y * canvas.width + x) * 4;
+
+                        data[destIndex] = tempCtx.getImageData(
+                            srcX,
+                            srcY,
+                            1,
+                            1
+                        ).data[0];
+                        data[destIndex + 1] = tempCtx.getImageData(
+                            srcX,
+                            srcY,
+                            1,
+                            1
+                        ).data[1];
+                        data[destIndex + 2] = tempCtx.getImageData(
+                            srcX,
+                            srcY,
+                            1,
+                            1
+                        ).data[2];
+                        data[destIndex + 3] = tempCtx.getImageData(
+                            srcX,
+                            srcY,
+                            1,
+                            1
+                        ).data[3];
+                    }
+                }
+            }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+    }
+}
+
 /* Register all effects */
 
 const effectManager = new EffectManager();
 
-effectManager.registerEffect('invert', InvertEffect);
-effectManager.registerEffect('grayscale', GrayscaleEffect);
-effectManager.registerEffect('sepia', SepiaEffect);
-effectManager.registerEffect('brightnessContrast', BrightnessContrastEffect);
-effectManager.registerEffect('overlayText', OverlayTextEffect);
-effectManager.registerEffect('colorFilter', ColorFilterEffect);
-effectManager.registerEffect('blur', BlurEffect);
-effectManager.registerEffect('hueRotate', HueRotateEffect);
-effectManager.registerEffect('pixelate', PixelateEffect);
-effectManager.registerEffect('jpegArtifact', JpegArtifactEffect);
-effectManager.registerEffect('noise', NoiseEffect);
-effectManager.registerEffect('aspectRatio', AspectRatioEffect);
-effectManager.registerEffect('emoji', EmojiEffect);
-effectManager.registerEffect('crop', CropEffect);
-effectManager.registerEffect('superimposeImage', SuperimposeImageEffect);
-effectManager.registerEffect('memeTopText', MemeTopTextEffect);
-effectManager.registerEffect('replaceColor', ReplaceColorEffect);
-effectManager.registerEffect('flip', FlipEffect);
-effectManager.registerEffect('vignette', VignetteEffect);
-effectManager.registerEffect('sharpen', SharpenEffect);
+// effectManager.registerEffect('invert', InvertEffect);
+// effectManager.registerEffect('grayscale', GrayscaleEffect);
+// effectManager.registerEffect('sepia', SepiaEffect);
+// effectManager.registerEffect('brightnessContrast', BrightnessContrastEffect);
+// effectManager.registerEffect('overlayText', OverlayTextEffect);
+// effectManager.registerEffect('colorFilter', ColorFilterEffect);
+// effectManager.registerEffect('blur', BlurEffect);
+// effectManager.registerEffect('hueRotate', HueRotateEffect);
+// effectManager.registerEffect('pixelate', PixelateEffect);
+// effectManager.registerEffect('jpegArtifact', JpegArtifactEffect);
+// effectManager.registerEffect('noise', NoiseEffect);
+// effectManager.registerEffect('aspectRatio', AspectRatioEffect);
+// effectManager.registerEffect('emoji', EmojiEffect);
+// effectManager.registerEffect('crop', CropEffect);
+// effectManager.registerEffect('superimposeImage', SuperimposeImageEffect);
+// effectManager.registerEffect('memeTopText', MemeTopTextEffect);
+// effectManager.registerEffect('replaceColor', ReplaceColorEffect);
+// effectManager.registerEffect('flip', FlipEffect);
+// effectManager.registerEffect('vignette', VignetteEffect);
+// effectManager.registerEffect('sharpen', SharpenEffect);
+// effectManager.registerEffect('slicedGlitch', SlicedGlitchEffect);
+// effectManager.registerEffect('ghostTrail', GhostTrailEffect);
+// effectManager.registerEffect('chromaticShatter', ChromaticShatterEffect);
+// effectManager.registerEffect('neonGlow', NeonGlowEffect);
+// effectManager.registerEffect(
+//     'crystallineRefraction',
+//     CrystallineRefractionEffect
+// );
+// effectManager.registerEffect('pixelDrift', PixelDriftEffect);
+// effectManager.registerEffect('retroPosterization', RetroPosterizationEffect);
+// effectManager.registerEffect('blackHoleTwist', BlackHoleTwistEffect);
 
 // Export an array of effects
 export const registeredEffects = [
@@ -2008,4 +2885,12 @@ export const registeredEffects = [
     { key: 'flip', effectClass: FlipEffect },
     { key: 'vignette', effectClass: VignetteEffect },
     { key: 'sharpen', effectClass: SharpenEffect },
+    { key: 'slicedGlitch', effectClass: SlicedGlitchEffect },
+    { key: 'ghostTrail', effectClass: GhostTrailEffect },
+    { key: 'chromaticShatter', effectClass: ChromaticShatterEffect },
+    { key: 'neonGlow', effectClass: NeonGlowEffect },
+    { key: 'crystallineRefraction', effectClass: CrystallineRefractionEffect },
+    { key: 'pixelDrift', effectClass: PixelDriftEffect },
+    { key: 'retroPosterization', effectClass: RetroPosterizationEffect },
+    { key: 'blackHoleTwist', effectClass: BlackHoleTwistEffect },
 ];

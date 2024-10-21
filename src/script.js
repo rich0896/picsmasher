@@ -22,6 +22,7 @@ export function init() {
     const effectsGrid = document.querySelector('.effects-grid');
     const effectQueueElement = document.getElementById('effectQueue');
     const headerH1 = document.querySelector('header h1');
+    const dropArea = document.getElementById('dropArea');
 
     // Initialize variables
     // let effectsQueue = [];
@@ -84,16 +85,23 @@ export function init() {
     function generateEffectButtons() {
         const effects = effectManager.getEffects();
         effects.forEach((effectClass) => {
+            // Find the effect key associated with the effect class
             const effectKey = Object.keys(effectManager.effectsRegistry).find(
                 (key) => effectManager.effectsRegistry[key] === effectClass
             );
-            const displayName = effectClass.getName();
 
+            // Get the display name and category from the effect class
+            const displayName = effectClass.getName();
+            const category =
+                effectClass.getCategory().toLowerCase() || 'uncategorized';
+
+            // Create the effect button
             const button = document.createElement('button');
             button.classList.add('add-effect-button');
             button.textContent = displayName;
             button.dataset.effect = effectKey;
 
+            // Add click event listener to the button
             button.addEventListener('click', () => {
                 const defaultParameters = effectClass.getDefaultParameters();
                 const effectInstance = effectManager.createEffect(
@@ -117,7 +125,15 @@ export function init() {
                 }
             });
 
-            effectsGrid.appendChild(button);
+            // Find the effects-grid for the category
+            const effectsGrid = document.querySelector(
+                `.effects-grid[data-category="${category}"]`
+            );
+            if (effectsGrid) {
+                effectsGrid.appendChild(button);
+            } else {
+                console.warn(`No effects grid found for category: ${category}`);
+            }
         });
     }
 
@@ -225,11 +241,13 @@ export function init() {
                 const controlContainer = document.createElement('div');
                 controlContainer.classList.add('control-container');
 
-                const label = document.createElement('label');
-                label.textContent =
-                    control.label ||
-                    param.charAt(0).toUpperCase() + param.slice(1);
-                controlContainer.appendChild(label);
+                if (control.type !== 'button') {
+                    const label = document.createElement('label');
+                    label.textContent =
+                        control.label ||
+                        param.charAt(0).toUpperCase() + param.slice(1);
+                    controlContainer.appendChild(label);
+                }
 
                 let input;
 
@@ -325,6 +343,21 @@ export function init() {
                             effect.parameters[param] = input.checked;
                             if (appState.imageLoaded) {
                                 applyEffects();
+                            }
+                        });
+                        controlContainer.appendChild(input);
+                        break;
+                    case 'button':
+                        input = document.createElement('button');
+                        input.textContent =
+                            control.label ||
+                            param.charAt(0).toUpperCase() + param.slice(1);
+                        input.addEventListener('click', () => {
+                            if (typeof effect[control.param] === 'function') {
+                                effect[control.param]();
+                                if (appState.imageLoaded) {
+                                    applyEffects();
+                                }
                             }
                         });
                         controlContainer.appendChild(input);
@@ -463,9 +496,13 @@ export function init() {
             console.log('No image loaded');
             return;
         }
+
+        const fileTypeSelect = document.getElementById('fileType');
+        const fileType = fileTypeSelect.value;
+
         const link = document.createElement('a');
-        link.download = 'edited-image.png';
-        link.href = canvas.toDataURL('image/png');
+        link.download = `edited-image.${fileType.split('/')[1]}`;
+        link.href = canvas.toDataURL(fileType);
         link.click();
     }
 
@@ -483,6 +520,140 @@ export function init() {
             console.log('No image loaded');
         }
     }
+
+    // Tab Switching Logic
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabLinks.forEach((tabLink) => {
+        tabLink.addEventListener('click', () => {
+            const targetTab = tabLink.getAttribute('data-tab');
+
+            // Remove active class from all tabs and contents
+            tabLinks.forEach((link) => link.classList.remove('active'));
+            tabContents.forEach((content) =>
+                content.classList.remove('active')
+            );
+
+            // Add active class to the clicked tab and corresponding content
+            tabLink.classList.add('active');
+            const targetContent = document.getElementById(`tab-${targetTab}`);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
+        });
+    });
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    // Highlight drop area when item is dragged over it
+    ['dragenter', 'dragover'].forEach((eventName) => {
+        dropArea.addEventListener(
+            eventName,
+            () => dropArea.classList.add('active'),
+            false
+        );
+    });
+
+    ['dragleave', 'drop'].forEach((eventName) => {
+        dropArea.addEventListener(
+            eventName,
+            () => dropArea.classList.remove('active'),
+            false
+        );
+    });
+
+    // Handle dropped files
+    dropArea.addEventListener('drop', handleDrop, false);
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        const url = dt.getData('text/uri-list');
+        console.log('Dropped files:', files);
+
+        if (files.length) {
+            const file = files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const img = new Image();
+                img.onload = function () {
+                    loadImageToCanvas(img);
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        } else if (url) {
+            console.log('Dropped URL:', url);
+            const proxyUrl = `http://localhost:3000/proxy?url=${encodeURIComponent(url)}`;
+            const img = new Image();
+            img.crossOrigin = 'Anonymous'; // Handle CORS
+            img.onload = function () {
+                loadImageToCanvas(img);
+            };
+            img.onerror = function () {
+                console.error('Failed to load image from URL');
+            };
+            img.src = proxyUrl;
+        }
+    }
+
+    function loadImageToCanvas(img) {
+        // Calculate scaling to fit within max dimensions
+        const maxWidth = 800;
+        const maxHeight = 600;
+        let width = img.width;
+        let height = img.height;
+
+        // Maintain aspect ratio
+        if (width > maxWidth || height > maxHeight) {
+            const widthRatio = maxWidth / width;
+            const heightRatio = maxHeight / height;
+            const ratio = Math.min(widthRatio, heightRatio);
+            width = width * ratio;
+            height = height * ratio;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, width, height);
+        appState.originalImage = ctx.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+        appState.imageLoaded = true;
+        applyEffects(); // Apply any effects in the queue
+    }
+
+    // Show drop area when dragging files over the window
+    window.addEventListener(
+        'dragenter',
+        () => (dropArea.style.display = 'block'),
+        true
+    );
+    window.addEventListener(
+        'dragleave',
+        () => (dropArea.style.display = 'none'),
+        false
+    );
+    window.addEventListener(
+        'drop',
+        () => (dropArea.style.display = 'none'),
+        false
+    );
 
     // **Attach Event Listeners**
     imageUpload.addEventListener('change', handleImageUpload);

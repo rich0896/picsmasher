@@ -37,34 +37,113 @@
                             accept="image/*"
                             aria-label="Upload an image"
                         />
+                        <div id="dropArea" class="drop-area">
+                            <p>Drag and drop an image here</p>
+                        </div>
                     </div>
                     <div class="canvas-section">
                         <canvas id="canvas"></canvas>
                     </div>
                     <div class="buttons-container">
-                        <button
-                            id="copyButton"
-                            aria-label="Copy image to clipboard"
-                        >
-                            Copy to Clipboard
-                        </button>
-                        <button
-                            id="downloadButton"
-                            aria-label="Download the image"
-                        >
-                            Download Image
-                        </button>
-                        <button id="resetButton" aria-label="Reset the image">
-                            Reset Image
-                        </button>
+                        <div class="actions-container">
+                            <button
+                                id="resetButton"
+                                aria-label="Reset the image"
+                            >
+                                Reset Image
+                            </button>
+                            <button
+                                id="copyButton"
+                                aria-label="Copy image to clipboard"
+                            >
+                                Copy to Clipboard
+                            </button>
+                        </div>
+                        <div class="download-container">
+                            <label for="fileType">Choose file type:</label>
+                            <select id="fileType">
+                                <option value="image/png">PNG</option>
+                                <option value="image/jpeg">JPEG</option>
+                                <option value="image/webp">WEBP</option>
+                                <option value="image/bmp">BMP</option>
+                            </select>
+
+                            <button
+                                id="downloadButton"
+                                aria-label="Download the image"
+                            >
+                                Download Image
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <!-- Right Panel -->
                 <div class="right-panel">
+                    <!-- Controls Section -->
                     <div class="controls-section">
                         <h2>Add Effects</h2>
-                        <div class="effects-grid">
-                            <!-- Effect buttons will be injected by JavaScript -->
+                        <!-- Tabs Navigation -->
+                        <div class="tabs">
+                            <button class="tab-link active" data-tab="basic">
+                                Basic Adjustments
+                            </button>
+                            <button class="tab-link" data-tab="filters">
+                                Filters
+                            </button>
+                            <button class="tab-link" data-tab="transformations">
+                                Transformations
+                            </button>
+                            <button class="tab-link" data-tab="artistic">
+                                Artistic
+                            </button>
+                            <button class="tab-link" data-tab="overlays">
+                                Overlays
+                            </button>
+                        </div>
+                        <!-- Tabs Content -->
+                        <div class="tabs-content">
+                            <!-- Basic Adjustments -->
+                            <div class="tab-content active" id="tab-basic">
+                                <div class="effects-grid" data-category="basic">
+                                    <!-- Effect buttons for Basic Adjustments will be injected here -->
+                                </div>
+                            </div>
+                            <!-- Filters -->
+                            <div class="tab-content" id="tab-filters">
+                                <div
+                                    class="effects-grid"
+                                    data-category="filters"
+                                >
+                                    <!-- Effect buttons for Filters will be injected here -->
+                                </div>
+                            </div>
+                            <!-- Transformations -->
+                            <div class="tab-content" id="tab-transformations">
+                                <div
+                                    class="effects-grid"
+                                    data-category="transformations"
+                                >
+                                    <!-- Effect buttons for Transformations will be injected here -->
+                                </div>
+                            </div>
+                            <!-- Artistic Effects -->
+                            <div class="tab-content" id="tab-artistic">
+                                <div
+                                    class="effects-grid"
+                                    data-category="artistic"
+                                >
+                                    <!-- Effect buttons for Artistic Effects will be injected here -->
+                                </div>
+                            </div>
+                            <!-- Overlays -->
+                            <div class="tab-content" id="tab-overlays">
+                                <div
+                                    class="effects-grid"
+                                    data-category="overlays"
+                                >
+                                    <!-- Effect buttons for Overlays will be injected here -->
+                                </div>
+                            </div>
                         </div>
                         <h2>Effect Queue</h2>
                         <ul id="effectQueue"></ul>
