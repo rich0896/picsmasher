@@ -4,6 +4,7 @@ jobs:
     build-and-test:
         docker:
             - image: cimg/node:14.17
+        parallelism: 5
         steps:
             - checkout
             - restore_cache:
@@ -21,7 +22,7 @@ jobs:
                   command: npm run build
             - run:
                   name: Run Tests
-                  command: npm test -- --ci --reporters=default --reporters=jest-junit
+                  command: npm test -- --ci --reporters=default --reporters=jest-junit --testLocationInResults --outputFile=test-results/junit.xml --runInBand --findRelatedTests $(circleci tests glob "tests/**/*.test.js" | circleci tests split --split-by=timings)
             - store_artifacts:
                   path: tests/test-results
                   destination: tests/test-results
