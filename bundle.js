@@ -952,6 +952,8 @@ var EmojiEffect = /*#__PURE__*/function (_Effect13) {
         var y = pos.y / 100 * canvas.height;
         var fontSize = Math.random() * size + 10;
         ctx.font = "".concat(fontSize, "px Arial");
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
         ctx.fillText(emoji, x, y);
       });
     }
@@ -977,7 +979,7 @@ var EmojiEffect = /*#__PURE__*/function (_Effect13) {
         type: 'emoji',
         param: 'emoji',
         label: 'Emoji',
-        options: ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥳', '🤯', '😳', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾', '👋', '🤚', '🖐', '✋', '🖖', '👌', '🤌', '🤏', '✌️', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '☝️', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌', '👐', '🤲', '🤝', '🙏', '✍️', '💅', '🤳', '💪', '🦾', '🦿', '🦵', '🦶', '👂', '🦻', '👃', '🧠', '🫀', '🫁', '🦷', '🦴', '👀', '👁', '👅', '👄', '🫦', '👶', '🧒', '👦', '👧', '🧑', '👱', '👨', '🧔', '👩', '🧓', '👴', '👵', '🙍', '🙎', '🙅', '🙆', '💁', '🙋', '🧏', '🙇', '🤦', '🤷', '👨‍⚕️', '👩‍⚕️', '👨‍🎓', '👩‍🎓', '👨‍🏫', '👩‍🏫', '👨‍⚖️', '👩‍⚖️', '👨‍🌾', '👩‍🌾', '👨‍🍳', '👩‍🍳', '👨‍🔧', '👩‍🔧', '👨‍🏭', '👩‍🏭', '👨‍💼', '👩‍💼', '👨‍🔬', '👩‍🔬', '👨‍💻', '👩‍💻', '👨‍🎤', '👩‍🎤', '👨‍🎨', '👩‍🎨', '👨‍✈️', '👩‍✈️', '👨‍🚀', '👩‍🚀', '👨‍🚒', '👩‍🚒', '👮', '🕵️', '💂', '👷', '🤴', '👸', '👳', '👲', '🧕', '🤵', '👰', '🤰', '🤱', '👩‍🍼', '👼', '🎅', '🤶', '🦸', '🦹', '🧙', '🧚', '🧛', '🧜', '🧝', '🧞', '🧟', '🧌', '🫅', '🫃', '🫄', '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🦝', '🐻', '🐼', '🦘', '🦡', '🐨', '🐯', '🦁', '🐮', '🐷', '🐽', '🐸', '🐵', '🙈', '🙉', '🙊', '🐒', '🐔', '🐧', '🐦', '🐤', '🐣', '🐥', '🦆', '🦅', '🦉', '🦇', '🐺', '🐗', '🐴', '🦄', '🐝', '🪲', '🐛', '🦋', '🐌', '🐞', '🐜', '🪳', '🪰', '🪱', '🐢', '🐍', '🦎', '🦖', '🦕', '🐙', '🦑', '🦐', '🦞', '🦀', '🐡', '🐠', '🐟', '🐬', '🐳', '🐋', '🦈', '🐊', '🐅', '🐆', '🦓', '🦍', '🦧', '🦣', '🐘', '🦛', '🦏', '🐪', '🐫', '🦒', '🦘', '🦬', '🐃', '🐂', '🐄', '🐎', '🐖', '🐏', '🐑', '🦙', '🐐', '🦌', '🐕', '🐩', '🦮', '🐕‍🦺', '🐈', '🐈‍⬛', '🪶', '🐓', '🦃', '🦤', '🦚', '🦜', '🦢', '🦩', '🕊', '🐇', '🦝', '🦨', '🦡', '🦫', '🦦', '🦥', '🐁', '🐀', '🐿', '🦔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️', '✝️', '☪️', '🕉', '☸️', '✡️', '🔯', '🕎', '☯️', '☦️', '🛐', '⛎', '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓', '🆔', '⚛️', '🉑', '☢️', '☣️', '📴', '📳', '🈶', '🈚', '🈸', '🈺', '🈷️', '✴️', '🆚', '💮', '🉐', '㊙️', '㊗️', '🈴', '🈵', '🈹', '🈲', '🅰️', '🅱️', '🆎', '🆑', '🅾️', '🆘', '❌', '⭕', '🛑', '⛔', '📛', '🚫', '💯', '💢', '♨️', '🚷', '🚯', '🚳', '🚱', '🔞', '📵', '🚭', '❗', '❕', '❓', '❔', '‼️', '⁉️', '🔅', '🔆', '〽️', '⚠️', '🚸', '🔱', '⚜️', '🔰', '♻️', '✅', '🈯', '💹', '❇️', '✳️', '❎', '🌐', '💠', 'Ⓜ️', '🌀', '💤', '🏧', '🚾', '♿', '🅿️', '🛗', '🈳', '🈂️', '🛂', '🛃', '🛄', '🛅', '🚹', '🚺', '🚼', '⚧️', '🚻', '🚮', '🎦', '📶', '🈁', '🔣', 'ℹ️', '🔤', '🔡', '🔠', '🆖', '🆗', '🆙', '🆒', '🆕', '🆓', '0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '🔢', '#️⃣', '*️⃣', '⏏️', '▶️', '⏸', '⏯', '⏹', '⏺', '⏭', '⏮', '⏩', '⏪', '⏫', '⏬', '◀️', '🔼', '🔽', '➡️', '⬅️', '⬆️', '⬇️', '↗️', '↘️', '↙️', '↖️', '↕️', '↔️', '↪️', '↩️', '⤴️', '⤵️', '🔀', '🔁', '🔂', '🔄', '🔃', '🎵', '🎶', '➕', '➖', '➗', '✖️', '💲', '💱', '™️', '©️', '®️', '〰️', '➰', '➿', '🔚', '🔙', '🔛', '🔝', '🔜', '✔️', '☑️', '🔘', '⚪', '⚫', '🔴', '🔵', '🟠', '🟡', '🟢', '🟣', '🟤', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '🟫', '⬛', '⬜', '◼️', '◻️', '◾', '◽', '▪️', '▫️', '🔺', '🔻', '🔸', '🔹', '🔶', '🔷', '🔳', '🔲']
+        options: EmojiEffect.getEmojiOptions()
       }, {
         type: 'number',
         param: 'count',
@@ -996,15 +998,24 @@ var EmojiEffect = /*#__PURE__*/function (_Effect13) {
         type: 'button',
         param: 'shuffle',
         label: 'Shuffle Positions',
-        action: function action(effect) {
-          effect.shufflePositions();
-        }
+        action: 'shufflePositions'
       }];
     }
   }, {
     key: "getCategory",
     value: function getCategory() {
       return 'Overlays';
+    }
+  }, {
+    key: "getEmojiOptions",
+    value: function getEmojiOptions() {
+      return {
+        smileys: ['😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🥳', '🤯', '😳', '🥺', '😢', '😭', '😤', '😠', '😡', '🤬', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '👹', '👺', '🤡', '💩', '👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'],
+        people: ['👋', '🤚', '🖐', '✋', '🖖', '👌', '🤌', '🤏', '✌️', '🤞', '🤟', '🤘', '🤙', '👈', '👉', '👆', '🖕', '👇', '☝️', '👍', '👎', '✊', '👊', '🤛', '🤜', '👏', '🙌', '👐', '🤲', '🤝', '🙏', '✍️', '💅', '🤳', '💪', '🦾', '🦿', '🦵', '🦶', '👂', '🦻', '👃', '🧠', '🫀', '🫁', '🦷', '🦴', '👀', '👁', '👅', '👄', '🫦', '👶', '🧒', '👦', '👧', '🧑', '👱', '👨', '🧔', '👩', '🧓', '👴', '👵', '🙍', '🙎', '🙅', '🙆', '💁', '🙋', '🧏', '🙇', '🤦', '🤷', '👨‍⚕️', '👩‍⚕️', '👨‍🎓', '👩‍🎓', '👨‍🏫', '👩‍🏫', '👨‍⚖️', '👩‍⚖️', '👨‍🌾', '👩‍🌾', '👨‍🍳', '👩‍🍳', '👨‍🔧', '👩‍🔧', '👨‍🏭', '👩‍🏭', '👨‍💼', '👩‍💼', '👨‍🔬', '👩‍🔬', '👨‍💻', '👩‍💻', '👨‍🎤', '👩‍🎤', '👨‍🎨', '👩‍🎨', '👨‍✈️', '👩‍✈️', '👨‍🚀', '👩‍🚀', '👨‍🚒', '👩‍🚒', '👮', '🕵️', '💂', '👷', '🤴', '👸', '👳', '👲', '🧕', '🤵', '👰', '🤰', '🤱', '👩‍🍼', '👼', '🎅', '🤶', '🦸', '🦹', '🧙', '🧚', '🧛', '🧜', '🧝', '🧞', '🧟', '🧌', '🫅', '🫃', '🫄'],
+        animals: ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🦝', '🐻', '🐼', '🦘', '🦡', '🐨', '🐯', '🦁', '🐮', '🐷', '🐽', '🐸', '🐵', '🙈', '🙉', '🙊', '🐒', '🐔', '🐧', '🐦', '🐤', '🐣', '🐥', '🦆', '🦅', '🦉', '🦇', '🐺', '🐗', '🐴', '🦄', '🐝', '🪲', '🐛', '🦋', '🐌', '🐞', '🐜', '🪳', '🪰', '🪱', '🐢', '🐍', '🦎', '🦖', '🦕', '🐙', '🦑', '🦐', '🦞', '🦀', '🐡', '🐠', '🐟', '🐬', '🐳', '🐋', '🦈', '🐊', '🐅', '🐆', '🦓', '🦍', '🦧', '🦣', '🐘', '🦛', '🦏', '🐪', '🐫', '🦒', '🦘', '🦬', '🐃', '🐂', '🐄', '🐎', '🐖', '🐏', '🐑', '🦙', '🐐', '🦌', '🐕', '🐩', '🦮', '🐕‍🦺', '🐈', '🐈‍⬛', '🪶', '🐓', '🦃', '🦤', '🦚', '🦜', '🦢', '🦩', '🕊', '🐇', '🦝', '🦨', '🦡', '🦫', '🦦', '🦥', '🐁', '🐀', '🐿', '🦔'],
+        food: ['🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🫐'],
+        symbols: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '☮️', '✝️', '☪️', '🕉', '☸️', '✡️', '🔯', '🕎', '☯️', '☦️', '🛐', '⛎', '♈', '♉', '♊', '♋', '♌', '♍', '♎', '♏', '♐', '♑', '♒', '♓', '🆔', '⚛️', '🉑', '☢️', '☣️', '📴', '📳', '🈶', '🈚', '🈸', '🈺', '🈷️', '✴️', '🆚', '💮', '🉐', '㊙️', '㊗️', '🈴', '🈵', '🈹', '🈲', '🅰️', '🅱️', '🆎', '🆑', '🅾️', '🆘', '❌', '⭕', '🛑', '⛔', '📛', '🚫', '💯', '💢', '♨️', '🚷', '🚯', '🚳', '🚱', '🔞', '📵', '🚭', '❗', '❕', '❓', '❔', '‼️', '⁉️', '🔅', '🔆', '〽️', '⚠️', '🚸', '🔱', '⚜️', '🔰', '♻️', '✅', '🈯', '💹', '❇️', '✳️', '❎', '🌐', '💠', 'Ⓜ️', '🌀', '💤', '🏧', '🚾', '♿', '🅿️', '🛗', '🈳', '🈂️', '🛂', '🛃', '🛄', '🛅', '🚹', '🚺', '🚼', '⚧️', '🚻', '🚮', '🎦', '📶', '🈁', '🔣', 'ℹ️', '🔤', '🔡', '🔠', '🆖', '🆗', '🆙', '🆒', '🆕', '🆓', '0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', '🔢', '#️⃣', '*️⃣', '⏏️', '▶️', '⏸', '⏯', '⏹', '⏺', '⏭', '⏮', '⏩', '⏪', '⏫', '⏬', '◀️', '🔼', '🔽', '➡️', '⬅️', '⬆️', '⬇️', '↗️', '↘️', '↙️', '↖️', '↕️', '↔️', '↪️', '↩️', '⤴️', '⤵️', '🔀', '🔁', '🔂', '🔄', '🔃', '🎵', '🎶', '➕', '➖', '➗', '✖️', '💲', '💱', '™️', '©️', '®️', '〰️', '➰', '➿', '🔚', '🔙', '🔛', '🔝', '🔜', '✔️', '☑️', '🔘', '⚪', '⚫', '🔴', '🔵', '🟠', '🟡', '🟢', '🟣', '🟤', '🟥', '🟧', '🟨', '🟩', '🟦', '🟪', '🟫', '⬛', '⬜', '◼️', '◻️', '◾', '◽', '▪️', '▫️', '🔺', '🔻', '🔸', '🔹', '🔶', '🔷', '🔳', '🔲']
+      };
     }
   }]);
 }(Effect);
@@ -2681,6 +2692,70 @@ main {
     border-radius: 3px;
 }
 
+.selected-emoji {
+    align-self: center;
+    width: fit-content;
+    background-color: #333;
+    border: 1px solid #7c7c7c;
+    border-radius: 5px;
+}
+
+.selected-emoji:hover {
+    background-color: #0056b3;
+    border-color: #fff;
+    cursor: pointer;
+}
+
+.emoji-picker {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
+    padding: 2px;
+    font-size: 20px;
+}
+
+.emoji-tabs {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.emoji-tab {
+    padding: 5px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 2px solid #444;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.emoji-grid {
+    display: none;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.emoji-option {
+    /* padding: 5px; */
+    background-color: #333;
+    /* color: #fff; */
+    border: 1px solid #7c7c7c;
+    border-radius: 5px;
+    /* cursor: pointer; */
+    /* transition: background-color 0.3s ease; */
+}
+
+.emoji-option:hover {
+    background-color: #0056b3;
+    border-color: #fff;
+    cursor: pointer;
+}
+
 .drag-handle {
     padding-right: 10px;
     cursor: grab;
@@ -2796,15 +2871,6 @@ main {
     margin-bottom: 5px;
 }
 
-.emoji-picker {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    width: 100%;
-    margin-top: 5px;
-    padding: 2px;
-    font-size: 20px;
-}
-
 @media screen and (max-width: 900px) {
     .container {
         flex-direction: column;
@@ -2828,7 +2894,7 @@ main {
         flex-direction: column;
     }
 }
-`, "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":"AAAA,mBAAmB;AACnB;IACI,yBAAyB;IACzB,cAAc;IACd,wCAAwC;IACxC,eAAe;IACf,SAAS;IACT,UAAU;IACV,iBAAiB,EAAE,kCAAkC;IACrD,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,yBAAyB;IACzB,aAAa;IACb,kBAAkB;AACtB;;AAEA;IACI,SAAS;IACT,eAAe;IACf,sCAAsC;IACtC,cAAc;IACd,iBAAiB;IACjB,kBAAkB;IAClB,kBAAkB;IAClB,mEAAmE;IACnE,qBAAqB;IACrB,qBAAqB;IACrB,6BAA6B,EAAE,6BAA6B;IAC5D,oCAAoC;IACpC,cAAc;AAClB;;AAEA;IACI,OAAO,EAAE,wDAAwD;IACjE,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,uBAAuB;AAC3B;;AAEA;;IAEI,OAAO;IACP,cAAc;IACd,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;AACvB;;AAEA;IACI,mBAAmB;AACvB;;AAEA;IACI,gBAAgB;IAChB,gBAAgB;IAChB,mBAAmB;IACnB,mBAAmB;AACvB;;AAEA;IACI,uBAAuB;IACvB,mBAAmB;IACnB,aAAa;IACb,kBAAkB;IAClB,WAAW;IACX,aAAa;AACjB;;AAEA;IACI,kBAAkB;IAClB,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,eAAe;AACnB;;AAEA;IACI,yBAAyB;IACzB,mBAAmB;IACnB,eAAe;IACf,gBAAgB;IAChB,WAAW;IACX,YAAY;AAChB;;AAEA;IACI,WAAW;IACX,kBAAkB;IAClB,mBAAmB;IACnB,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,sCAAsC;IACtC,eAAe;IACf,mBAAmB;IACnB,iBAAiB;AACrB;;AAEA,oBAAoB;AACpB;IACI,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,yBAAyB;IACzB,WAAW;IACX,kBAAkB;IAClB,YAAY;IACZ,WAAW;IACX,eAAe;IACf,eAAe;IACf,sCAAsC;AAC1C;;AAEA;IACI,0BAA0B;AAC9B;;AAEA;IACI,0BAA0B;AAC9B;;AAEA;IACI,gBAAgB;AACpB;;AAEA;;IAEI,yBAAyB;IACzB,WAAW;AACf;;AAEA;IACI,aAAa;AACjB;;AAEA,iBAAiB;AACjB;IACI,WAAW;AACf;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,cAAc;AAClB;;AAEA;IACI,aAAa;IACb,eAAe;IACf,uBAAuB;IACvB,SAAS;IACT,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,yBAAyB;IACzB,WAAW;IACX,YAAY;IACZ,eAAe;IACf,eAAe;IACf,YAAY;IACZ,sCAAsC;AAC1C;;AAEA;IACI,yBAAyB;AAC7B;;AAEA;IACI,qBAAqB;IACrB,UAAU;IACV,WAAW;IACX,gBAAgB;IAChB,mBAAmB;AACvB;;AAEA;IACI,yBAAyB;IACzB,aAAa;IACb,kBAAkB;IAClB,WAAW;IACX,aAAa;IACb,sBAAsB;IACtB,YAAY;IACZ,sBAAsB;IACtB,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,eAAe;IACf,kBAAkB;AACtB;;AAEA;IACI,eAAe;AACnB;;AAEA;;;;;IAKI,UAAU;IACV,eAAe;IACf,YAAY;IACZ,eAAe;IACf,yBAAyB;IACzB,WAAW;IACX,sBAAsB;IACtB,kBAAkB;AACtB;;AAEA;IACI,mBAAmB;IACnB,YAAY;AAChB;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,kBAAkB;IAClB,yBAAyB;IACzB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,eAAe;IACf,eAAe;IACf,WAAW;IACX,sCAAsC;AAC1C;;AAEA;IACI,yBAAyB;AAC7B;;AAEA;;IAEI,0BAA0B;AAC9B;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,6BAA6B;IAC7B,sBAAsB;AAC1B;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,mBAAmB;IACnB,6BAA6B;AACjC;;AAEA;IACI,iBAAiB;IACjB,yBAAyB;IACzB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,eAAe;IACf,eAAe;IACf,0BAA0B;IAC1B,sCAAsC;AAC1C;;AAEA;IACI,gBAAgB;IAChB,qBAAqB;IACrB,kBAAkB;IAClB,eAAe;IACf,yBAAyB;IACzB,WAAW;IACX,sBAAsB;IACtB,kBAAkB;AACtB;;AAEA;IACI,cAAc;IACd,0BAA0B;AAC9B;;AAEA;IACI,yBAAyB;IACzB,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,WAAW;AACf;;AAEA;IACI,SAAS;AACb;;AAEA,kBAAkB;AAClB;IACI,aAAa;IACb,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,OAAO;AACX;;AAEA,uDAAuD;AACvD;IACI,WAAW;IACX,eAAe;IACf,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI,mBAAmB;AACvB;;AAEA;IACI,cAAc;IACd,eAAe;IACf,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,sCAAsC;IACtC,WAAW;IACX,eAAe;IACf,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI;QACI,sBAAsB;QACtB,mBAAmB;IACvB;;IAEA;;QAEI,eAAe;IACnB;;IAEA;QACI,WAAW;IACf;;IAEA;QACI,kBAAkB;IACtB;;IAEA;QACI,sBAAsB;IAC1B;AACJ","sourcesContent":["/* General Styles */\nbody {\n    background-color: #0d0d0d;\n    color: #ffffff;\n    font-family: 'Roboto', Arial, sans-serif;\n    font-size: 16px;\n    margin: 0;\n    padding: 0;\n    min-height: 100vh; /* Ensure body takes full height */\n    display: flex;\n    flex-direction: column;\n}\n\nheader {\n    background-color: #1a1a1a;\n    padding: 20px;\n    text-align: center;\n}\n\nheader h1 {\n    margin: 0;\n    font-size: 32px;\n    font-family: 'Press Start 2P', cursive;\n    color: #7c7c7c;\n    user-select: none;\n    width: fit-content;\n    color: transparent;\n    background-image: linear-gradient(90deg, #ff7f50, #1e90ff, #32cd32);\n    background-size: 600%;\n    background-clip: text;\n    -webkit-background-clip: text; /* For Safari compatibility */\n    transition: background-position 0.1s;\n    margin: 0 auto;\n}\n\nmain {\n    flex: 1; /* Allow main content to grow and fill available space */\n    padding: 20px;\n}\n\n.container {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: flex-start;\n}\n\n.left-panel,\n.right-panel {\n    flex: 1;\n    max-width: 50%;\n    padding: 10px;\n}\n\n.left-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.right-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.upload-section {\n    margin-bottom: 20px;\n}\n\n.upload-section input[type='file'] {\n    max-width: 300px;\n    overflow: hidden;\n    text-overflow: clip;\n    white-space: nowrap;\n}\n\n.drop-area {\n    border: 2px dashed #ccc;\n    border-radius: 10px;\n    padding: 20px;\n    text-align: center;\n    color: #ccc;\n    display: none;\n}\n\n.drop-area.active {\n    border-color: #000;\n    color: #000;\n}\n\n.canvas-section {\n    position: relative;\n    max-width: 100%;\n}\n\n#canvas {\n    border: 2px solid #ffffff;\n    border-radius: 10px;\n    max-width: 100%;\n    max-height: 80vh;\n    width: auto;\n    height: auto;\n}\n\n.controls-section {\n    width: 100%;\n    text-align: center;\n    margin-bottom: 30px;\n    display: flex;\n    flex-direction: column;\n}\n\n.controls-section h2 {\n    font-family: 'Press Start 2P', cursive;\n    font-size: 24px;\n    margin-bottom: 10px;\n    align-self: start;\n}\n\n/* Tabs Navigation */\n.tabs {\n    display: flex;\n    justify-content: center;\n    margin-bottom: 20px;\n}\n\n.tab-link {\n    background-color: #1a1a1a;\n    color: #fff;\n    padding: 10px 20px;\n    border: none;\n    margin: 0 0;\n    cursor: pointer;\n    font-size: 16px;\n    transition: background-color 0.3s ease;\n}\n\n.tab-link:first-child {\n    border-radius: 5px 0 0 5px;\n}\n\n.tab-link:last-child {\n    border-radius: 0 5px 5px 0;\n}\n\n.tab-link:not(:first-child):not(:last-child) {\n    border-radius: 0;\n}\n\n.tab-link.active,\n.tab-link:hover {\n    background-color: #fbff00;\n    color: #000;\n}\n\n.tab-link:focus {\n    outline: none;\n}\n\n/* Tabs Content */\n.tabs-content {\n    width: 100%;\n}\n\n.tab-content {\n    display: none;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n.effects-grid {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 10px;\n    margin-bottom: 20px;\n}\n\n.effects-grid .add-effect-button {\n    padding: 10px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    font-size: 14px;\n    cursor: pointer;\n    width: 150px;\n    transition: background-color 0.3s ease;\n}\n\n.effects-grid .add-effect-button:hover {\n    background-color: #0056b3;\n}\n\n#effectQueue {\n    list-style-type: none;\n    padding: 0;\n    width: 100%;\n    max-width: 400px;\n    margin: 0 auto 20px;\n}\n\n#effectQueue li {\n    background-color: #1a1a1a;\n    padding: 10px;\n    margin-bottom: 5px;\n    color: #fff;\n    display: flex;\n    flex-direction: column;\n    cursor: move;\n    border: 1px solid #333;\n    border-radius: 5px;\n}\n\n#effectQueue li .effect-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 14px;\n    padding-left: 10px;\n}\n\n#effectQueue li .effect-controls {\n    margin-top: 5px;\n}\n\n#effectQueue li input[type='range'],\n#effectQueue li input[type='text'],\n#effectQueue li input[type='number'],\n#effectQueue li input[type='color'],\n#effectQueue li select {\n    width: 90%;\n    margin-top: 5px;\n    padding: 5px;\n    font-size: 14px;\n    background-color: #2a2a2a;\n    color: #fff;\n    border: 1px solid #444;\n    border-radius: 3px;\n}\n\n.drag-handle {\n    padding-right: 10px;\n    cursor: grab;\n}\n\n.buttons-container {\n    padding-top: 10px;\n    display: flex;\n    flex-direction: column;\n}\n\nbutton {\n    padding: 10px 20px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    font-size: 14px;\n    cursor: pointer;\n    margin: 5px;\n    transition: background-color 0.3s ease;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\nbutton:focus,\ninput:focus {\n    outline: 2px solid #0056b3;\n}\n\n.actions-container {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-evenly;\n    /* margin-top: 20px; */\n}\n\n.download-container {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-evenly;\n}\n\n.ft-select {\n    padding: 8px 10px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 5px 0 0 5px;\n    transition: background-color 0.3s ease;\n}\n\n#fileType {\n    /* width: 90%; */\n    /* margin-top: 5px; */\n    /* padding: 5px; */\n    font-size: 14px;\n    background-color: #2a2a2a;\n    color: #fff;\n    border: 1px solid #444;\n    border-radius: 3px;\n}\n\n#downloadButton {\n    margin-left: 0;\n    border-radius: 0 5px 5px 0;\n}\n\nfooter {\n    background-color: #1a1a1a;\n    color: #888;\n    text-align: center;\n    padding: 10px;\n    width: 100%;\n}\n\nfooter p {\n    margin: 0;\n}\n\n/* Sticky footer */\nbody {\n    display: flex;\n    flex-direction: column;\n    min-height: 100vh;\n}\n\nmain {\n    flex: 1;\n}\n\n/* Styles for color pickers, additional sliders, etc. */\n.effect-controls input[type='color'] {\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 14px;\n}\n\n.control-container {\n    margin-bottom: 10px;\n}\n\n.control-container label {\n    display: block;\n    font-size: 14px;\n    margin-bottom: 5px;\n}\n\n.emoji-picker {\n    display: grid;\n    grid-template-columns: repeat(10, 1fr);\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 20px;\n}\n\n@media screen and (max-width: 900px) {\n    .container {\n        flex-direction: column;\n        align-items: center;\n    }\n\n    .left-panel,\n    .right-panel {\n        max-width: 100%;\n    }\n\n    .effects-grid .add-effect-button {\n        width: 100%;\n    }\n\n    .controls-section h2 {\n        align-self: center;\n    }\n\n    .tabs {\n        flex-direction: column;\n    }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":"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","sourcesContent":["/* General Styles */\nbody {\n    background-color: #0d0d0d;\n    color: #ffffff;\n    font-family: 'Roboto', Arial, sans-serif;\n    font-size: 16px;\n    margin: 0;\n    padding: 0;\n    min-height: 100vh; /* Ensure body takes full height */\n    display: flex;\n    flex-direction: column;\n}\n\nheader {\n    background-color: #1a1a1a;\n    padding: 20px;\n    text-align: center;\n}\n\nheader h1 {\n    margin: 0;\n    font-size: 32px;\n    font-family: 'Press Start 2P', cursive;\n    color: #7c7c7c;\n    user-select: none;\n    width: fit-content;\n    color: transparent;\n    background-image: linear-gradient(90deg, #ff7f50, #1e90ff, #32cd32);\n    background-size: 600%;\n    background-clip: text;\n    -webkit-background-clip: text; /* For Safari compatibility */\n    transition: background-position 0.1s;\n    margin: 0 auto;\n}\n\nmain {\n    flex: 1; /* Allow main content to grow and fill available space */\n    padding: 20px;\n}\n\n.container {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: flex-start;\n}\n\n.left-panel,\n.right-panel {\n    flex: 1;\n    max-width: 50%;\n    padding: 10px;\n}\n\n.left-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.right-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.upload-section {\n    margin-bottom: 20px;\n}\n\n.upload-section input[type='file'] {\n    max-width: 300px;\n    overflow: hidden;\n    text-overflow: clip;\n    white-space: nowrap;\n}\n\n.drop-area {\n    border: 2px dashed #ccc;\n    border-radius: 10px;\n    padding: 20px;\n    text-align: center;\n    color: #ccc;\n    display: none;\n}\n\n.drop-area.active {\n    border-color: #000;\n    color: #000;\n}\n\n.canvas-section {\n    position: relative;\n    max-width: 100%;\n}\n\n#canvas {\n    border: 2px solid #ffffff;\n    border-radius: 10px;\n    max-width: 100%;\n    max-height: 80vh;\n    width: auto;\n    height: auto;\n}\n\n.controls-section {\n    width: 100%;\n    text-align: center;\n    margin-bottom: 30px;\n    display: flex;\n    flex-direction: column;\n}\n\n.controls-section h2 {\n    font-family: 'Press Start 2P', cursive;\n    font-size: 24px;\n    margin-bottom: 10px;\n    align-self: start;\n}\n\n/* Tabs Navigation */\n.tabs {\n    display: flex;\n    justify-content: center;\n    margin-bottom: 20px;\n}\n\n.tab-link {\n    background-color: #1a1a1a;\n    color: #fff;\n    padding: 10px 20px;\n    border: none;\n    margin: 0 0;\n    cursor: pointer;\n    font-size: 16px;\n    transition: background-color 0.3s ease;\n}\n\n.tab-link:first-child {\n    border-radius: 5px 0 0 5px;\n}\n\n.tab-link:last-child {\n    border-radius: 0 5px 5px 0;\n}\n\n.tab-link:not(:first-child):not(:last-child) {\n    border-radius: 0;\n}\n\n.tab-link.active,\n.tab-link:hover {\n    background-color: #fbff00;\n    color: #000;\n}\n\n.tab-link:focus {\n    outline: none;\n}\n\n/* Tabs Content */\n.tabs-content {\n    width: 100%;\n}\n\n.tab-content {\n    display: none;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n.effects-grid {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 10px;\n    margin-bottom: 20px;\n}\n\n.effects-grid .add-effect-button {\n    padding: 10px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    font-size: 14px;\n    cursor: pointer;\n    width: 150px;\n    transition: background-color 0.3s ease;\n}\n\n.effects-grid .add-effect-button:hover {\n    background-color: #0056b3;\n}\n\n#effectQueue {\n    list-style-type: none;\n    padding: 0;\n    width: 100%;\n    max-width: 400px;\n    margin: 0 auto 20px;\n}\n\n#effectQueue li {\n    background-color: #1a1a1a;\n    padding: 10px;\n    margin-bottom: 5px;\n    color: #fff;\n    display: flex;\n    flex-direction: column;\n    cursor: move;\n    border: 1px solid #333;\n    border-radius: 5px;\n}\n\n#effectQueue li .effect-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 14px;\n    padding-left: 10px;\n}\n\n#effectQueue li .effect-controls {\n    margin-top: 5px;\n}\n\n#effectQueue li input[type='range'],\n#effectQueue li input[type='text'],\n#effectQueue li input[type='number'],\n#effectQueue li input[type='color'],\n#effectQueue li select {\n    width: 90%;\n    margin-top: 5px;\n    padding: 5px;\n    font-size: 14px;\n    background-color: #2a2a2a;\n    color: #fff;\n    border: 1px solid #444;\n    border-radius: 3px;\n}\n\n.selected-emoji {\n    align-self: center;\n    width: fit-content;\n    background-color: #333;\n    border: 1px solid #7c7c7c;\n    border-radius: 5px;\n}\n\n.selected-emoji:hover {\n    background-color: #0056b3;\n    border-color: #fff;\n    cursor: pointer;\n}\n\n.emoji-picker {\n    display: flex;\n    flex-direction: column;\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 20px;\n}\n\n.emoji-tabs {\n    display: none;\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n    margin-top: 10px;\n}\n\n.emoji-tab {\n    padding: 5px;\n    background-color: #1a1a1a;\n    color: #fff;\n    border: 2px solid #444;\n    border-radius: 5px;\n    cursor: pointer;\n    transition: background-color 0.3s ease;\n}\n\n.emoji-grid {\n    display: none;\n    grid-template-columns: repeat(10, 1fr);\n    gap: 5px;\n    margin-top: 10px;\n}\n\n.emoji-option {\n    /* padding: 5px; */\n    background-color: #333;\n    /* color: #fff; */\n    border: 1px solid #7c7c7c;\n    border-radius: 5px;\n    /* cursor: pointer; */\n    /* transition: background-color 0.3s ease; */\n}\n\n.emoji-option:hover {\n    background-color: #0056b3;\n    border-color: #fff;\n    cursor: pointer;\n}\n\n.drag-handle {\n    padding-right: 10px;\n    cursor: grab;\n}\n\n.buttons-container {\n    padding-top: 10px;\n    display: flex;\n    flex-direction: column;\n}\n\nbutton {\n    padding: 10px 20px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    font-size: 14px;\n    cursor: pointer;\n    margin: 5px;\n    transition: background-color 0.3s ease;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\nbutton:focus,\ninput:focus {\n    outline: 2px solid #0056b3;\n}\n\n.actions-container {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-evenly;\n    /* margin-top: 20px; */\n}\n\n.download-container {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-evenly;\n}\n\n.ft-select {\n    padding: 8px 10px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    font-size: 14px;\n    cursor: pointer;\n    border-radius: 5px 0 0 5px;\n    transition: background-color 0.3s ease;\n}\n\n#fileType {\n    /* width: 90%; */\n    /* margin-top: 5px; */\n    /* padding: 5px; */\n    font-size: 14px;\n    background-color: #2a2a2a;\n    color: #fff;\n    border: 1px solid #444;\n    border-radius: 3px;\n}\n\n#downloadButton {\n    margin-left: 0;\n    border-radius: 0 5px 5px 0;\n}\n\nfooter {\n    background-color: #1a1a1a;\n    color: #888;\n    text-align: center;\n    padding: 10px;\n    width: 100%;\n}\n\nfooter p {\n    margin: 0;\n}\n\n/* Sticky footer */\nbody {\n    display: flex;\n    flex-direction: column;\n    min-height: 100vh;\n}\n\nmain {\n    flex: 1;\n}\n\n/* Styles for color pickers, additional sliders, etc. */\n.effect-controls input[type='color'] {\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 14px;\n}\n\n.control-container {\n    margin-bottom: 10px;\n}\n\n.control-container label {\n    display: block;\n    font-size: 14px;\n    margin-bottom: 5px;\n}\n\n@media screen and (max-width: 900px) {\n    .container {\n        flex-direction: column;\n        align-items: center;\n    }\n\n    .left-panel,\n    .right-panel {\n        max-width: 100%;\n    }\n\n    .effects-grid .add-effect-button {\n        width: 100%;\n    }\n\n    .controls-section h2 {\n        align-self: center;\n    }\n\n    .tabs {\n        flex-direction: column;\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7063,11 +7129,90 @@ function init() {
             input = document.createElement('button');
             input.textContent = control.label || param.charAt(0).toUpperCase() + param.slice(1);
             input.addEventListener('click', function () {
-              if (typeof effect[control.param] === 'function') {
-                effect[control.param]();
+              if (typeof effect[control.action] === 'function') {
+                effect[control.action]();
                 if (appState.imageLoaded) {
                   applyEffects();
                 }
+              }
+            });
+            controlContainer.appendChild(input);
+            break;
+          case 'emoji':
+            input = document.createElement('div');
+            input.classList.add('emoji-picker');
+            var selectedEmoji = document.createElement('span');
+            selectedEmoji.textContent = paramValue;
+            selectedEmoji.classList.add('selected-emoji');
+            input.appendChild(selectedEmoji);
+            var emojiTabs = document.createElement('div');
+            emojiTabs.classList.add('emoji-tabs');
+            var categories = Object.keys(_effects_js__WEBPACK_IMPORTED_MODULE_1__.EmojiEffect.getEmojiOptions());
+            categories.forEach(function (category) {
+              var tabButton = document.createElement('button');
+              tabButton.classList.add('emoji-tab');
+              tabButton.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+              tabButton.dataset.category = category;
+              if (category === 'smileys') {
+                tabButton.classList.add('active');
+              }
+              emojiTabs.appendChild(tabButton);
+            });
+            input.appendChild(emojiTabs);
+            var emojiGrids = {};
+            categories.forEach(function (category) {
+              var emojiGrid = document.createElement('div');
+              emojiGrid.classList.add('emoji-grid');
+              emojiGrid.id = "emoji-grid-".concat(category);
+              if (category !== 'smileys') {
+                emojiGrid.style.display = 'none';
+              }
+              emojiGrids[category] = emojiGrid;
+              input.appendChild(emojiGrid);
+            });
+            var emojiOptions = _effects_js__WEBPACK_IMPORTED_MODULE_1__.EmojiEffect.getEmojiOptions();
+            Object.keys(emojiOptions).forEach(function (category) {
+              emojiOptions[category].forEach(function (emoji) {
+                var emojiOption = document.createElement('span');
+                emojiOption.textContent = emoji;
+                emojiOption.classList.add('emoji-option');
+                emojiOption.addEventListener('click', function () {
+                  effect.parameters[param] = emoji;
+                  selectedEmoji.textContent = emoji;
+                  Object.values(emojiGrids).forEach(function (grid) {
+                    return grid.style.display = 'none';
+                  });
+                  emojiTabs.style.display = 'none'; // Hide the tabs
+                  if (appState.imageLoaded) {
+                    applyEffects();
+                  }
+                });
+                emojiGrids[category].appendChild(emojiOption);
+              });
+            });
+            selectedEmoji.addEventListener('click', function () {
+              var isPickerVisible = emojiTabs.style.display === 'flex';
+              if (isPickerVisible) {
+                emojiTabs.style.display = 'none';
+                Object.values(emojiGrids).forEach(function (grid) {
+                  grid.style.display = 'none';
+                });
+              } else {
+                emojiTabs.style.display = 'flex';
+                emojiGrids.smileys.style.display = 'grid'; // Show the Smileys grid by default
+              }
+            });
+            emojiTabs.addEventListener('click', function (event) {
+              if (event.target.classList.contains('emoji-tab')) {
+                var category = event.target.dataset.category;
+                Object.values(emojiGrids).forEach(function (grid) {
+                  return grid.style.display = 'none';
+                });
+                emojiGrids[category].style.display = 'grid';
+                document.querySelectorAll('.emoji-tab').forEach(function (tab) {
+                  return tab.classList.remove('active');
+                });
+                event.target.classList.add('active');
               }
             });
             controlContainer.appendChild(input);
