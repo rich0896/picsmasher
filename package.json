@@ -27,7 +27,8 @@
             "node"
         ],
         "moduleNameMapper": {
-            "^sortablejs$": "<rootDir>/tests/__mocks__/sortablejs.js"
+            "^sortablejs$": "<rootDir>/tests/__mocks__/sortablejs.js",
+            "\\.(css|less|scss|sss|styl)$": "identity-obj-proxy"
         },
         "snapshotSerializers": [
             "<rootDir>/config/jest.imageDataSerializer.js"
@@ -80,6 +81,7 @@
         "gh-pages": "^6.2.0",
         "globals": "^15.11.0",
         "html-webpack-plugin": "^5.6.2",
+        "identity-obj-proxy": "^3.0.0",
         "jest": "^29.7.0",
         "jest-canvas-mock": "^2.5.2",
         "jest-environment-jsdom": "^29.7.0",
