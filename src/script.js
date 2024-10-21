@@ -589,6 +589,7 @@ export function init() {
                 const img = new Image();
                 img.onload = function () {
                     loadImageToCanvas(img);
+                    dropArea.style.display = 'none';
                 };
                 img.src = event.target.result;
             };
