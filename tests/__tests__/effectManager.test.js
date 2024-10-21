@@ -1,6 +1,6 @@
 // __tests__/effectManager.test.js
 
-import { EffectManager, InvertEffect } from '../effects.js';
+import { EffectManager, InvertEffect } from '../../src/effects.js';
 
 describe('EffectManager', () => {
     let effectManager;

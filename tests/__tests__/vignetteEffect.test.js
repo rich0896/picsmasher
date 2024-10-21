@@ -1,4 +1,4 @@
-const { VignetteEffect } = require('../effects.js');
+const { VignetteEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('VignetteEffect', () => {

@@ -1,4 +1,4 @@
-const { SepiaEffect } = require('../effects.js');
+const { SepiaEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('SepiaEffect', () => {

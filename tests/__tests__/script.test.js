@@ -6,8 +6,8 @@ if (typeof TextEncoder === 'undefined') {
     global.TextEncoder = require('util').TextEncoder;
 }
 
-import { init, appState, resetAppState } from '../script.js';
-import { InvertEffect, GrayscaleEffect } from '../effects.js';
+import { init, appState, resetAppState } from '../../src/script.js';
+import { InvertEffect, GrayscaleEffect } from '../../src/effects.js';
 
 // Mock sortablejs
 jest.mock('sortablejs', () => {

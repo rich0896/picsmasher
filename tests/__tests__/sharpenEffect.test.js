@@ -1,4 +1,4 @@
-const { SharpenEffect } = require('../effects.js');
+const { SharpenEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('SharpenEffect', () => {

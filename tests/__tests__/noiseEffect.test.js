@@ -1,4 +1,4 @@
-const { NoiseEffect } = require('../effects.js');
+const { NoiseEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('NoiseEffect', () => {

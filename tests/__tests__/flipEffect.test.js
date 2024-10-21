@@ -1,4 +1,4 @@
-const { FlipEffect } = require('../effects.js');
+const { FlipEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('FlipEffect', () => {

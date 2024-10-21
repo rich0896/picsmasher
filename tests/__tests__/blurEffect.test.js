@@ -1,4 +1,4 @@
-const { BlurEffect } = require('../effects.js');
+const { BlurEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('BlurEffect', () => {

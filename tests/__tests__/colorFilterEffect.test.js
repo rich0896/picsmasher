@@ -1,4 +1,4 @@
-const { ColorFilterEffect } = require('../effects.js');
+const { ColorFilterEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('ColorFilterEffect', () => {

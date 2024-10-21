@@ -1,4 +1,4 @@
-const { GrayscaleEffect } = require('../effects.js');
+const { GrayscaleEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('GrayscaleEffect', () => {

@@ -1,4 +1,4 @@
-const { PixelateEffect } = require('../effects.js');
+const { PixelateEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('PixelateEffect', () => {

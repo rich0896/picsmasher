@@ -1,4 +1,4 @@
-const { InvertEffect } = require('../effects.js');
+const { InvertEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('InvertEffect', () => {

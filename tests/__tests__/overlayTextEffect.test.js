@@ -1,4 +1,4 @@
-const { OverlayTextEffect } = require('../effects.js');
+const { OverlayTextEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('OverlayTextEffect', () => {

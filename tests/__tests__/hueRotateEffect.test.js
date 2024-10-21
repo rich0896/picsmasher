@@ -1,4 +1,4 @@
-const { HueRotateEffect } = require('../effects.js');
+const { HueRotateEffect } = require('../../src/effects.js');
 const { createTestCanvas } = require('./helpers/testHelpers.js');
 
 describe('HueRotateEffect', () => {
