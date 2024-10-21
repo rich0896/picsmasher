@@ -8,7 +8,7 @@ module.exports = (env, argv) => ({
     entry: './src/script.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, '/dist'),
+        path: path.resolve(__dirname, 'dist'),
         clean: true,
     },
     mode: argv.mode || 'development',
