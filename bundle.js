@@ -2,34 +2,42 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./effects.js":
-/*!********************!*\
-  !*** ./effects.js ***!
-  \********************/
+/***/ "./src/effects.js":
+/*!************************!*\
+  !*** ./src/effects.js ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AspectRatioEffect: () => (/* binding */ AspectRatioEffect),
+/* harmony export */   BlackHoleTwistEffect: () => (/* binding */ BlackHoleTwistEffect),
 /* harmony export */   BlurEffect: () => (/* binding */ BlurEffect),
 /* harmony export */   BrightnessContrastEffect: () => (/* binding */ BrightnessContrastEffect),
+/* harmony export */   ChromaticShatterEffect: () => (/* binding */ ChromaticShatterEffect),
 /* harmony export */   ColorFilterEffect: () => (/* binding */ ColorFilterEffect),
 /* harmony export */   CropEffect: () => (/* binding */ CropEffect),
+/* harmony export */   CrystallineRefractionEffect: () => (/* binding */ CrystallineRefractionEffect),
 /* harmony export */   Effect: () => (/* binding */ Effect),
 /* harmony export */   EffectManager: () => (/* binding */ EffectManager),
 /* harmony export */   EmojiEffect: () => (/* binding */ EmojiEffect),
 /* harmony export */   FlipEffect: () => (/* binding */ FlipEffect),
+/* harmony export */   GhostTrailEffect: () => (/* binding */ GhostTrailEffect),
 /* harmony export */   GrayscaleEffect: () => (/* binding */ GrayscaleEffect),
 /* harmony export */   HueRotateEffect: () => (/* binding */ HueRotateEffect),
 /* harmony export */   InvertEffect: () => (/* binding */ InvertEffect),
 /* harmony export */   JpegArtifactEffect: () => (/* binding */ JpegArtifactEffect),
 /* harmony export */   MemeTopTextEffect: () => (/* binding */ MemeTopTextEffect),
+/* harmony export */   NeonGlowEffect: () => (/* binding */ NeonGlowEffect),
 /* harmony export */   NoiseEffect: () => (/* binding */ NoiseEffect),
 /* harmony export */   OverlayTextEffect: () => (/* binding */ OverlayTextEffect),
+/* harmony export */   PixelDriftEffect: () => (/* binding */ PixelDriftEffect),
 /* harmony export */   PixelateEffect: () => (/* binding */ PixelateEffect),
 /* harmony export */   ReplaceColorEffect: () => (/* binding */ ReplaceColorEffect),
+/* harmony export */   RetroPosterizationEffect: () => (/* binding */ RetroPosterizationEffect),
 /* harmony export */   SepiaEffect: () => (/* binding */ SepiaEffect),
 /* harmony export */   SharpenEffect: () => (/* binding */ SharpenEffect),
+/* harmony export */   SlicedGlitchEffect: () => (/* binding */ SlicedGlitchEffect),
 /* harmony export */   SuperimposeImageEffect: () => (/* binding */ SuperimposeImageEffect),
 /* harmony export */   VignetteEffect: () => (/* binding */ VignetteEffect),
 /* harmony export */   registeredEffects: () => (/* binding */ registeredEffects)
@@ -134,6 +142,11 @@ var Effect = /*#__PURE__*/function () {
     value: function getControls() {
       return [];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Uncategorized';
+    }
   }]);
 }();
 
@@ -186,6 +199,11 @@ var InvertEffect = /*#__PURE__*/function (_Effect) {
         step: 1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Filters';
+    }
   }]);
 }(Effect);
 var GrayscaleEffect = /*#__PURE__*/function (_Effect2) {
@@ -233,6 +251,11 @@ var GrayscaleEffect = /*#__PURE__*/function (_Effect2) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Filters';
     }
   }]);
 }(Effect);
@@ -283,6 +306,11 @@ var SepiaEffect = /*#__PURE__*/function (_Effect3) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Filters';
     }
   }]);
 }(Effect);
@@ -354,6 +382,11 @@ var BrightnessContrastEffect = /*#__PURE__*/function (_Effect4) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Basic';
     }
   }]);
 }(Effect);
@@ -435,6 +468,11 @@ var OverlayTextEffect = /*#__PURE__*/function (_Effect5) {
         step: 1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Overlays';
+    }
   }]);
 }(Effect);
 var ColorFilterEffect = /*#__PURE__*/function (_Effect6) {
@@ -509,6 +547,11 @@ var ColorFilterEffect = /*#__PURE__*/function (_Effect6) {
         step: 1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Filters';
+    }
   }]);
 }(Effect);
 var BlurEffect = /*#__PURE__*/function (_Effect7) {
@@ -561,6 +604,11 @@ var BlurEffect = /*#__PURE__*/function (_Effect7) {
         step: 0.1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
   }]);
 }(Effect);
 var HueRotateEffect = /*#__PURE__*/function (_Effect8) {
@@ -600,6 +648,11 @@ var HueRotateEffect = /*#__PURE__*/function (_Effect8) {
         max: 360,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Basic';
     }
   }]);
 }(Effect);
@@ -642,6 +695,11 @@ var PixelateEffect = /*#__PURE__*/function (_Effect9) {
         max: 50,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
     }
   }]);
 }(Effect);
@@ -720,6 +778,11 @@ var JpegArtifactEffect = /*#__PURE__*/function (_Effect10) {
         step: 1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
   }]);
 }(Effect);
 var NoiseEffect = /*#__PURE__*/function (_Effect11) {
@@ -766,6 +829,11 @@ var NoiseEffect = /*#__PURE__*/function (_Effect11) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
     }
   }]);
 }(Effect);
@@ -833,6 +901,11 @@ var AspectRatioEffect = /*#__PURE__*/function (_Effect12) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Transformations';
     }
   }]);
 }(Effect);
@@ -928,6 +1001,11 @@ var EmojiEffect = /*#__PURE__*/function (_Effect13) {
         }
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Overlays';
+    }
   }]);
 }(Effect);
 var CropEffect = /*#__PURE__*/function (_Effect14) {
@@ -999,6 +1077,11 @@ var CropEffect = /*#__PURE__*/function (_Effect14) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Transformations';
     }
   }]);
 }(Effect);
@@ -1101,6 +1184,11 @@ var SuperimposeImageEffect = /*#__PURE__*/function (_Effect15) {
         max: 1,
         step: 0.01
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Overlays';
     }
   }]);
 }(Effect);
@@ -1213,6 +1301,11 @@ var MemeTopTextEffect = /*#__PURE__*/function (_Effect16) {
         label: 'Wrap Text'
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Overlays';
+    }
   }]);
 }(Effect);
 var ReplaceColorEffect = /*#__PURE__*/function (_Effect17) {
@@ -1291,6 +1384,11 @@ var ReplaceColorEffect = /*#__PURE__*/function (_Effect17) {
         step: 0.1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
   }]);
 }(Effect);
 var FlipEffect = /*#__PURE__*/function (_Effect18) {
@@ -1336,6 +1434,11 @@ var FlipEffect = /*#__PURE__*/function (_Effect18) {
         options: ['horizontal', 'vertical']
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Transformations';
+    }
   }]);
 }(Effect);
 var VignetteEffect = /*#__PURE__*/function (_Effect19) {
@@ -1380,6 +1483,11 @@ var VignetteEffect = /*#__PURE__*/function (_Effect19) {
         max: 100,
         step: 1
       }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Filters';
     }
   }]);
 }(Effect);
@@ -1459,32 +1567,768 @@ var SharpenEffect = /*#__PURE__*/function (_Effect20) {
         step: 1
       }];
     }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var SlicedGlitchEffect = /*#__PURE__*/function (_Effect21) {
+  function SlicedGlitchEffect() {
+    _classCallCheck(this, SlicedGlitchEffect);
+    return _callSuper(this, SlicedGlitchEffect, arguments);
+  }
+  _inherits(SlicedGlitchEffect, _Effect21);
+  return _createClass(SlicedGlitchEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Sliced Glitch Effect');
+      var _this$parameters2 = this.parameters,
+        sliceThickness = _this$parameters2.sliceThickness,
+        displacementAmount = _this$parameters2.displacementAmount,
+        glitchFrequency = _this$parameters2.glitchFrequency;
+      var sliceCount = Math.ceil(canvas.height / sliceThickness);
+      for (var i = 0; i < sliceCount; i++) {
+        if (Math.random() * 100 < glitchFrequency) {
+          var y = i * sliceThickness;
+          var displacement = (Math.random() - 0.5) * 2 * displacementAmount;
+          ctx.drawImage(canvas, 0, y, canvas.width, sliceThickness, displacement, y, canvas.width, sliceThickness);
+        }
+      }
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Sliced Glitch';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        sliceThickness: 10,
+        displacementAmount: 20,
+        glitchFrequency: 50
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'sliceThickness',
+        label: 'Slice Thickness',
+        min: 1,
+        max: 50,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'displacementAmount',
+        label: 'Displacement Amount',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'glitchFrequency',
+        label: 'Glitch Frequency',
+        min: 0,
+        max: 100,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var GhostTrailEffect = /*#__PURE__*/function (_Effect22) {
+  function GhostTrailEffect() {
+    _classCallCheck(this, GhostTrailEffect);
+    return _callSuper(this, GhostTrailEffect, arguments);
+  }
+  _inherits(GhostTrailEffect, _Effect22);
+  return _createClass(GhostTrailEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Ghost Trail Effect');
+      var _this$parameters3 = this.parameters,
+        trailLength = _this$parameters3.trailLength,
+        trailOpacity = _this$parameters3.trailOpacity,
+        motionDirection = _this$parameters3.motionDirection;
+      var opacityStep = trailOpacity / 100 / trailLength;
+      var tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      var tempCtx = tempCanvas.getContext('2d');
+      for (var i = 0; i < trailLength; i++) {
+        tempCtx.clearRect(0, 0, canvas.width, canvas.height);
+        tempCtx.globalAlpha = 1 - i * opacityStep;
+        var offsetX = 0;
+        var offsetY = 0;
+        if (motionDirection === 'horizontal') {
+          offsetX = i * (canvas.width / trailLength);
+        } else if (motionDirection === 'vertical') {
+          offsetY = i * (canvas.height / trailLength);
+        } else if (motionDirection === 'random') {
+          offsetX = Math.random() * canvas.width;
+          offsetY = Math.random() * canvas.height;
+        }
+        tempCtx.drawImage(canvas, offsetX, offsetY);
+        ctx.drawImage(tempCanvas, 0, 0);
+      }
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Ghost Trail';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        trailLength: 10,
+        trailOpacity: 50,
+        motionDirection: 'horizontal'
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'trailLength',
+        label: 'Trail Length',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'trailOpacity',
+        label: 'Trail Opacity',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'select',
+        param: 'motionDirection',
+        label: 'Motion Direction',
+        options: ['horizontal', 'vertical', 'random']
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var ChromaticShatterEffect = /*#__PURE__*/function (_Effect23) {
+  function ChromaticShatterEffect() {
+    _classCallCheck(this, ChromaticShatterEffect);
+    return _callSuper(this, ChromaticShatterEffect, arguments);
+  }
+  _inherits(ChromaticShatterEffect, _Effect23);
+  return _createClass(ChromaticShatterEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Chromatic Shatter Effect');
+      var _this$parameters4 = this.parameters,
+        shardSize = _this$parameters4.shardSize,
+        colorSpread = _this$parameters4.colorSpread,
+        fragmentRotation = _this$parameters4.fragmentRotation;
+      var tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      var tempCtx = tempCanvas.getContext('2d');
+      for (var y = 0; y < canvas.height; y += shardSize) {
+        for (var x = 0; x < canvas.width; x += shardSize) {
+          var angle = (Math.random() - 0.5) * 2 * fragmentRotation;
+          var colorOffset = (Math.random() - 0.5) * 2 * colorSpread;
+          tempCtx.save();
+          tempCtx.translate(x + shardSize / 2, y + shardSize / 2);
+          tempCtx.rotate(angle * Math.PI / 180);
+          tempCtx.translate(-(x + shardSize / 2), -(y + shardSize / 2));
+          tempCtx.globalCompositeOperation = 'source-over';
+          tempCtx.drawImage(canvas, x, y, shardSize, shardSize, x + colorOffset, y + colorOffset, shardSize, shardSize);
+          tempCtx.restore();
+        }
+      }
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(tempCanvas, 0, 0);
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Chromatic Shatter';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        shardSize: 10,
+        colorSpread: 50,
+        fragmentRotation: 45
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'shardSize',
+        label: 'Shard Size',
+        min: 1,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'colorSpread',
+        label: 'Color Spread',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'fragmentRotation',
+        label: 'Fragment Rotation',
+        min: 0,
+        max: 360,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var NeonGlowEffect = /*#__PURE__*/function (_Effect24) {
+  function NeonGlowEffect() {
+    _classCallCheck(this, NeonGlowEffect);
+    return _callSuper(this, NeonGlowEffect, arguments);
+  }
+  _inherits(NeonGlowEffect, _Effect24);
+  return _createClass(NeonGlowEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Neon Glow Effect');
+      var _this$parameters5 = this.parameters,
+        thickness = _this$parameters5.thickness,
+        color = _this$parameters5.color,
+        intensity = _this$parameters5.intensity;
+
+      // Create a temporary canvas for edge detection
+      var tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      var tempCtx = tempCanvas.getContext('2d');
+
+      // Draw the original image on the temporary canvas
+      tempCtx.drawImage(canvas, 0, 0);
+
+      // Get the image data for edge detection
+      var imageData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+
+      // Apply a simple edge detection filter (Sobel operator)
+      var sobelData = this.sobelFilter(data, canvas.width, canvas.height);
+
+      // Draw the edges on the original canvas with neon glow
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.putImageData(imageData, 0, 0);
+      ctx.lineWidth = thickness;
+      ctx.strokeStyle = color;
+      ctx.shadowBlur = thickness * (intensity / 100);
+      ctx.shadowColor = color;
+      ctx.beginPath();
+      for (var y = 0; y < canvas.height; y++) {
+        for (var x = 0; x < canvas.width; x++) {
+          var index = (y * canvas.width + x) * 4;
+          if (sobelData[index] > 128) {
+            ctx.moveTo(x, y);
+            ctx.lineTo(x + 1, y + 1);
+          }
+        }
+      }
+      ctx.stroke();
+    }
+  }, {
+    key: "sobelFilter",
+    value: function sobelFilter(data, width, height) {
+      var kernelX = [-1, 0, 1, -2, 0, 2, -1, 0, 1];
+      var kernelY = [-1, -2, -1, 0, 0, 0, 1, 2, 1];
+      var sobelData = new Uint8ClampedArray(data.length);
+      var grayscaleData = new Uint8ClampedArray(data.length / 4);
+      for (var i = 0; i < data.length; i += 4) {
+        var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        grayscaleData[i / 4] = avg;
+      }
+      for (var y = 0; y < height; y++) {
+        for (var x = 0; x < width; x++) {
+          var pixelX = kernelX[0] * this.getPixel(grayscaleData, x - 1, y - 1, width) + kernelX[1] * this.getPixel(grayscaleData, x, y - 1, width) + kernelX[2] * this.getPixel(grayscaleData, x + 1, y - 1, width) + kernelX[3] * this.getPixel(grayscaleData, x - 1, y, width) + kernelX[4] * this.getPixel(grayscaleData, x, y, width) + kernelX[5] * this.getPixel(grayscaleData, x + 1, y, width) + kernelX[6] * this.getPixel(grayscaleData, x - 1, y + 1, width) + kernelX[7] * this.getPixel(grayscaleData, x, y + 1, width) + kernelX[8] * this.getPixel(grayscaleData, x + 1, y + 1, width);
+          var pixelY = kernelY[0] * this.getPixel(grayscaleData, x - 1, y - 1, width) + kernelY[1] * this.getPixel(grayscaleData, x, y - 1, width) + kernelY[2] * this.getPixel(grayscaleData, x + 1, y - 1, width) + kernelY[3] * this.getPixel(grayscaleData, x - 1, y, width) + kernelY[4] * this.getPixel(grayscaleData, x, y, width) + kernelY[5] * this.getPixel(grayscaleData, x + 1, y, width) + kernelY[6] * this.getPixel(grayscaleData, x - 1, y + 1, width) + kernelY[7] * this.getPixel(grayscaleData, x, y + 1, width) + kernelY[8] * this.getPixel(grayscaleData, x + 1, y + 1, width);
+          var magnitude = Math.sqrt(pixelX * pixelX + pixelY * pixelY) >>> 0;
+          var index = (y * width + x) * 4;
+          sobelData[index] = magnitude;
+          sobelData[index + 1] = magnitude;
+          sobelData[index + 2] = magnitude;
+          sobelData[index + 3] = 255;
+        }
+      }
+      return sobelData;
+    }
+  }, {
+    key: "getPixel",
+    value: function getPixel(data, x, y, width) {
+      if (x < 0 || x >= width || y < 0 || y >= width) {
+        return 0;
+      }
+      return data[y * width + x];
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Neon Glow';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        thickness: 10,
+        color: '#00ff00',
+        intensity: 50
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'thickness',
+        label: 'Glow Thickness',
+        min: 1,
+        max: 20,
+        step: 1
+      }, {
+        type: 'color',
+        param: 'color',
+        label: 'Glow Color'
+      }, {
+        type: 'range',
+        param: 'intensity',
+        label: 'Glow Intensity',
+        min: 0,
+        max: 100,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var CrystallineRefractionEffect = /*#__PURE__*/function (_Effect25) {
+  function CrystallineRefractionEffect() {
+    _classCallCheck(this, CrystallineRefractionEffect);
+    return _callSuper(this, CrystallineRefractionEffect, arguments);
+  }
+  _inherits(CrystallineRefractionEffect, _Effect25);
+  return _createClass(CrystallineRefractionEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Crystalline Refraction Effect');
+      var _this$parameters6 = this.parameters,
+        crystalSize = _this$parameters6.crystalSize,
+        refractionAngle = _this$parameters6.refractionAngle,
+        colorDispersion = _this$parameters6.colorDispersion;
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+      var tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      var tempCtx = tempCanvas.getContext('2d');
+      tempCtx.putImageData(imageData, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (var y = 0; y < canvas.height; y += crystalSize) {
+        for (var x = 0; x < canvas.width; x += crystalSize) {
+          this.drawCrystal(tempCtx, ctx, x, y, crystalSize, refractionAngle, colorDispersion);
+        }
+      }
+    }
+  }, {
+    key: "drawCrystal",
+    value: function drawCrystal(srcCtx, destCtx, x, y, size, angle, dispersion) {
+      var halfSize = size / 2;
+      var centerX = x + halfSize;
+      var centerY = y + halfSize;
+      destCtx.save();
+      destCtx.beginPath();
+      destCtx.moveTo(x, y);
+      destCtx.lineTo(x + size, y);
+      destCtx.lineTo(x + size, y + size);
+      destCtx.lineTo(x, y + size);
+      destCtx.closePath();
+      destCtx.clip();
+      destCtx.translate(centerX, centerY);
+      destCtx.rotate(angle * Math.PI / 180);
+      destCtx.translate(-centerX, -centerY);
+      var offsetX = (Math.random() - 0.5) * dispersion;
+      var offsetY = (Math.random() - 0.5) * dispersion;
+      destCtx.drawImage(srcCtx.canvas, x + offsetX, y + offsetY, size, size, x, y, size, size);
+      destCtx.restore();
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Crystalline Refraction';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        crystalSize: 20,
+        refractionAngle: 45,
+        colorDispersion: 50
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'crystalSize',
+        label: 'Crystal Size',
+        min: 5,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'refractionAngle',
+        label: 'Refraction Angle',
+        min: 0,
+        max: 360,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'colorDispersion',
+        label: 'Color Dispersion',
+        min: 0,
+        max: 100,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var PixelDriftEffect = /*#__PURE__*/function (_Effect26) {
+  function PixelDriftEffect() {
+    _classCallCheck(this, PixelDriftEffect);
+    return _callSuper(this, PixelDriftEffect, arguments);
+  }
+  _inherits(PixelDriftEffect, _Effect26);
+  return _createClass(PixelDriftEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Pixel Drift Effect');
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+      var _this$parameters7 = this.parameters,
+        driftSpeed = _this$parameters7.driftSpeed,
+        driftDistance = _this$parameters7.driftDistance,
+        waveFrequency = _this$parameters7.waveFrequency;
+      var speedFactor = driftSpeed / 100;
+      var distanceFactor = driftDistance;
+      var frequencyFactor = waveFrequency / 100;
+      for (var y = 0; y < canvas.height; y++) {
+        for (var x = 0; x < canvas.width; x++) {
+          var index = (y * canvas.width + x) * 4;
+          var drift = Math.sin((x + y) * frequencyFactor) * distanceFactor * speedFactor;
+          var newX = Math.round(x + drift);
+          var newY = y;
+          if (newX >= 0 && newX < canvas.width) {
+            var newIndex = (newY * canvas.width + newX) * 4;
+            data[newIndex] = data[index];
+            data[newIndex + 1] = data[index + 1];
+            data[newIndex + 2] = data[index + 2];
+            data[newIndex + 3] = data[index + 3];
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Pixel Drift';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        driftSpeed: 50,
+        driftDistance: 25,
+        waveFrequency: 50
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'driftSpeed',
+        label: 'Drift Speed',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'driftDistance',
+        label: 'Drift Distance',
+        min: 0,
+        max: 50,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'waveFrequency',
+        label: 'Wave Frequency',
+        min: 0,
+        max: 100,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var RetroPosterizationEffect = /*#__PURE__*/function (_Effect27) {
+  function RetroPosterizationEffect() {
+    _classCallCheck(this, RetroPosterizationEffect);
+    return _callSuper(this, RetroPosterizationEffect, arguments);
+  }
+  _inherits(RetroPosterizationEffect, _Effect27);
+  return _createClass(RetroPosterizationEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Retro Posterization Effect');
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+      var _this$parameters8 = this.parameters,
+        colorDepth = _this$parameters8.colorDepth,
+        contrastBoost = _this$parameters8.contrastBoost;
+      var levels = Math.max(2, Math.min(32, colorDepth));
+      var contrastFactor = 259 * (contrastBoost + 255) / (255 * (259 - contrastBoost));
+      for (var i = 0; i < data.length; i += 4) {
+        data[i] = this.posterize(data[i], levels, contrastFactor); // Red
+        data[i + 1] = this.posterize(data[i + 1], levels, contrastFactor); // Green
+        data[i + 2] = this.posterize(data[i + 2], levels, contrastFactor); // Blue
+        // Alpha channel remains unchanged
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+  }, {
+    key: "posterize",
+    value: function posterize(value, levels, contrastFactor) {
+      var step = 255 / (levels - 1);
+      var newValue = Math.round(value / step) * step;
+      return Math.min(255, Math.max(0, contrastFactor * (newValue - 128) + 128));
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Retro Posterization';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        colorDepth: 8,
+        // Number of colors per channel
+        contrastBoost: 50 // Percentage (0-100)
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'colorDepth',
+        label: 'Color Depth',
+        min: 2,
+        max: 32,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'contrastBoost',
+        label: 'Contrast Boost',
+        min: 0,
+        max: 100,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Artistic';
+    }
+  }]);
+}(Effect);
+var BlackHoleTwistEffect = /*#__PURE__*/function (_Effect28) {
+  function BlackHoleTwistEffect() {
+    _classCallCheck(this, BlackHoleTwistEffect);
+    return _callSuper(this, BlackHoleTwistEffect, arguments);
+  }
+  _inherits(BlackHoleTwistEffect, _Effect28);
+  return _createClass(BlackHoleTwistEffect, [{
+    key: "apply",
+    value: function apply(ctx, canvas) {
+      console.log('Applying Black Hole Twist Effect');
+      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+      var _this$parameters9 = this.parameters,
+        twistRadius = _this$parameters9.twistRadius,
+        twistIntensity = _this$parameters9.twistIntensity,
+        centerX = _this$parameters9.centerX,
+        centerY = _this$parameters9.centerY;
+      var centerXPixel = centerX / 100 * canvas.width;
+      var centerYPixel = centerY / 100 * canvas.height;
+      var radius = parseFloat(twistRadius);
+      var intensity = parseFloat(twistIntensity) / 100;
+      var tempCanvas = document.createElement('canvas');
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      var tempCtx = tempCanvas.getContext('2d');
+      tempCtx.putImageData(imageData, 0, 0);
+      for (var y = 0; y < canvas.height; y++) {
+        for (var x = 0; x < canvas.width; x++) {
+          var dx = x - centerXPixel;
+          var dy = y - centerYPixel;
+          var distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < radius) {
+            var angle = Math.atan2(dy, dx);
+            var twistAmount = (radius - distance) / radius * intensity * Math.PI;
+            var newAngle = angle + twistAmount;
+            var newX = Math.cos(newAngle) * distance + centerXPixel;
+            var newY = Math.sin(newAngle) * distance + centerYPixel;
+            var srcX = Math.round(newX);
+            var srcY = Math.round(newY);
+            if (srcX >= 0 && srcX < canvas.width && srcY >= 0 && srcY < canvas.height) {
+              var srcIndex = (srcY * canvas.width + srcX) * 4;
+              var destIndex = (y * canvas.width + x) * 4;
+              data[destIndex] = tempCtx.getImageData(srcX, srcY, 1, 1).data[0];
+              data[destIndex + 1] = tempCtx.getImageData(srcX, srcY, 1, 1).data[1];
+              data[destIndex + 2] = tempCtx.getImageData(srcX, srcY, 1, 1).data[2];
+              data[destIndex + 3] = tempCtx.getImageData(srcX, srcY, 1, 1).data[3];
+            }
+          }
+        }
+      }
+      ctx.putImageData(imageData, 0, 0);
+    }
+  }], [{
+    key: "getName",
+    value: function getName() {
+      return 'Black Hole Twist';
+    }
+  }, {
+    key: "getDefaultParameters",
+    value: function getDefaultParameters() {
+      return {
+        twistRadius: 250,
+        twistIntensity: 50,
+        centerX: 50,
+        // Percentage
+        centerY: 50 // Percentage
+      };
+    }
+  }, {
+    key: "getControls",
+    value: function getControls() {
+      return [{
+        type: 'range',
+        param: 'twistRadius',
+        label: 'Twist Radius',
+        min: 0,
+        max: 500,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'twistIntensity',
+        label: 'Twist Intensity',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'centerX',
+        label: 'Center X (%)',
+        min: 0,
+        max: 100,
+        step: 1
+      }, {
+        type: 'range',
+        param: 'centerY',
+        label: 'Center Y (%)',
+        min: 0,
+        max: 100,
+        step: 1
+      }];
+    }
+  }, {
+    key: "getCategory",
+    value: function getCategory() {
+      return 'Transformations';
+    }
   }]);
 }(Effect);
 
 /* Register all effects */
 
 var effectManager = new EffectManager();
-effectManager.registerEffect('invert', InvertEffect);
-effectManager.registerEffect('grayscale', GrayscaleEffect);
-effectManager.registerEffect('sepia', SepiaEffect);
-effectManager.registerEffect('brightnessContrast', BrightnessContrastEffect);
-effectManager.registerEffect('overlayText', OverlayTextEffect);
-effectManager.registerEffect('colorFilter', ColorFilterEffect);
-effectManager.registerEffect('blur', BlurEffect);
-effectManager.registerEffect('hueRotate', HueRotateEffect);
-effectManager.registerEffect('pixelate', PixelateEffect);
-effectManager.registerEffect('jpegArtifact', JpegArtifactEffect);
-effectManager.registerEffect('noise', NoiseEffect);
-effectManager.registerEffect('aspectRatio', AspectRatioEffect);
-effectManager.registerEffect('emoji', EmojiEffect);
-effectManager.registerEffect('crop', CropEffect);
-effectManager.registerEffect('superimposeImage', SuperimposeImageEffect);
-effectManager.registerEffect('memeTopText', MemeTopTextEffect);
-effectManager.registerEffect('replaceColor', ReplaceColorEffect);
-effectManager.registerEffect('flip', FlipEffect);
-effectManager.registerEffect('vignette', VignetteEffect);
-effectManager.registerEffect('sharpen', SharpenEffect);
+
+// effectManager.registerEffect('invert', InvertEffect);
+// effectManager.registerEffect('grayscale', GrayscaleEffect);
+// effectManager.registerEffect('sepia', SepiaEffect);
+// effectManager.registerEffect('brightnessContrast', BrightnessContrastEffect);
+// effectManager.registerEffect('overlayText', OverlayTextEffect);
+// effectManager.registerEffect('colorFilter', ColorFilterEffect);
+// effectManager.registerEffect('blur', BlurEffect);
+// effectManager.registerEffect('hueRotate', HueRotateEffect);
+// effectManager.registerEffect('pixelate', PixelateEffect);
+// effectManager.registerEffect('jpegArtifact', JpegArtifactEffect);
+// effectManager.registerEffect('noise', NoiseEffect);
+// effectManager.registerEffect('aspectRatio', AspectRatioEffect);
+// effectManager.registerEffect('emoji', EmojiEffect);
+// effectManager.registerEffect('crop', CropEffect);
+// effectManager.registerEffect('superimposeImage', SuperimposeImageEffect);
+// effectManager.registerEffect('memeTopText', MemeTopTextEffect);
+// effectManager.registerEffect('replaceColor', ReplaceColorEffect);
+// effectManager.registerEffect('flip', FlipEffect);
+// effectManager.registerEffect('vignette', VignetteEffect);
+// effectManager.registerEffect('sharpen', SharpenEffect);
+// effectManager.registerEffect('slicedGlitch', SlicedGlitchEffect);
+// effectManager.registerEffect('ghostTrail', GhostTrailEffect);
+// effectManager.registerEffect('chromaticShatter', ChromaticShatterEffect);
+// effectManager.registerEffect('neonGlow', NeonGlowEffect);
+// effectManager.registerEffect(
+//     'crystallineRefraction',
+//     CrystallineRefractionEffect
+// );
+// effectManager.registerEffect('pixelDrift', PixelDriftEffect);
+// effectManager.registerEffect('retroPosterization', RetroPosterizationEffect);
+// effectManager.registerEffect('blackHoleTwist', BlackHoleTwistEffect);
 
 // Export an array of effects
 var registeredEffects = [{
@@ -1547,23 +2391,47 @@ var registeredEffects = [{
 }, {
   key: 'sharpen',
   effectClass: SharpenEffect
+}, {
+  key: 'slicedGlitch',
+  effectClass: SlicedGlitchEffect
+}, {
+  key: 'ghostTrail',
+  effectClass: GhostTrailEffect
+}, {
+  key: 'chromaticShatter',
+  effectClass: ChromaticShatterEffect
+}, {
+  key: 'neonGlow',
+  effectClass: NeonGlowEffect
+}, {
+  key: 'crystallineRefraction',
+  effectClass: CrystallineRefractionEffect
+}, {
+  key: 'pixelDrift',
+  effectClass: PixelDriftEffect
+}, {
+  key: 'retroPosterization',
+  effectClass: RetroPosterizationEffect
+}, {
+  key: 'blackHoleTwist',
+  effectClass: BlackHoleTwistEffect
 }];
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./styles.css":
-/*!**********************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./styles.css ***!
-  \**********************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./src/styles.css":
+/*!**************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./src/styles.css ***!
+  \**************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
 // Imports
 
@@ -1647,6 +2515,20 @@ main {
     white-space: nowrap;
 }
 
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: #ccc;
+    display: none;
+}
+
+.drop-area.active {
+    border-color: #000;
+    color: #000;
+}
+
 .canvas-section {
     position: relative;
     max-width: 100%;
@@ -1665,12 +2547,68 @@ main {
     width: 100%;
     text-align: center;
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .controls-section h2 {
     font-family: 'Press Start 2P', cursive;
     font-size: 24px;
     margin-bottom: 10px;
+    align-self: start;
+}
+
+/* Tabs Navigation */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-link {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    margin: 0 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.tab-link:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.tab-link:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.tab-link:not(:first-child):not(:last-child) {
+    border-radius: 0;
+}
+
+.tab-link.active,
+.tab-link:hover {
+    background-color: #fbff00;
+    color: #000;
+}
+
+.tab-link:focus {
+    outline: none;
+}
+
+/* Tabs Content */
+.tabs-content {
+    width: 100%;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
 
 .effects-grid {
@@ -1750,6 +2688,8 @@ main {
 
 .buttons-container {
     padding-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 button {
@@ -1771,6 +2711,20 @@ button:hover {
 button:focus,
 input:focus {
     outline: 2px solid #0056b3;
+}
+
+.actions-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* margin-top: 20px; */
+}
+
+.download-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 footer {
@@ -1837,8 +2791,16 @@ main {
     .effects-grid .add-effect-button {
         width: 100%;
     }
+
+    .controls-section h2 {
+        align-self: center;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
 }
-`, "",{"version":3,"sources":["webpack://./styles.css"],"names":[],"mappings":"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","sourcesContent":["/* General Styles */\nbody {\n    background-color: #0d0d0d;\n    color: #ffffff;\n    font-family: 'Roboto', Arial, sans-serif;\n    font-size: 16px;\n    margin: 0;\n    padding: 0;\n    min-height: 100vh; /* Ensure body takes full height */\n    display: flex;\n    flex-direction: column;\n}\n\nheader {\n    background-color: #1a1a1a;\n    padding: 20px;\n    text-align: center;\n}\n\nheader h1 {\n    margin: 0;\n    font-size: 32px;\n    font-family: 'Press Start 2P', cursive;\n    color: #7c7c7c;\n    user-select: none;\n    width: fit-content;\n    color: transparent;\n    background-image: linear-gradient(90deg, #ff7f50, #1e90ff, #32cd32);\n    background-size: 600%;\n    background-clip: text;\n    -webkit-background-clip: text; /* For Safari compatibility */\n    transition: background-position 0.1s;\n    margin: 0 auto;\n}\n\nmain {\n    flex: 1; /* Allow main content to grow and fill available space */\n    padding: 20px;\n}\n\n.container {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: flex-start;\n}\n\n.left-panel,\n.right-panel {\n    flex: 1;\n    max-width: 50%;\n    padding: 10px;\n}\n\n.left-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.right-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.upload-section {\n    margin-bottom: 20px;\n}\n\n.upload-section input[type='file'] {\n    max-width: 300px;\n    overflow: hidden;\n    text-overflow: clip;\n    white-space: nowrap;\n}\n\n.canvas-section {\n    position: relative;\n    max-width: 100%;\n}\n\n#canvas {\n    border: 2px solid #ffffff;\n    border-radius: 10px;\n    max-width: 100%;\n    max-height: 80vh;\n    width: auto;\n    height: auto;\n}\n\n.controls-section {\n    width: 100%;\n    text-align: center;\n    margin-bottom: 30px;\n}\n\n.controls-section h2 {\n    font-family: 'Press Start 2P', cursive;\n    font-size: 24px;\n    margin-bottom: 10px;\n}\n\n.effects-grid {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 10px;\n    margin-bottom: 20px;\n}\n\n.effects-grid .add-effect-button {\n    padding: 10px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    font-size: 14px;\n    cursor: pointer;\n    width: 150px;\n    transition: background-color 0.3s ease;\n}\n\n.effects-grid .add-effect-button:hover {\n    background-color: #0056b3;\n}\n\n#effectQueue {\n    list-style-type: none;\n    padding: 0;\n    width: 100%;\n    max-width: 400px;\n    margin: 0 auto 20px;\n}\n\n#effectQueue li {\n    background-color: #1a1a1a;\n    padding: 10px;\n    margin-bottom: 5px;\n    color: #fff;\n    display: flex;\n    flex-direction: column;\n    cursor: move;\n    border: 1px solid #333;\n    border-radius: 5px;\n}\n\n#effectQueue li .effect-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 14px;\n    padding-left: 10px;\n}\n\n#effectQueue li .effect-controls {\n    margin-top: 5px;\n}\n\n#effectQueue li input[type='range'],\n#effectQueue li input[type='text'],\n#effectQueue li input[type='number'],\n#effectQueue li input[type='color'],\n#effectQueue li select {\n    width: 90%;\n    margin-top: 5px;\n    padding: 5px;\n    font-size: 14px;\n    background-color: #2a2a2a;\n    color: #fff;\n    border: 1px solid #444;\n    border-radius: 3px;\n}\n\n.drag-handle {\n    padding-right: 10px;\n    cursor: grab;\n}\n\n.buttons-container {\n    padding-top: 10px;\n}\n\nbutton {\n    padding: 10px 20px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    font-size: 14px;\n    cursor: pointer;\n    margin: 5px;\n    transition: background-color 0.3s ease;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\nbutton:focus,\ninput:focus {\n    outline: 2px solid #0056b3;\n}\n\nfooter {\n    background-color: #1a1a1a;\n    color: #888;\n    text-align: center;\n    padding: 10px;\n    width: 100%;\n}\n\nfooter p {\n    margin: 0;\n}\n\n/* Sticky footer */\nbody {\n    display: flex;\n    flex-direction: column;\n    min-height: 100vh;\n}\n\nmain {\n    flex: 1;\n}\n\n/* Styles for color pickers, additional sliders, etc. */\n.effect-controls input[type='color'] {\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 14px;\n}\n\n.control-container {\n    margin-bottom: 10px;\n}\n\n.control-container label {\n    display: block;\n    font-size: 14px;\n    margin-bottom: 5px;\n}\n\n.emoji-picker {\n    display: grid;\n    grid-template-columns: repeat(10, 1fr);\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 20px;\n}\n\n@media screen and (max-width: 900px) {\n    .container {\n        flex-direction: column;\n        align-items: center;\n    }\n\n    .left-panel,\n    .right-panel {\n        max-width: 100%;\n    }\n\n    .effects-grid .add-effect-button {\n        width: 100%;\n    }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles.css"],"names":[],"mappings":"AAAA,mBAAmB;AACnB;IACI,yBAAyB;IACzB,cAAc;IACd,wCAAwC;IACxC,eAAe;IACf,SAAS;IACT,UAAU;IACV,iBAAiB,EAAE,kCAAkC;IACrD,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,yBAAyB;IACzB,aAAa;IACb,kBAAkB;AACtB;;AAEA;IACI,SAAS;IACT,eAAe;IACf,sCAAsC;IACtC,cAAc;IACd,iBAAiB;IACjB,kBAAkB;IAClB,kBAAkB;IAClB,mEAAmE;IACnE,qBAAqB;IACrB,qBAAqB;IACrB,6BAA6B,EAAE,6BAA6B;IAC5D,oCAAoC;IACpC,cAAc;AAClB;;AAEA;IACI,OAAO,EAAE,wDAAwD;IACjE,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,uBAAuB;IACvB,uBAAuB;AAC3B;;AAEA;;IAEI,OAAO;IACP,cAAc;IACd,aAAa;AACjB;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,sBAAsB;IACtB,mBAAmB;AACvB;;AAEA;IACI,mBAAmB;AACvB;;AAEA;IACI,gBAAgB;IAChB,gBAAgB;IAChB,mBAAmB;IACnB,mBAAmB;AACvB;;AAEA;IACI,uBAAuB;IACvB,mBAAmB;IACnB,aAAa;IACb,kBAAkB;IAClB,WAAW;IACX,aAAa;AACjB;;AAEA;IACI,kBAAkB;IAClB,WAAW;AACf;;AAEA;IACI,kBAAkB;IAClB,eAAe;AACnB;;AAEA;IACI,yBAAyB;IACzB,mBAAmB;IACnB,eAAe;IACf,gBAAgB;IAChB,WAAW;IACX,YAAY;AAChB;;AAEA;IACI,WAAW;IACX,kBAAkB;IAClB,mBAAmB;IACnB,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,sCAAsC;IACtC,eAAe;IACf,mBAAmB;IACnB,iBAAiB;AACrB;;AAEA,oBAAoB;AACpB;IACI,aAAa;IACb,uBAAuB;IACvB,mBAAmB;AACvB;;AAEA;IACI,yBAAyB;IACzB,WAAW;IACX,kBAAkB;IAClB,YAAY;IACZ,WAAW;IACX,eAAe;IACf,eAAe;IACf,sCAAsC;AAC1C;;AAEA;IACI,0BAA0B;AAC9B;;AAEA;IACI,0BAA0B;AAC9B;;AAEA;IACI,gBAAgB;AACpB;;AAEA;;IAEI,yBAAyB;IACzB,WAAW;AACf;;AAEA;IACI,aAAa;AACjB;;AAEA,iBAAiB;AACjB;IACI,WAAW;AACf;;AAEA;IACI,aAAa;AACjB;;AAEA;IACI,cAAc;AAClB;;AAEA;IACI,aAAa;IACb,eAAe;IACf,uBAAuB;IACvB,SAAS;IACT,mBAAmB;AACvB;;AAEA;IACI,aAAa;IACb,yBAAyB;IACzB,WAAW;IACX,YAAY;IACZ,eAAe;IACf,eAAe;IACf,YAAY;IACZ,sCAAsC;AAC1C;;AAEA;IACI,yBAAyB;AAC7B;;AAEA;IACI,qBAAqB;IACrB,UAAU;IACV,WAAW;IACX,gBAAgB;IAChB,mBAAmB;AACvB;;AAEA;IACI,yBAAyB;IACzB,aAAa;IACb,kBAAkB;IAClB,WAAW;IACX,aAAa;IACb,sBAAsB;IACtB,YAAY;IACZ,sBAAsB;IACtB,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B,mBAAmB;IACnB,eAAe;IACf,kBAAkB;AACtB;;AAEA;IACI,eAAe;AACnB;;AAEA;;;;;IAKI,UAAU;IACV,eAAe;IACf,YAAY;IACZ,eAAe;IACf,yBAAyB;IACzB,WAAW;IACX,sBAAsB;IACtB,kBAAkB;AACtB;;AAEA;IACI,mBAAmB;IACnB,YAAY;AAChB;;AAEA;IACI,iBAAiB;IACjB,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,kBAAkB;IAClB,yBAAyB;IACzB,WAAW;IACX,YAAY;IACZ,kBAAkB;IAClB,eAAe;IACf,eAAe;IACf,WAAW;IACX,sCAAsC;AAC1C;;AAEA;IACI,yBAAyB;AAC7B;;AAEA;;IAEI,0BAA0B;AAC9B;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,6BAA6B;IAC7B,sBAAsB;AAC1B;;AAEA;IACI,aAAa;IACb,mBAAmB;IACnB,mBAAmB;IACnB,6BAA6B;AACjC;;AAEA;IACI,yBAAyB;IACzB,WAAW;IACX,kBAAkB;IAClB,aAAa;IACb,WAAW;AACf;;AAEA;IACI,SAAS;AACb;;AAEA,kBAAkB;AAClB;IACI,aAAa;IACb,sBAAsB;IACtB,iBAAiB;AACrB;;AAEA;IACI,OAAO;AACX;;AAEA,uDAAuD;AACvD;IACI,WAAW;IACX,eAAe;IACf,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI,mBAAmB;AACvB;;AAEA;IACI,cAAc;IACd,eAAe;IACf,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,sCAAsC;IACtC,WAAW;IACX,eAAe;IACf,YAAY;IACZ,eAAe;AACnB;;AAEA;IACI;QACI,sBAAsB;QACtB,mBAAmB;IACvB;;IAEA;;QAEI,eAAe;IACnB;;IAEA;QACI,WAAW;IACf;;IAEA;QACI,kBAAkB;IACtB;;IAEA;QACI,sBAAsB;IAC1B;AACJ","sourcesContent":["/* General Styles */\nbody {\n    background-color: #0d0d0d;\n    color: #ffffff;\n    font-family: 'Roboto', Arial, sans-serif;\n    font-size: 16px;\n    margin: 0;\n    padding: 0;\n    min-height: 100vh; /* Ensure body takes full height */\n    display: flex;\n    flex-direction: column;\n}\n\nheader {\n    background-color: #1a1a1a;\n    padding: 20px;\n    text-align: center;\n}\n\nheader h1 {\n    margin: 0;\n    font-size: 32px;\n    font-family: 'Press Start 2P', cursive;\n    color: #7c7c7c;\n    user-select: none;\n    width: fit-content;\n    color: transparent;\n    background-image: linear-gradient(90deg, #ff7f50, #1e90ff, #32cd32);\n    background-size: 600%;\n    background-clip: text;\n    -webkit-background-clip: text; /* For Safari compatibility */\n    transition: background-position 0.1s;\n    margin: 0 auto;\n}\n\nmain {\n    flex: 1; /* Allow main content to grow and fill available space */\n    padding: 20px;\n}\n\n.container {\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-items: flex-start;\n}\n\n.left-panel,\n.right-panel {\n    flex: 1;\n    max-width: 50%;\n    padding: 10px;\n}\n\n.left-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.right-panel {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\n.upload-section {\n    margin-bottom: 20px;\n}\n\n.upload-section input[type='file'] {\n    max-width: 300px;\n    overflow: hidden;\n    text-overflow: clip;\n    white-space: nowrap;\n}\n\n.drop-area {\n    border: 2px dashed #ccc;\n    border-radius: 10px;\n    padding: 20px;\n    text-align: center;\n    color: #ccc;\n    display: none;\n}\n\n.drop-area.active {\n    border-color: #000;\n    color: #000;\n}\n\n.canvas-section {\n    position: relative;\n    max-width: 100%;\n}\n\n#canvas {\n    border: 2px solid #ffffff;\n    border-radius: 10px;\n    max-width: 100%;\n    max-height: 80vh;\n    width: auto;\n    height: auto;\n}\n\n.controls-section {\n    width: 100%;\n    text-align: center;\n    margin-bottom: 30px;\n    display: flex;\n    flex-direction: column;\n}\n\n.controls-section h2 {\n    font-family: 'Press Start 2P', cursive;\n    font-size: 24px;\n    margin-bottom: 10px;\n    align-self: start;\n}\n\n/* Tabs Navigation */\n.tabs {\n    display: flex;\n    justify-content: center;\n    margin-bottom: 20px;\n}\n\n.tab-link {\n    background-color: #1a1a1a;\n    color: #fff;\n    padding: 10px 20px;\n    border: none;\n    margin: 0 0;\n    cursor: pointer;\n    font-size: 16px;\n    transition: background-color 0.3s ease;\n}\n\n.tab-link:first-child {\n    border-radius: 5px 0 0 5px;\n}\n\n.tab-link:last-child {\n    border-radius: 0 5px 5px 0;\n}\n\n.tab-link:not(:first-child):not(:last-child) {\n    border-radius: 0;\n}\n\n.tab-link.active,\n.tab-link:hover {\n    background-color: #fbff00;\n    color: #000;\n}\n\n.tab-link:focus {\n    outline: none;\n}\n\n/* Tabs Content */\n.tabs-content {\n    width: 100%;\n}\n\n.tab-content {\n    display: none;\n}\n\n.tab-content.active {\n    display: block;\n}\n\n.effects-grid {\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    gap: 10px;\n    margin-bottom: 20px;\n}\n\n.effects-grid .add-effect-button {\n    padding: 10px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    font-size: 14px;\n    cursor: pointer;\n    width: 150px;\n    transition: background-color 0.3s ease;\n}\n\n.effects-grid .add-effect-button:hover {\n    background-color: #0056b3;\n}\n\n#effectQueue {\n    list-style-type: none;\n    padding: 0;\n    width: 100%;\n    max-width: 400px;\n    margin: 0 auto 20px;\n}\n\n#effectQueue li {\n    background-color: #1a1a1a;\n    padding: 10px;\n    margin-bottom: 5px;\n    color: #fff;\n    display: flex;\n    flex-direction: column;\n    cursor: move;\n    border: 1px solid #333;\n    border-radius: 5px;\n}\n\n#effectQueue li .effect-header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    font-size: 14px;\n    padding-left: 10px;\n}\n\n#effectQueue li .effect-controls {\n    margin-top: 5px;\n}\n\n#effectQueue li input[type='range'],\n#effectQueue li input[type='text'],\n#effectQueue li input[type='number'],\n#effectQueue li input[type='color'],\n#effectQueue li select {\n    width: 90%;\n    margin-top: 5px;\n    padding: 5px;\n    font-size: 14px;\n    background-color: #2a2a2a;\n    color: #fff;\n    border: 1px solid #444;\n    border-radius: 3px;\n}\n\n.drag-handle {\n    padding-right: 10px;\n    cursor: grab;\n}\n\n.buttons-container {\n    padding-top: 10px;\n    display: flex;\n    flex-direction: column;\n}\n\nbutton {\n    padding: 10px 20px;\n    background-color: #007bff;\n    color: #fff;\n    border: none;\n    border-radius: 5px;\n    font-size: 14px;\n    cursor: pointer;\n    margin: 5px;\n    transition: background-color 0.3s ease;\n}\n\nbutton:hover {\n    background-color: #0056b3;\n}\n\nbutton:focus,\ninput:focus {\n    outline: 2px solid #0056b3;\n}\n\n.actions-container {\n    display: flex;\n    flex-direction: row;\n    justify-content: space-evenly;\n    /* margin-top: 20px; */\n}\n\n.download-container {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    justify-content: space-evenly;\n}\n\nfooter {\n    background-color: #1a1a1a;\n    color: #888;\n    text-align: center;\n    padding: 10px;\n    width: 100%;\n}\n\nfooter p {\n    margin: 0;\n}\n\n/* Sticky footer */\nbody {\n    display: flex;\n    flex-direction: column;\n    min-height: 100vh;\n}\n\nmain {\n    flex: 1;\n}\n\n/* Styles for color pickers, additional sliders, etc. */\n.effect-controls input[type='color'] {\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 14px;\n}\n\n.control-container {\n    margin-bottom: 10px;\n}\n\n.control-container label {\n    display: block;\n    font-size: 14px;\n    margin-bottom: 5px;\n}\n\n.emoji-picker {\n    display: grid;\n    grid-template-columns: repeat(10, 1fr);\n    width: 100%;\n    margin-top: 5px;\n    padding: 2px;\n    font-size: 20px;\n}\n\n@media screen and (max-width: 900px) {\n    .container {\n        flex-direction: column;\n        align-items: center;\n    }\n\n    .left-panel,\n    .right-panel {\n        max-width: 100%;\n    }\n\n    .effects-grid .add-effect-button {\n        width: 100%;\n    }\n\n    .controls-section h2 {\n        align-self: center;\n    }\n\n    .tabs {\n        flex-direction: column;\n    }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -5334,29 +6296,29 @@ Sortable.mount(Remove, Revert);
 
 /***/ }),
 
-/***/ "./styles.css":
-/*!********************!*\
-  !*** ./styles.css ***!
-  \********************/
+/***/ "./src/styles.css":
+/*!************************!*\
+  !*** ./src/styles.css ***!
+  \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !./node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!./node_modules/css-loader/dist/cjs.js!./styles.css */ "./node_modules/css-loader/dist/cjs.js!./styles.css");
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../node_modules/css-loader/dist/cjs.js!./styles.css */ "./node_modules/css-loader/dist/cjs.js!./src/styles.css");
 
       
       
@@ -5729,17 +6691,17 @@ module.exports = styleTagTransform;
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*******************!*\
-  !*** ./script.js ***!
-  \*******************/
+/*!***********************!*\
+  !*** ./src/script.js ***!
+  \***********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   appState: () => (/* binding */ appState),
 /* harmony export */   init: () => (/* binding */ init),
 /* harmony export */   resetAppState: () => (/* binding */ resetAppState)
 /* harmony export */ });
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ "./styles.css");
-/* harmony import */ var _effects_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./effects.js */ "./effects.js");
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles.css */ "./src/styles.css");
+/* harmony import */ var _effects_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./effects.js */ "./src/effects.js");
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return e; }; var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function (t, e, r) { t[e] = r.value; }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag"; function define(t, e, r) { return Object.defineProperty(t, e, { value: r, enumerable: !0, configurable: !0, writable: !0 }), t[e]; } try { define({}, ""); } catch (t) { define = function define(t, e, r) { return t[e] = r; }; } function wrap(t, e, r, n) { var i = e && e.prototype instanceof Generator ? e : Generator, a = Object.create(i.prototype), c = new Context(n || []); return o(a, "_invoke", { value: makeInvokeMethod(t, r, c) }), a; } function tryCatch(t, e, r) { try { return { type: "normal", arg: t.call(e, r) }; } catch (t) { return { type: "throw", arg: t }; } } e.wrap = wrap; var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var p = {}; define(p, a, function () { return this; }); var d = Object.getPrototypeOf, v = d && d(d(values([]))); v && v !== r && n.call(v, a) && (p = v); var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p); function defineIteratorMethods(t) { ["next", "throw", "return"].forEach(function (e) { define(t, e, function (t) { return this._invoke(e, t); }); }); } function AsyncIterator(t, e) { function invoke(r, o, i, a) { var c = tryCatch(t[r], t, o); if ("throw" !== c.type) { var u = c.arg, h = u.value; return h && "object" == _typeof(h) && n.call(h, "__await") ? e.resolve(h.__await).then(function (t) { invoke("next", t, i, a); }, function (t) { invoke("throw", t, i, a); }) : e.resolve(h).then(function (t) { u.value = t, i(u); }, function (t) { return invoke("throw", t, i, a); }); } a(c.arg); } var r; o(this, "_invoke", { value: function value(t, n) { function callInvokeWithMethodAndArg() { return new e(function (e, r) { invoke(t, n, e, r); }); } return r = r ? r.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(e, r, n) { var o = h; return function (i, a) { if (o === f) throw Error("Generator is already running"); if (o === s) { if ("throw" === i) throw a; return { value: t, done: !0 }; } for (n.method = i, n.arg = a;;) { var c = n.delegate; if (c) { var u = maybeInvokeDelegate(c, n); if (u) { if (u === y) continue; return u; } } if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) { if (o === h) throw o = s, n.arg; n.dispatchException(n.arg); } else "return" === n.method && n.abrupt("return", n.arg); o = f; var p = tryCatch(e, r, n); if ("normal" === p.type) { if (o = n.done ? s : l, p.arg === y) continue; return { value: p.arg, done: n.done }; } "throw" === p.type && (o = s, n.method = "throw", n.arg = p.arg); } }; } function maybeInvokeDelegate(e, r) { var n = r.method, o = e.iterator[n]; if (o === t) return r.delegate = null, "throw" === n && e.iterator["return"] && (r.method = "return", r.arg = t, maybeInvokeDelegate(e, r), "throw" === r.method) || "return" !== n && (r.method = "throw", r.arg = new TypeError("The iterator does not provide a '" + n + "' method")), y; var i = tryCatch(o, e.iterator, r.arg); if ("throw" === i.type) return r.method = "throw", r.arg = i.arg, r.delegate = null, y; var a = i.arg; return a ? a.done ? (r[e.resultName] = a.value, r.next = e.nextLoc, "return" !== r.method && (r.method = "next", r.arg = t), r.delegate = null, y) : a : (r.method = "throw", r.arg = new TypeError("iterator result is not an object"), r.delegate = null, y); } function pushTryEntry(t) { var e = { tryLoc: t[0] }; 1 in t && (e.catchLoc = t[1]), 2 in t && (e.finallyLoc = t[2], e.afterLoc = t[3]), this.tryEntries.push(e); } function resetTryEntry(t) { var e = t.completion || {}; e.type = "normal", delete e.arg, t.completion = e; } function Context(t) { this.tryEntries = [{ tryLoc: "root" }], t.forEach(pushTryEntry, this), this.reset(!0); } function values(e) { if (e || "" === e) { var r = e[a]; if (r) return r.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) { var o = -1, i = function next() { for (; ++o < e.length;) if (n.call(e, o)) return next.value = e[o], next.done = !1, next; return next.value = t, next.done = !0, next; }; return i.next = i; } } throw new TypeError(_typeof(e) + " is not iterable"); } return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), o(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function (t) { var e = "function" == typeof t && t.constructor; return !!e && (e === GeneratorFunction || "GeneratorFunction" === (e.displayName || e.name)); }, e.mark = function (t) { return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, define(t, u, "GeneratorFunction")), t.prototype = Object.create(g), t; }, e.awrap = function (t) { return { __await: t }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, c, function () { return this; }), e.AsyncIterator = AsyncIterator, e.async = function (t, r, n, o, i) { void 0 === i && (i = Promise); var a = new AsyncIterator(wrap(t, r, n, o), i); return e.isGeneratorFunction(r) ? a : a.next().then(function (t) { return t.done ? t.value : a.next(); }); }, defineIteratorMethods(g), define(g, u, "Generator"), define(g, a, function () { return this; }), define(g, "toString", function () { return "[object Generator]"; }), e.keys = function (t) { var e = Object(t), r = []; for (var n in e) r.push(n); return r.reverse(), function next() { for (; r.length;) { var t = r.pop(); if (t in e) return next.value = t, next.done = !1, next; } return next.done = !0, next; }; }, e.values = values, Context.prototype = { constructor: Context, reset: function reset(e) { if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e) for (var r in this) "t" === r.charAt(0) && n.call(this, r) && !isNaN(+r.slice(1)) && (this[r] = t); }, stop: function stop() { this.done = !0; var t = this.tryEntries[0].completion; if ("throw" === t.type) throw t.arg; return this.rval; }, dispatchException: function dispatchException(e) { if (this.done) throw e; var r = this; function handle(n, o) { return a.type = "throw", a.arg = e, r.next = n, o && (r.method = "next", r.arg = t), !!o; } for (var o = this.tryEntries.length - 1; o >= 0; --o) { var i = this.tryEntries[o], a = i.completion; if ("root" === i.tryLoc) return handle("end"); if (i.tryLoc <= this.prev) { var c = n.call(i, "catchLoc"), u = n.call(i, "finallyLoc"); if (c && u) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } else if (c) { if (this.prev < i.catchLoc) return handle(i.catchLoc, !0); } else { if (!u) throw Error("try statement without catch or finally"); if (this.prev < i.finallyLoc) return handle(i.finallyLoc); } } } }, abrupt: function abrupt(t, e) { for (var r = this.tryEntries.length - 1; r >= 0; --r) { var o = this.tryEntries[r]; if (o.tryLoc <= this.prev && n.call(o, "finallyLoc") && this.prev < o.finallyLoc) { var i = o; break; } } i && ("break" === t || "continue" === t) && i.tryLoc <= e && e <= i.finallyLoc && (i = null); var a = i ? i.completion : {}; return a.type = t, a.arg = e, i ? (this.method = "next", this.next = i.finallyLoc, y) : this.complete(a); }, complete: function complete(t, e) { if ("throw" === t.type) throw t.arg; return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && e && (this.next = e), y; }, finish: function finish(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.finallyLoc === t) return this.complete(r.completion, r.afterLoc), resetTryEntry(r), y; } }, "catch": function _catch(t) { for (var e = this.tryEntries.length - 1; e >= 0; --e) { var r = this.tryEntries[e]; if (r.tryLoc === t) { var n = r.completion; if ("throw" === n.type) { var o = n.arg; resetTryEntry(r); } return o; } } throw Error("illegal catch attempt"); }, delegateYield: function delegateYield(e, r, n) { return this.delegate = { iterator: values(e), resultName: r, nextLoc: n }, "next" === this.method && (this.arg = t), y; } }, e; }
@@ -5773,6 +6735,7 @@ function init() {
   var effectsGrid = document.querySelector('.effects-grid');
   var effectQueueElement = document.getElementById('effectQueue');
   var headerH1 = document.querySelector('header h1');
+  var dropArea = document.getElementById('dropArea');
 
   // Initialize variables
   // let effectsQueue = [];
@@ -5833,14 +6796,22 @@ function init() {
   function generateEffectButtons() {
     var effects = effectManager.getEffects();
     effects.forEach(function (effectClass) {
+      // Find the effect key associated with the effect class
       var effectKey = Object.keys(effectManager.effectsRegistry).find(function (key) {
         return effectManager.effectsRegistry[key] === effectClass;
       });
+
+      // Get the display name and category from the effect class
       var displayName = effectClass.getName();
+      var category = effectClass.getCategory().toLowerCase() || 'uncategorized';
+
+      // Create the effect button
       var button = document.createElement('button');
       button.classList.add('add-effect-button');
       button.textContent = displayName;
       button.dataset.effect = effectKey;
+
+      // Add click event listener to the button
       button.addEventListener('click', function () {
         var defaultParameters = effectClass.getDefaultParameters();
         var effectInstance = effectManager.createEffect(effectKey, defaultParameters);
@@ -5858,7 +6829,14 @@ function init() {
           applyEffects();
         }
       });
-      effectsGrid.appendChild(button);
+
+      // Find the effects-grid for the category
+      var effectsGrid = document.querySelector(".effects-grid[data-category=\"".concat(category, "\"]"));
+      if (effectsGrid) {
+        effectsGrid.appendChild(button);
+      } else {
+        console.warn("No effects grid found for category: ".concat(category));
+      }
     });
   }
   generateEffectButtons();
@@ -5954,9 +6932,11 @@ function init() {
         var paramValue = effect.parameters[param];
         var controlContainer = document.createElement('div');
         controlContainer.classList.add('control-container');
-        var label = document.createElement('label');
-        label.textContent = control.label || param.charAt(0).toUpperCase() + param.slice(1);
-        controlContainer.appendChild(label);
+        if (control.type !== 'button') {
+          var label = document.createElement('label');
+          label.textContent = control.label || param.charAt(0).toUpperCase() + param.slice(1);
+          controlContainer.appendChild(label);
+        }
         var input;
         switch (control.type) {
           case 'range':
@@ -6047,6 +7027,19 @@ function init() {
               effect.parameters[param] = input.checked;
               if (appState.imageLoaded) {
                 applyEffects();
+              }
+            });
+            controlContainer.appendChild(input);
+            break;
+          case 'button':
+            input = document.createElement('button');
+            input.textContent = control.label || param.charAt(0).toUpperCase() + param.slice(1);
+            input.addEventListener('click', function () {
+              if (typeof effect[control.param] === 'function') {
+                effect[control.param]();
+                if (appState.imageLoaded) {
+                  applyEffects();
+                }
               }
             });
             controlContainer.appendChild(input);
@@ -6185,9 +7178,11 @@ function init() {
       console.log('No image loaded');
       return;
     }
+    var fileTypeSelect = document.getElementById('fileType');
+    var fileType = fileTypeSelect.value;
     var link = document.createElement('a');
-    link.download = 'edited-image.png';
-    link.href = canvas.toDataURL('image/png');
+    link.download = "edited-image.".concat(fileType.split('/')[1]);
+    link.href = canvas.toDataURL(fileType);
     link.click();
   }
 
@@ -6205,6 +7200,119 @@ function init() {
       console.log('No image loaded');
     }
   }
+
+  // Tab Switching Logic
+  var tabLinks = document.querySelectorAll('.tab-link');
+  var tabContents = document.querySelectorAll('.tab-content');
+  tabLinks.forEach(function (tabLink) {
+    tabLink.addEventListener('click', function () {
+      var targetTab = tabLink.getAttribute('data-tab');
+
+      // Remove active class from all tabs and contents
+      tabLinks.forEach(function (link) {
+        return link.classList.remove('active');
+      });
+      tabContents.forEach(function (content) {
+        return content.classList.remove('active');
+      });
+
+      // Add active class to the clicked tab and corresponding content
+      tabLink.classList.add('active');
+      var targetContent = document.getElementById("tab-".concat(targetTab));
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+
+  // Prevent default drag behaviors
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(function (eventName) {
+    dropArea.addEventListener(eventName, preventDefaults, false);
+    document.body.addEventListener(eventName, preventDefaults, false);
+  });
+
+  // Highlight drop area when item is dragged over it
+  ['dragenter', 'dragover'].forEach(function (eventName) {
+    dropArea.addEventListener(eventName, function () {
+      return dropArea.classList.add('active');
+    }, false);
+  });
+  ['dragleave', 'drop'].forEach(function (eventName) {
+    dropArea.addEventListener(eventName, function () {
+      return dropArea.classList.remove('active');
+    }, false);
+  });
+
+  // Handle dropped files
+  dropArea.addEventListener('drop', handleDrop, false);
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  function handleDrop(e) {
+    var dt = e.dataTransfer;
+    var files = dt.files;
+    var url = dt.getData('text/uri-list');
+    console.log('Dropped files:', files);
+    if (files.length) {
+      var file = files[0];
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        var img = new Image();
+        img.onload = function () {
+          loadImageToCanvas(img);
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else if (url) {
+      console.log('Dropped URL:', url);
+      var proxyUrl = "http://localhost:3000/proxy?url=".concat(encodeURIComponent(url));
+      var img = new Image();
+      img.crossOrigin = 'Anonymous'; // Handle CORS
+      img.onload = function () {
+        loadImageToCanvas(img);
+      };
+      img.onerror = function () {
+        console.error('Failed to load image from URL');
+      };
+      img.src = proxyUrl;
+    }
+  }
+  function loadImageToCanvas(img) {
+    // Calculate scaling to fit within max dimensions
+    var maxWidth = 800;
+    var maxHeight = 600;
+    var width = img.width;
+    var height = img.height;
+
+    // Maintain aspect ratio
+    if (width > maxWidth || height > maxHeight) {
+      var widthRatio = maxWidth / width;
+      var heightRatio = maxHeight / height;
+      var ratio = Math.min(widthRatio, heightRatio);
+      width = width * ratio;
+      height = height * ratio;
+    }
+    canvas.width = width;
+    canvas.height = height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, width, height);
+    appState.originalImage = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    appState.imageLoaded = true;
+    applyEffects(); // Apply any effects in the queue
+  }
+
+  // Show drop area when dragging files over the window
+  window.addEventListener('dragenter', function () {
+    return dropArea.style.display = 'block';
+  }, true);
+  window.addEventListener('dragleave', function () {
+    return dropArea.style.display = 'none';
+  }, false);
+  window.addEventListener('drop', function () {
+    return dropArea.style.display = 'none';
+  }, false);
 
   // **Attach Event Listeners**
   imageUpload.addEventListener('change', handleImageUpload);
