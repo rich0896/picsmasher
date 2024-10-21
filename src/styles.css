@@ -241,6 +241,70 @@ main {
     border-radius: 3px;
 }
 
+.selected-emoji {
+    align-self: center;
+    width: fit-content;
+    background-color: #333;
+    border: 1px solid #7c7c7c;
+    border-radius: 5px;
+}
+
+.selected-emoji:hover {
+    background-color: #0056b3;
+    border-color: #fff;
+    cursor: pointer;
+}
+
+.emoji-picker {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
+    padding: 2px;
+    font-size: 20px;
+}
+
+.emoji-tabs {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.emoji-tab {
+    padding: 5px;
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 2px solid #444;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.emoji-grid {
+    display: none;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.emoji-option {
+    /* padding: 5px; */
+    background-color: #333;
+    /* color: #fff; */
+    border: 1px solid #7c7c7c;
+    border-radius: 5px;
+    /* cursor: pointer; */
+    /* transition: background-color 0.3s ease; */
+}
+
+.emoji-option:hover {
+    background-color: #0056b3;
+    border-color: #fff;
+    cursor: pointer;
+}
+
 .drag-handle {
     padding-right: 10px;
     cursor: grab;
@@ -354,15 +418,6 @@ main {
     display: block;
     font-size: 14px;
     margin-bottom: 5px;
-}
-
-.emoji-picker {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    width: 100%;
-    margin-top: 5px;
-    padding: 2px;
-    font-size: 20px;
 }
 
 @media screen and (max-width: 900px) {

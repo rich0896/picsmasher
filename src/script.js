@@ -1,7 +1,7 @@
 // script.js
 
 import './styles.css';
-import { EffectManager, registeredEffects } from './effects.js';
+import { EffectManager, registeredEffects, EmojiEffect } from './effects.js';
 import Sortable from 'sortablejs';
 
 const appState = {
@@ -353,13 +353,106 @@ export function init() {
                             control.label ||
                             param.charAt(0).toUpperCase() + param.slice(1);
                         input.addEventListener('click', () => {
-                            if (typeof effect[control.param] === 'function') {
-                                effect[control.param]();
+                            if (typeof effect[control.action] === 'function') {
+                                effect[control.action]();
                                 if (appState.imageLoaded) {
                                     applyEffects();
                                 }
                             }
                         });
+                        controlContainer.appendChild(input);
+                        break;
+                    case 'emoji':
+                        input = document.createElement('div');
+                        input.classList.add('emoji-picker');
+                        const selectedEmoji = document.createElement('span');
+                        selectedEmoji.textContent = paramValue;
+                        selectedEmoji.classList.add('selected-emoji');
+                        input.appendChild(selectedEmoji);
+
+                        const emojiTabs = document.createElement('div');
+                        emojiTabs.classList.add('emoji-tabs');
+                        const categories = Object.keys(
+                            EmojiEffect.getEmojiOptions()
+                        );
+                        categories.forEach((category) => {
+                            const tabButton = document.createElement('button');
+                            tabButton.classList.add('emoji-tab');
+                            tabButton.textContent =
+                                category.charAt(0).toUpperCase() +
+                                category.slice(1);
+                            tabButton.dataset.category = category;
+                            if (category === 'smileys') {
+                                tabButton.classList.add('active');
+                            }
+                            emojiTabs.appendChild(tabButton);
+                        });
+                        input.appendChild(emojiTabs);
+
+                        const emojiGrids = {};
+                        categories.forEach((category) => {
+                            const emojiGrid = document.createElement('div');
+                            emojiGrid.classList.add('emoji-grid');
+                            emojiGrid.id = `emoji-grid-${category}`;
+                            if (category !== 'smileys') {
+                                emojiGrid.style.display = 'none';
+                            }
+                            emojiGrids[category] = emojiGrid;
+                            input.appendChild(emojiGrid);
+                        });
+
+                        const emojiOptions = EmojiEffect.getEmojiOptions();
+                        Object.keys(emojiOptions).forEach((category) => {
+                            emojiOptions[category].forEach((emoji) => {
+                                const emojiOption =
+                                    document.createElement('span');
+                                emojiOption.textContent = emoji;
+                                emojiOption.classList.add('emoji-option');
+                                emojiOption.addEventListener('click', () => {
+                                    effect.parameters[param] = emoji;
+                                    selectedEmoji.textContent = emoji;
+                                    Object.values(emojiGrids).forEach(
+                                        (grid) => (grid.style.display = 'none')
+                                    );
+                                    emojiTabs.style.display = 'none'; // Hide the tabs
+                                    if (appState.imageLoaded) {
+                                        applyEffects();
+                                    }
+                                });
+                                emojiGrids[category].appendChild(emojiOption);
+                            });
+                        });
+
+                        selectedEmoji.addEventListener('click', () => {
+                            const isPickerVisible =
+                                emojiTabs.style.display === 'flex';
+                            if (isPickerVisible) {
+                                emojiTabs.style.display = 'none';
+                                Object.values(emojiGrids).forEach((grid) => {
+                                    grid.style.display = 'none';
+                                });
+                            } else {
+                                emojiTabs.style.display = 'flex';
+                                emojiGrids.smileys.style.display = 'grid'; // Show the Smileys grid by default
+                            }
+                        });
+
+                        emojiTabs.addEventListener('click', (event) => {
+                            if (event.target.classList.contains('emoji-tab')) {
+                                const category = event.target.dataset.category;
+                                Object.values(emojiGrids).forEach(
+                                    (grid) => (grid.style.display = 'none')
+                                );
+                                emojiGrids[category].style.display = 'grid';
+                                document
+                                    .querySelectorAll('.emoji-tab')
+                                    .forEach((tab) =>
+                                        tab.classList.remove('active')
+                                    );
+                                event.target.classList.add('active');
+                            }
+                        });
+
                         controlContainer.appendChild(input);
                         break;
                     // Add other control types as needed
