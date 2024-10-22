@@ -14,8 +14,12 @@ app.use((req, res, next) => {
 
 app.get('/proxy', (req, res) => {
     const url = req.query.url;
+    const allowList = ['https://example.com/data', 'https://another-example.com/data'];
     if (!url) {
         return res.status(400).send('URL is required');
+    }
+    if (!allowList.includes(url)) {
+        return res.status(400).send('Invalid URL');
     }
     request({ url, encoding: null }, (err, resp, buffer) => {
         if (err) {
